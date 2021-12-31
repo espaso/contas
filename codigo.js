@@ -1,4 +1,4 @@
-window.onerror = ScriptErro;
+window.onerror = MensagemErro;
 
 if (/(android|bb\d+|meego).+mobile/i.test(navigator.userAgent||navigator.vendor)) var dispositivo = true; else var dispositivo = false;
 
