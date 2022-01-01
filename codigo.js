@@ -1,16 +1,16 @@
-window.onerror = MensagemErro;
+window.onerror = ScriptErro;
 
 if (/(android|bb\d+|meego).+mobile/i.test(navigator.userAgent||navigator.vendor)) var dispositivo = true; else var dispositivo = false;
 
-//if (dispositivo) var caminho = "/storage/emulated/0/.contas"; else var caminho = "C:\Users\marco\Desktop\GalaxyA20s\Phone\.contas";
-var caminho = "/storage/emulated/0/.contas";
+if (dispositivo) var caminho = "/storage/emulated/0/.contas"; else var caminho = "C:\Users\marco\Desktop\GalaxyA20s\Phone\.contas";
+//var caminho = "/storage/emulated/0/.contas";
 
 var banco = "contas";
 var MinhaData = new Date();
-var Dia = 31;//MinhaData.getDate();
-var Mes = 12;//MinhaData.getMonth()+1;
+var Dia = MinhaData.getDate();
+var Mes = MinhaData.getMonth()+1;
 var Mez = Mes;
-var Ano = 2021;//MinhaData.getFullYear();
+var Ano = MinhaData.getFullYear();
 var HH = MinhaData.getHours();
 var MM = MinhaData.getMinutes();
 var SS = MinhaData.getSeconds();
