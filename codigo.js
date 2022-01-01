@@ -7,10 +7,10 @@ var caminho = "/storage/emulated/0/.contas";
 
 var banco = "contas";
 var MinhaData = new Date();
-var Dia = MinhaData.getDate();
-var Mes = MinhaData.getMonth()+1;
+var Dia = 31;//MinhaData.getDate();
+var Mes = 12;//MinhaData.getMonth()+1;
 var Mez = Mes;
-var Ano = MinhaData.getFullYear();
+var Ano = 2022;//MinhaData.getFullYear();
 var HH = MinhaData.getHours();
 var MM = MinhaData.getMinutes();
 var SS = MinhaData.getSeconds();
