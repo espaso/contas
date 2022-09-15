@@ -43,7 +43,7 @@ var LimiteVisa = 0, LimiteItaucard = 0;
 
 var Conexao = window.openDatabase(banco, "1", "Contas", 5000000);
 Conexao.transaction(function(tabela) {
-	//tabela.executeSql("DROP TABLE DIARIO");
+	tabela.executeSql("DROP TABLE CONTROLE");
 	tabela.executeSql("CREATE TABLE IF NOT EXISTS AGENDA (Codigo INTEGER, Tarefa TEXT, Data REAL, Tipo TEXT, Descricao TEXT)");
 	tabela.executeSql("CREATE TABLE IF NOT EXISTS ALTERA (Codigo INTEGER, Tabela TEXT, Descricao TEXT, Valor TEXT, Edita TEXT)");
 	tabela.executeSql("CREATE TABLE IF NOT EXISTS VISA (Codigo INTEGER, Tipo TEXT, Data REAL, Forma TEXT, Descricao TEXT, Valor REAL, Parcelas INTEGER, Quitado INTEGER)");
