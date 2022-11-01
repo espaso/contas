@@ -7,9 +7,9 @@ if (dispositivo) var caminho = "/storage/emulated/0/.contas"; else var caminho =
 
 var banco = "contas";
 var MinhaData = new Date();
-var Dia = MinhaData.getDate();
-var Mes = MinhaData.getMonth()+1;
-var Mez = Mes;
+var Dia = 31;//MinhaData.getDate();
+var Mes = 10;//MinhaData.getMonth()+1;
+var Mez = 10;//Mes;
 var Ano = MinhaData.getFullYear();
 var HH = MinhaData.getHours();
 var MM = MinhaData.getMinutes();
@@ -56,7 +56,7 @@ Conexao.transaction(function(tabela) {
 Conexao = null;
 
 function Remuneracao(holerite) {
-	var adianta = holerite*0.4;
+	var adianta = 0;//holerite*0.4;
 	var noturno = holerite*0.3;
 	var hextra = holerite*0.1875;
 	var dsr = (noturno+hextra)/5.5;
@@ -172,7 +172,7 @@ function AlteraForma(texto) {
 		if (texto == "Contas") texto = "CH";
 		if (texto == "Dinheiro") texto = "DM";
 		if (texto == "Flexcar") texto = "CM";
-		if (texto == "Itau") texto = "IL";
+		if (texto == "Itau") texto = "IT";
 		if (texto == "Itaucard") texto = "CI";
 		if (texto == "Refeicao") texto = "RM";
 		if (texto == "Santander") texto = "SM";
@@ -194,7 +194,7 @@ function DefineForma(texto) {
 		if (texto == "CH") texto = "Contas";
 		if (texto == "DA" || texto == "DL" || texto == "DM") texto = "Dinheiro";
 		if (texto == "CM") texto = "Flexcar";
-		if (texto == "IL") texto = "Itau";
+		if (texto == "IT") texto = "Itau";
 		if (texto == "CI") texto = "Itaucard";
 		if (texto == "RM") texto = "Refeicao";
 		if (texto == "SA" || texto == "SM") texto = "Santander";
@@ -323,6 +323,7 @@ var Consulta = "SELECT * FROM "+corrente
 var SaldoBRanterior=0,EntradaBRanterior=0,SaidaBRanterior=0;
 var SaldoDManterior=0,EntradaDManterior=0,SaidaDManterior=0;
 var SaldoCXanterior=0,EntradaCXanterior=0,SaidaCXanterior=0;
+var SaldoITanterior=0,EntradaITanterior=0,SaidaITanterior=0;
 var cs = 0;
 var DataSaldo = new Date();
 var hh = DataSaldo.getHours();
@@ -349,6 +350,12 @@ Conexao.transaction(function(tabela) {
 				if (dados.rows.item(i).Registro=='Despesa' && dados.rows.item(i).Forma=='CX') {
 					SaidaCXanterior = SaidaCXanterior + dados.rows.item(i).Valor;
 				}
+				if (dados.rows.item(i).Registro=='Receita' && dados.rows.item(i).Forma=='IT') {
+					EntradaITanterior = EntradaITanterior + dados.rows.item(i).Valor;
+				}
+				if (dados.rows.item(i).Registro=='Despesa' && dados.rows.item(i).Forma=='IT') {
+					SaidaITanterior = SaidaITanterior + dados.rows.item(i).Valor;
+				}
 //Saldo Especie
 				if (dados.rows.item(i).Registro=='Receita' && dados.rows.item(i).Forma=='DM') {
 					EntradaDManterior = EntradaDManterior + dados.rows.item(i).Valor;
@@ -360,6 +367,7 @@ Conexao.transaction(function(tabela) {
 			SaldoBRanterior = arredondamoeda(EntradaBRanterior-SaidaBRanterior);
 			SaldoDManterior = arredondamoeda(EntradaDManterior-SaidaDManterior);
 			SaldoCXanterior = arredondamoeda(EntradaCXanterior-SaidaCXanterior);
+			SaldoITanterior = arredondamoeda(EntradaITanterior-SaidaITanterior);
 			datasaldo = Ano+"/"+Mes+"/01";
 			dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
 			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'BR', 'Bradesco', SaldoBRanterior]);
@@ -367,6 +375,9 @@ Conexao.transaction(function(tabela) {
 			dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
 			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'CX', 'Caixa', SaldoCXanterior]);
 			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Caixa\nCaixa R$ "+formatamoeda(SaldoCXanterior));
+			dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
+			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'IT', 'Itau', SaldoITanterior]);
+			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Itau\nItau R$ "+formatamoeda(SaldoITanterior));
 			dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
 			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'DM', 'Dinheiro', SaldoDManterior]);
 			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Dinheiro\nDinheiro R$ "+formatamoeda(SaldoDManterior));
