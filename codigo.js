@@ -386,8 +386,8 @@ Conexao.transaction(function(tabela) {
 			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'CX', 'Caixa', SaldoCXanterior]);
 			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Caixa\nCaixa R$ "+formatamoeda(SaldoCXanterior));
 			dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
-			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'MD', 'Caixa', SaldoMDanterior]);
-			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Caixa\nCaixa R$ "+formatamoeda(SaldoMDanterior));
+			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'MD', 'Modal', SaldoMDanterior]);
+			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Modal\nModal R$ "+formatamoeda(SaldoMDanterior));
 			dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
 			tabela.executeSql("INSERT INTO "+corrente+" (Codigo, Registro, Data, Tipo, Forma, Descricao, Valor) VALUES (?,?,?,?,?,?,?)", [dsaldo, 'Receita', datasaldo, 'Saldo', 'IT', 'Itau', SaldoITanterior]);
 			if (dispositivo) android.MandaSms("Saldo "+nomedomes(ulti),"21998103976",nomedomes(ulti)+" "+formatadata(datasaldo)+"\nSaldo Itau\nItau R$ "+formatamoeda(SaldoITanterior));
