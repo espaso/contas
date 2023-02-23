@@ -7,9 +7,9 @@ if (dispositivo) var caminho = "/storage/emulated/0/.contas"; else var caminho =
 
 var banco = "contas";
 var MinhaData = new Date();
-var Dia = 01;//MinhaData.getDate();
-var Mes = 02;//MinhaData.getMonth()+1;
-var Mez = 02;//Mes;
+var Dia = MinhaData.getDate();
+var Mes = MinhaData.getMonth()+1;
+var Mez = Mes;
 var Ano = MinhaData.getFullYear();
 var HH = MinhaData.getHours();
 var MM = MinhaData.getMinutes();
@@ -470,7 +470,7 @@ Conexao.transaction(function(tabela) {
 		});
 //Backup ultimo Mes
 		tabela.executeSql("SELECT * FROM CONTROLE", [], function(tabela, dados) {  
-			alert(dados.rows.item(0).MesAtual+" = "+mesanterior);
+			//alert(dados.rows.item(0).MesAtual+" = "+mesanterior);
 			if (dados.rows.item(0).MesAtual==mesanterior) window.location.replace("../paginas/backup.htm");
 		});
 	}});
