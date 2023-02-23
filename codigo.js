@@ -470,7 +470,7 @@ Conexao.transaction(function(tabela) {
 		});
 //Backup ultimo Mes
 		tabela.executeSql("SELECT * FROM CONTROLE", [], function(tabela, dados) {  
-			alert(
+			alert(dados.rows.item(0).MesAtual+" = "+mesanterior);
 			if (dados.rows.item(0).MesAtual==mesanterior) window.location.replace("../paginas/backup.htm");
 		});
 	}});
