@@ -7,8 +7,8 @@ if (dispositivo) var caminho = "/storage/emulated/0/.contas"; else var caminho =
 
 var banco = "contas";
 var MinhaData = new Date();
-var Dia = 29;//MinhaData.getDate();
-var Mes = 2;//MinhaData.getMonth()+1;
+var Dia = MinhaData.getDate();
+var Mes = MinhaData.getMonth()+1;
 var Mez = Mes;
 var Ano = MinhaData.getFullYear();
 var HH = MinhaData.getHours();
