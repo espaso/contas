@@ -1,0 +1,493 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
+<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
+<script src="../../../../../../.contas/base/corrente.js"></script>
+<script src="../../../../../../.contas/base/mensal.js"></script>
+<script src="../../../../../../.contas/base/passado.js"></script>
+<title>Contas</title>
+</head>
+<body onselectstart="return false" class="fadeOut">
+<div class="main">
+    <div class="content" style="height: 10">
+<TABLE border="0" style="border-collapse: collapse; height: 100%" cellspacing="0" width="100%" cellpadding="0" class="menu">
+  <TR>
+	<TD align="center" width="10"></TD><TD vAlign="middle"></TD>
+	<TD id="atualizado" width="50" align="right"><div style="border: solid 0px" class="btimg"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(../imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7" onclick="window.location.href='registro.htm?pgn=registro'" class="btimg btico"></div></TD>
+	<TD align="center" width="5"></TD>
+  </TR>
+</TABLE>
+    </div>
+    <div id="footer" style="height: 90%">
+<center>
+<TABLE border=0 style="border-collapse: collapse; height: 35%" cellspacing="2" width="90%" cellpadding="0">
+  <TBODY>
+  <TR>
+	<TD vAlign="middle" align="center" width="50%" onclick="window.location.href='controle.htm?pgn=despesa'" class="Ctoque">
+		<TABLE border="0" style="border-collapse: collapse; width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<TD vAlign="middle" align="center"><canvas id="CDespesa" style="width: 150; height: 150"></canvas></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center"></TD></TR>
+			<tr>
+				<TD><TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0"><TR><TD align="center"><font size="2"><span id="EtiquetaDespesa"><script>document.write(nomedomes(Mes).substr(0,3).toUpperCase()+" "+Ano)</script></span></font><p><font size="4"><span id="TDebito">R$ 0,00</span></font><p><font size="2"><i><span id="DescDespesa">Despesa</span></i></font></TD></TR></TABLE></TD>
+			</tr>
+		</TABLE>
+	</TD>
+	<TD vAlign="middle" align="center" width="50%" onclick="window.location.href='controle.htm?pgn=receita'" class="Ctoque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD vAlign="middle" align="center"><canvas id="CReceita" style="width: 150; height: 150"></canvas></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center"></TD></TR>
+			<tr>
+				<TD><TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0"><TR><TD align="center"><font size="2"><span id="EtiquetaCredito"><script>document.write(nomedomes(Mes).substr(0,3).toUpperCase()+" "+Ano)</script></span></font><p><font size="4"><span id="TCredito">R$ 0,00</span></font><p><font size="2"><i><span id="DescCredito">Receita</span></i></font></TD></TR></TABLE></TD>
+			</tr>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="0" style="position: relative; height: 14%" cellspacing="3" width="99%" cellpadding="0">
+  <TBODY>
+	<TR><TD vAlign="middle" colspan="2" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD width="10"></TD>
+				<TD class="fadeIn fadeOut">
+					<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+						<TR>
+							<TD width="15%"></TD>
+							<TD align="center"><font size="7"><span id="agendadia"><script>document.write(Dia)</script></span></font></TD>
+							<TD width="5%"></TD>
+							<TD align="center"><font size="4"><span id="agendasem"><script>document.write(vediasemana(hoje).substr(0,3).toUpperCase())</script></span></font><p><font size="4"><span id="agendames"><script>document.write(nomedomes(Mes).substr(0,3).toUpperCase())</script></span></font></TD>
+							<TD width="5%"></TD>
+							<TD vAlign="middle" width="74%"><font size="5">C</font><font size="4">ONTAS</font><p><font style="color:#528B8B" size="3"><i><font style="color:#528B8B" size="3">Controle</font> <font style="color:#CD5555" size="3">Financeiro</font></TD>
+						</TR>
+					</TABLE>
+				</TD>
+				<TD width="10"></TD>
+			</tr>
+		</TABLE>
+	</TD></TR>
+  </TBODY>
+</TABLE>
+<TABLE border="0" style="position: relative; height: 50%" cellspacing="3" width="99%" cellpadding="0">
+  <TBODY>
+  <TR>
+	<TD vAlign="middle" align="center" width="34%" onclick="window.location.href='extrato.htm?bco=BR'" class="painel toque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD align="center"><div style="background: url(../imagens/bradesco.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
+			<tr>
+			  <TD align="center"><font size="2"><span id="TotalReceitaBradesco">R$ 0,00</span><br><i>Bradesco</i></font></TD>
+			</tr>
+		</TABLE>
+	</TD>
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='extrato.htm?bco=CX'" class="painel toque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD align="center"><div style="background: url(../imagens/caixa.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
+			<tr>
+				<TD align="center"><font size="2"><span id="ResultadoCaixa">R$ 0,00</span><br><i>Caixa</i></font></TD>
+			</tr>
+		</TABLE>
+	</TD>
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='extrato.htm?bco=IT'" class="painel toque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD align="center"><div style="background: url(../imagens/itau.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
+			<tr>
+				<TD align="center"><font size="2"><span id="ResultadoItau">R$ 0,00</span><br><i>Itau</i></font></TD>
+			</tr>
+		</TABLE>
+	</TD>
+  </TR>
+  <TR>
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='extrato.htm?bco=DM'" class="painel toque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD align="center"><div style="background: url(../imagens/dinheiro.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
+			<tr>
+			  <TD align="center"><font size="2"><span id="TotalDinheiroMarcos">R$ 0,00</span><br><i>Dinheiro</i></font></TD>
+			</tr>
+		</TABLE>
+	</TD>
+	<TD vAlign="middle" align="center" width="34%" onclick="window.location.href='saldo.htm'" class="painel toque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD align="center"><div style="background: url(../imagens/saldo.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
+			<tr>
+				<TD align="center"><font size="2"><span id="TotalGContasTotal">R$ 0,00</span><br><i>Saldo</i></font></TD>
+			</tr>
+		</TABLE>
+	</TD>
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='extrato.htm?bco=MD'" class="painel toque">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD align="center"><div style="background: url(../imagens/modal.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+			</tr>
+			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
+			<tr>
+				<TD align="center"><font size="2"><span id="ResultadoModal">R$ 0,00</span><br><i>Modal</i></font></TD>
+			</tr>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+</center>
+    </div>
+</div>
+<script src="../codigos/RadialBar.js"></script>
+<script>
+window.onerror = MensagemErro;
+function PreencheCirculo(Circ,cor,PConta) {
+	var canvas = document.getElementById('C'+Circ);
+	var ctx = canvas.getContext('2d');
+	canvas.width = 100;
+	canvas.height = 100;
+	var Circulo = new RadialBar(ctx, {
+		x: (canvas.width*50)/100, y: (canvas.height*50)/100, radius: (canvas.width*50)/canvas.width, lineWidth: 30, lineFill: cor, backLineFill: '#696969', isShowInfoText: true, infoStyle: '40px Arial'
+	});
+	if (PConta==100) Circulo.lineFill = cor;
+	if (PConta==0) Circulo.backLineFill = '#696969';
+	Circulo.set(PConta);
+	Circulo.update();
+	return;
+}
+
+var TabCorrente = JSON.parse(pegaCorrente);
+var TabMensal = JSON.parse(pegaMensal);
+var TabPassado = JSON.parse(pegaPassado);
+
+TabCorrente.sort(function(a, b) {
+	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+});
+
+TabMensal.sort(function(a, b) {
+	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+});
+
+TabPassado.sort(function(a, b) {
+	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+});
+
+if (TabCorrente[0].Data.substr(0,7) == Ano+"/"+Mes) {
+	var ReceitaCredito = 0, DespesaDivida = 0;
+	var ReceitaBradesco=0,EntradaBradesco=0,DespesaBradesco=0;
+	var ReceitaDinheiro=0,EntradaDinheiro=0,DespesaDinheiro=0;
+	var ReceitaCaixa=0,EntradaCaixa=0,DespesaCaixa=0;
+	var ReceitaModal=0,EntradaModal=0,DespesaModal=0;
+	var ReceitaItau=0,EntradaItau=0,DespesaItau=0;
+	for (var i=0; i<TabCorrente.length; i++) {
+		if (TabCorrente[i].Data <= hoje) {
+			//Calculo Bradesco
+			if (TabCorrente[i].Forma=='BR') {
+				if (TabCorrente[i].Valor >= 0) {
+					EntradaBradesco = EntradaBradesco + TabCorrente[i].Valor;
+				} else {
+					DespesaBradesco = DespesaBradesco + TabCorrente[i].Valor;
+				}
+			}
+			//Calculo Dinheiro
+			if (TabCorrente[i].Forma=='DM') {
+				if (TabCorrente[i].Valor >= 0) {
+					EntradaDinheiro = EntradaDinheiro + TabCorrente[i].Valor;
+				} else {
+					DespesaDinheiro = DespesaDinheiro + TabCorrente[i].Valor;
+				}
+			}
+			//Calculo Caixa
+			if (TabCorrente[i].Forma=='CX') {
+				if (TabCorrente[i].Valor >= 0) {
+					EntradaCaixa = EntradaCaixa + TabCorrente[i].Valor;
+				} else {
+					DespesaCaixa = DespesaCaixa + TabCorrente[i].Valor;
+				}
+			}
+			//Calculo Modal
+			if (TabCorrente[i].Forma=='MD') {
+				if (TabCorrente[i].Valor >= 0) {
+					EntradaModal = EntradaModal + TabCorrente[i].Valor;
+				} else {
+					DespesaModal = DespesaModal + TabCorrente[i].Valor;
+				}
+			}
+			//Calculo Itau
+			if (TabCorrente[i].Forma=='IT') {
+				if (TabCorrente[i].Valor >= 0) {
+					EntradaItau = EntradaItau + TabCorrente[i].Valor;
+				} else {
+					DespesaItau = DespesaItau + TabCorrente[i].Valor;
+				}
+			}
+		}
+	}
+	//Bradesco
+	ReceitaBradesco = EntradaBradesco + DespesaBradesco;
+	TotalReceitaBradesco.innerHTML = "R$ "+formatamoeda(ReceitaBradesco);
+	//Caixa
+	ReceitaCaixa = EntradaCaixa + DespesaCaixa;
+	ResultadoCaixa.innerHTML = "R$ "+formatamoeda(ReceitaCaixa);
+	//Dinheiro
+	ReceitaDinheiro = EntradaDinheiro + DespesaDinheiro;
+	TotalDinheiroMarcos.innerHTML = "R$ "+formatamoeda(ReceitaDinheiro);
+	//Itau
+	ReceitaItau = EntradaItau + DespesaItau;
+	ResultadoItau.innerHTML = "R$ "+formatamoeda(ReceitaItau);
+	//Modal
+	ReceitaModal = EntradaModal + DespesaModal;
+	ResultadoModal.innerHTML = "R$ "+formatamoeda(ReceitaModal);
+	//Saldo
+	ReceitaCredito = ReceitaCaixa + ReceitaModal + ReceitaItau + ReceitaBradesco + ReceitaDinheiro;
+	TotalGContasTotal.innerHTML = "R$ "+formatamoeda(ReceitaCredito);
+
+	var TotalDebito=0, TotalPago=0, pesquisa="";
+	for (var i=0; i<TabMensal.length; i++) {
+		pesquisa = TabMensal[i].Descricao;
+		for (var j=0; j<TabCorrente.length; j++) {
+			if (TabCorrente[j].Valor < 0 && TabCorrente[j].Descricao.indexOf(pesquisa)>=0) {
+				if (TabCorrente[j].Data >= hoje) {
+					TotalDebito = TotalDebito + TabCorrente[j].Valor;
+				} else {
+					TotalPago = TotalPago + TabCorrente[j].Valor;
+				}
+			}
+		}
+	}
+	PDevedor = ((TotalPago*100)/(TotalPago+TotalDebito)).toFixed(0);
+	if (PDevedor<0) PDevedor = 0;
+	PreencheCirculo("Despesa","#8B4513",PDevedor);
+
+	var somaValor = 0, DataReferente = "", pesquisa = "", codigo = 0;
+	for (var i=0; i<TabMensal.length; i++) {
+		pesquisa = TabMensal[i].Descricao;
+		for (var j=0; j<TabCorrente.length; j++) {
+			if (TabCorrente[j].Valor < 0 && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Data >= hoje) {
+				if (DataReferente=="") DataReferente = TabCorrente[j].Data;
+			}
+		}
+	}
+	for (var i=0; i<TabMensal.length; i++) {
+		pesquisa = TabMensal[i].Descricao;
+		for (var j=0; j<TabCorrente.length; j++) {
+			if (TabCorrente[j].Valor < 0 && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Data == DataReferente && TabCorrente[j].Codigo != codigo) {
+				somaValor = somaValor + TabCorrente[j].Valor;
+				codigo = TabCorrente[j].Codigo;
+			}
+		}
+	}
+
+	if (TabCorrente.length>0) {
+		if (DataReferente!="") {
+			data = DataReferente.substr(8,2);
+			data = Zerado(data,2,"");
+			falta = (data)-(Dia);
+			DespesaDivida = somaValor;
+			if (falta==1) {
+				EtiquetaDespesa.innerHTML = "AMANHÃ";
+			} else if (falta==0) {
+				ReceitaCredito = ReceitaCredito + DespesaDivida;
+				EtiquetaDespesa.innerHTML = "HOJE";
+			} else {
+				EtiquetaDespesa.innerHTML = vediasemana(Ano+"/"+Mes+"/"+data).substr(0,3).toUpperCase()+" "+formatadata(data).substr(0,2)+" "+nomedomes(formatadata(Ano+"/"+Mes+"/"+data).substr(3,2)).substr(0,3).toUpperCase();
+			}
+			DescDespesa.innerHTML = "R$ "+formatamoeda(somaValor*-1);
+		}
+		TDebito.innerHTML = "R$ "+formatamoeda(TotalDebito*-1);
+	}
+
+	var TotalRecebido=0, TotalCredito=0, pesquisa="";
+	for (var i=0; i<TabMensal.length; i++) {
+		pesquisa = TabMensal[i].Descricao;
+		for (var j=0; j<TabCorrente.length; j++) {
+			if (TabCorrente[j].Valor > 0 && TabCorrente[j].Descricao.indexOf(pesquisa)>=0) {
+				if (TabCorrente[j].Data <= hoje) {
+					TotalRecebido = TotalRecebido + TabCorrente[j].Valor;
+				} else {
+					TotalCredito = TotalCredito + TabCorrente[j].Valor;
+				}
+			}
+		}
+	}
+	PCredito = ((ReceitaCredito*100)/(ReceitaCredito+TotalCredito)).toFixed(0);
+	if (PCredito<0) PCredito = 0;
+	PreencheCirculo("Receita","#2F4F4F",PCredito);
+
+	var somaValor = 0, DataReferente = "", pesquisa = "", codigo = 0;
+	for (var i=0; i<TabMensal.length; i++) {
+		pesquisa = TabMensal[i].Descricao;
+		for (var j=0; j<TabCorrente.length; j++) {
+			if (TabCorrente[j].Valor > 0 && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Data >= hoje) {
+				if (DataReferente=="") DataReferente = TabCorrente[j].Data;
+			}
+		}
+	}
+	for (var i=0; i<TabMensal.length; i++) {
+		pesquisa = TabMensal[i].Descricao;
+		for (var j=0; j<TabCorrente.length; j++) {
+			if (TabCorrente[j].Valor > 0 && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Data == DataReferente && TabCorrente[j].Codigo != codigo) {
+				somaValor = somaValor + TabCorrente[j].Valor;
+				codigo = TabCorrente[j].Codigo;
+			}
+		}
+	}
+
+	if (TabCorrente.length>0) {
+		if (DataReferente!="") {
+			data = DataReferente.substr(8,2);
+			data = Zerado(data,2,"");
+			falta = (data)-(Dia);
+			if (falta==1) {
+				EtiquetaCredito.innerHTML = "AMANHÃ";
+			} else if (falta==0) {
+				EtiquetaCredito.innerHTML = "HOJE";
+			} else {
+				EtiquetaCredito.innerHTML = vediasemana(Ano+"/"+Mes+"/"+data).substr(0,3).toUpperCase()+" "+formatadata(Ano+"/"+Mes+"/"+data).substr(0,2)+" "+nomedomes(formatadata(Ano+"/"+Mes+"/"+data).substr(3,2)).substr(0,3).toUpperCase();
+			}
+			DescCredito.innerHTML = "R$ "+formatamoeda(somaValor);
+		}
+		TCredito.innerHTML = "R$ "+formatamoeda(ReceitaCredito+TotalCredito);
+	}
+} else {
+	var SaldoBRanterior=0,EntradaBRanterior=0,SaidaBRanterior=0;
+	var SaldoDManterior=0,EntradaDManterior=0,SaidaDManterior=0;
+	var SaldoCXanterior=0,EntradaCXanterior=0,SaidaCXanterior=0;
+	var SaldoMDanterior=0,EntradaMDanterior=0,SaidaMDanterior=0;
+	var SaldoITanterior=0,EntradaITanterior=0,SaidaITanterior=0;
+	var cs = 0;
+	var DataSaldo = new Date();
+	var hh = DataSaldo.getHours();
+	var mm = DataSaldo.getMinutes();
+	hh = Zerado(hh,2,"");
+	mm = Zerado(mm,2,"");
+
+	// Saldo
+	var htmlCorrente = "var pegaCorrente = '[";
+	var htmlPassado = "var pegaPassado = '[";
+	var	htmlBackup = "", htmlPagina = "<html><head><title>"+nomedomes(ultimomes.substr(5,2))+"/"+ultimomes.substr(0,4)+"</title></head><body><table>";
+	var totalBackup = 0, iCor = 0;
+	for (var i = 0; i < TabCorrente.length; i++) {
+		if (TabCorrente[0].Data.substr(0,7) == anou+"/"+ulti) {
+			// Saldo Bancos
+			if (TabCorrente[i].Forma=='BR') {SaldoBRanterior = SaldoBRanterior + TabCorrente[i].Valor;}
+			if (TabCorrente[i].Forma=='CX') {SaldoCXanterior = SaldoCXanterior + TabCorrente[i].Valor;}
+			if (TabCorrente[i].Forma=='MD') {SaldoMDanterior = SaldoMDanterior + TabCorrente[i].Valor;}
+			if (TabCorrente[i].Forma=='IT') {SaldoITanterior = SaldoITanterior + TabCorrente[i].Valor;}
+			if (TabCorrente[i].Forma=='DM') {SaldoDManterior = SaldoDManterior + TabCorrente[i].Valor;}
+		}
+	
+		if (iCor == 0) {var CorLinha = "#EFEFEF";iCor = 1} else {var CorLinha = "#FEFEFE";iCor = 0;}
+		if (TabCorrente[i].Valor > 0) {var CorFonte = "#5CACEE"} else {var CorFonte = "#CD5555"}
+		htmlBackup += "<tr bgcolor='"+CorLinha+"'><td><font style='color:"+CorFonte+"'>"+vediasemana(TabCorrente[i].Data).substr(0,3)+" "+formatadata(TabCorrente[i].Data).substr(0,2)+"/"+nomedomes(formatadata(TabCorrente[i].Data).substr(3,2)).substr(0,3)+"/"+TabCorrente[i].Data.substr(2,2)+"</font></td><td><font style='color:"+CorFonte+"'>"+DefineForma(TabCorrente[i].Forma)+"</font></td><td><font style='color:"+CorFonte+"'>"+TabCorrente[i].Descricao+"</font></td><td><font style='color:"+CorFonte+"'>R$ "+formatamoeda(TabCorrente[i].Valor)+"</font></td></tr>\n";
+
+		totalBackup = totalBackup + TabCorrente[i].Valor;
+		
+		htmlPassado += '{"Data": "'+TabCorrente[i].Data+'", "Forma": "'+TabCorrente[i].Forma+'", "Descricao": "'+TabCorrente[i].Descricao+'", "Valor": '+TabCorrente[i].Valor+'}, ';
+	}
+	datasaldo = Ano+"/"+Mes+"/01";
+	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "BR", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoBRanterior)+'}, ';
+	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "CX", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoCXanterior)+'}, ';
+	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "MD", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoMDanterior)+'}, ';
+	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "IT", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoITanterior)+'}, ';
+	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "DM", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoDManterior)+'}, ';
+
+	htmlPagina += "<tr bgcolor='#C0C0C0'><td colspan='3'>"+nomedomes(ultimomes.substr(5,2))+"/"+ultimomes.substr(0,4)+"</td><td>R$ "+formatamoeda(totalBackup)+"</font></td></tr>\n";
+	htmlPagina += htmlBackup;
+	htmlPagina += "</table></body></html>";
+
+	// Lançamento Futuro
+	var htmlMensal = "var pegaMensal = '[";
+	for (var i = 0; i < TabMensal.length; i++) {
+		anom = Ano;
+		mesm = Mes;
+		var descricaoMen = TabMensal[i].Descricao;
+		if (descricaoMen=="Salario") {
+			var valorMen = Remuneracao(TabMensal[i].Valor);
+		} else {
+			var valorMen = TabMensal[i].Valor;
+		}
+		if (TabMensal[i].Parcela!=0 && TabMensal[i].Resto==0) {
+			//TabMensal.splice(TabMensal.indexOf(TabMensal[i].Codigo), 1);
+		} else {
+			var restanteMen = TabMensal[i].Resto;
+			if (TabMensal[i].Parcela>0 && TabMensal[i].Resto>0) {
+				var restanteMen = restanteMen - 1;
+				parcelaMen = TabMensal[i].Parcela - restanteMen;
+				if (TabMensal[i].Parcela>1) descricaoMen = descricaoMen+" "+parcelaMen+"/"+TabMensal[i].Parcela;
+			}
+			var somar = 0, dataMen = anom+"/"+mesm+"/"+TabMensal[i].Data;
+			if (valorMen<0) {
+				if (vediasemana(dataMen).substr(0,3)=="Sáb") somar = 2;
+				if (vediasemana(dataMen).substr(0,3)=="Dom") somar = 1;
+			} else {
+				if (vediasemana(dataMen).substr(0,3)=="Sáb") somar = -1;
+				if (vediasemana(dataMen).substr(0,3)=="Dom") somar = -2;
+			}
+			ndata = parseInt(dataMen.substr(8,2))+parseInt(somar);
+			if (valorMen<0) {
+				if (ndata>=31) {
+					if (mesm==02) ndata = 28;
+					if (mesm==04 || mesm==06 || mesm==09 || mesm==11) ndata = 30;
+					if (mesm==01 || mesm==03 || mesm==05 || mesm==07 || mesm==08 || mesm==10 || mesm==12) ndata = 31;
+				} else {
+					if (ndata>=28) {
+						if (mesm==02) ndata = 28;
+						if (mesm==04 || mesm==06 || mesm==09 || mesm==11) ndata = 30;
+						if (mesm==01 || mesm==03 || mesm==05 || mesm==07 || mesm==08 || mesm==10 || mesm==12) ndata = 31;
+					}
+				}
+			}
+			dataMen = dataMen.substr(0,8)+""+Zerado(ndata,2,"");
+			htmlCorrente += '{"Codigo": "'+TabMensal[i].Codigo+'", "Data": "'+dataMen+'", "Forma": "'+TabMensal[i].Forma+'", "Descricao": "'+descricaoMen+'", "Valor": '+arredondamoeda(parcelamento(valorMen,TabMensal[i].Parcela))+'}, ';
+			htmlMensal += '{"Codigo": '+TabMensal[i].Codigo+', "Forma": "'+TabMensal[i].Forma+'", "Descricao": "'+TabMensal[i].Descricao+'", "Valor": '+TabMensal[i].Valor+', "Data": "'+TabMensal[i].Data+'", "Parcela": '+TabMensal[i].Parcela+', "Resto": '+restanteMen+'}, ';
+		}
+	}
+	
+	function MesesPassados(vemes) {
+		for (let i = 1; i < 11; i++) {
+			var mesPassado = mesesAneriores(vemes, i * -1);
+			for (var j = 0; j < TabPassado.length; j++) {
+				if (TabPassado[j].Data.substr(0,7)==mesPassado) {
+					htmlPassado += '{"Data": "'+TabPassado[j].Data+'", "Forma": "'+TabPassado[j].Forma+'", "Descricao": "'+TabPassado[j].Descricao+'", "Valor": '+TabPassado[j].Valor+'}, ';
+				}
+			}
+		}
+	}
+	MesesPassados(anou+"/"+ulti+"/"+Dia);
+	
+	if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
+	if (dispositivo) android.SalvaBKP("base", "mensal.js", htmlMensal);
+	if (dispositivo) android.SalvaBKP("base", "passado.js", htmlPassado);
+	if (dispositivo) android.SalvaBKP("html", "B"+ultimomes+".html", htmlPassado);
+
+}
+</script>
+</body>
+</html>
