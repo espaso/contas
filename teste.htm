@@ -34,7 +34,7 @@ function uploadFile() {
             method: 'PUT',
             headers: {
                 'Authorization': `Basic ${authToken}`,
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/vnd.github.v3+json',
             },
             body: JSON.stringify({
                 message: 'Adicionando arquivo via JavaScript',
