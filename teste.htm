@@ -33,7 +33,7 @@ function uploadFile() {
         fetch(apiUrl, {
             method: 'PUT',
             headers: {
-                'Authorization': `Basic ${authToken}`,
+                'Authorization': `Full ${authToken}`,
                 'Content-Type': 'application/vnd.github.v3+json',
             },
             body: JSON.stringify({
