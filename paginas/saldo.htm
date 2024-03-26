@@ -1,0 +1,779 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
+<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
+<script src="../../../../../../.contas/base/corrente.js"></script>
+<script src="../../../../../../.contas/base/passado.js"></script>
+<title>Contas</title>
+</head>
+<body onselectstart="return false" class="fadeOut">
+<div class="main">
+    <div class="content" style="height: 50">
+<TABLE border="0" style="border-collapse: collapse; height: 100%" cellspacing="0" width="100%" cellpadding="0" class="menu">
+  <TR>
+	<TD align="center" width="10"></TD>
+	<TD vAlign="middle" align="right">
+		<INPUT style="background: url(https://marcosfransa.github.io/contas/imagens/lupa.png) #323232 no-repeat right; width: 100%; height: 40; font-size: 35px; color: #FFFFFF; padding: 0.5em; border: solid 0px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; border-radius: 0.1em;" maxLength=25 size=3 id="find" name="find" onkeyup="PesquisaItem(this.value)" class="btimg" />
+	</TD>
+	<TD align="center" width="20"></TD>
+  </TR>
+</TABLE>
+   </div>
+    <div id="footer" style="height: 90%; overflow: auto">
+<div id="exibicao">
+<div id='mySwipe' style='width:100%' class='swipe'>
+  <div class='swipe-wrap'>
+        <div id="saldo0" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo0" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes10"></span></font><span id="fatmes20"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total10"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total20"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total30"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo0"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo1" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo11" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes111"></span></font><span id="fatmes211"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total111"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total211"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total311"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo11"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo2" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo10" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes110"></span></font><span id="fatmes210"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total110"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total210"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total310"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo10"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo3" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo9" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes19"></span></font><span id="fatmes29"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total19"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total29"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total39"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo9"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo4" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo8" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes18"></span></font><span id="fatmes28"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total18"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total28"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total38"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo8"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo5" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo7" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes17"></span></font><span id="fatmes27"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total17"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total27"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total37"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo7"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo6" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo6" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes16"></span></font><span id="fatmes26"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total16"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total26"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total36"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo6"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo7" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo5" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes15"></span></font><span id="fatmes25"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total15"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total25"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total35"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo5"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo8" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo4" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes14"></span></font><span id="fatmes24"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total14"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total24"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total34"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo4"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo9" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo3" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes13"></span></font><span id="fatmes23"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total13"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total23"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total33"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo3"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo10" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo2" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes12"></span></font><span id="fatmes22"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total12"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total22"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total32"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo2"></tbody>
+		</TABLE>
+        </div>
+        <div id="saldo11" style="height: 100%; overflow: auto">
+<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+  <TBODY> 
+  <TR>
+	<TD vAlign="middle" align="center" width="100%">
+		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+			<tr>
+				<TD>
+			<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
+				<TR>
+					<TD align="center" width="130"><canvas id="CSaldo1" style="width: 100; height: 100"></canvas></TD>
+					<TD align="center" width="200">
+				<TABLE border="0" style="border-collapse: collapse; height: 100%; width: 100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD valign="midlle"><font size="2"><font size="3"><span id="fatmes11"></span></font><span id="fatmes21"></span></font></TD>
+						<TD valign="midlle" align="right"><font size="4"><b><span id="Total11"></span></b></font></TD>
+						<TD width="10"></TD>
+					</TR>
+					<TR height="20"><TD valign="middle" align="center" width="100%" colspan="3"></TD></TR>
+					<TR>
+						<TD valign="top"><font size="2"><span id="Total21"></span></font></TD>
+						<TD valign="top" align="right"><font size="2"><span id="Total31"></span></font></TD>
+						<TD width="10"></TD>
+					</TR>
+				</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+				</TD>
+			</tr>
+		</TABLE>
+		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
+			<TR>
+				<TD width="11"></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+			</TR>
+		</TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+		<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+			<tbody id="exSaldo1"></tbody>
+		</TABLE>
+        </div>
+  </div>
+</div>
+</div>
+<div id="pesquisado" style="height: 100%; overflow: auto" hidden>
+	<TABLE border="0" style="position: relative" cellspacing="3" width="100%" cellpadding="0">
+		<tbody id="exPesquisa0"></tbody>
+		<tbody id="exPesquisa1"></tbody>
+		<tbody id="exPesquisa2"></tbody>
+		<tbody id="exPesquisa3"></tbody>
+		<tbody id="exPesquisa4"></tbody>
+		<tbody id="exPesquisa5"></tbody>
+		<tbody id="exPesquisa6"></tbody>
+		<tbody id="exPesquisa7"></tbody>
+		<tbody id="exPesquisa8"></tbody>
+		<tbody id="exPesquisa9"></tbody>
+		<tbody id="exPesquisa10"></tbody>
+		<tbody id="exPesquisa11"></tbody>
+	</TABLE>
+</div>
+    </div>
+</div>
+<script src='https://marcosfransa.github.io/contas/codigos/swipe.js'></script>
+<script src="https://marcosfransa.github.io/contas/codigos/RadialBar.js"></script>
+<script>
+window.onerror = MensagemErro;
+function PreencheCirculo(Circ,PConta,cor) {
+	var canvas = document.getElementById(Circ);
+	var ctx = canvas.getContext('2d');
+	canvas.width = 100;
+	canvas.height = 100;
+	var Circulo = new RadialBar(ctx, {
+		x: (canvas.width*50)/100, y: (canvas.height*50)/100, radius: (canvas.width*50)/canvas.width, lineWidth: 30, lineFill: cor, backLineFill: '#696969', isShowInfoText: true, infoStyle: '40px Arial'
+	});
+	if (PConta==100) Circulo.lineFill = cor;
+	Circulo.set(PConta);
+	Circulo.update();
+	return;
+}
+window.onload = function() {
+	AtualizaPagina();
+}
+function AtualizaPagina() {
+	for (var n=0;n<12;n++) {
+		if (Mes-n>0) {mesbase=Mes-n;anobase = Ano;}
+		if (Mes-n==0) {mesbase=12;anobase=Ano-1;}
+		if (Mes-n<0) {mesbase=mesbase-1;anobase=Ano-1;}
+		MontaTabela(anobase+"/"+Zerado(mesbase,2,""),n);
+	}
+}
+function MontaTabela(deftabela,N) {
+	var EntradaSaldo=0,DespesaSaldo=0,ReceitaSaldo=0;
+
+	if (N==0) {
+		var TabExtrato = JSON.parse(pegaCorrente);
+	} else {
+		var TabExtrato = JSON.parse(pegaPassado);
+	}
+		
+	TabExtrato.sort(function(a, b) {
+		return a.Data > b.Data ? -1 : a.Data < b.Data ? 1 : 0;
+		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+	});
+
+	var html = "", descricao = "", forma = "", data = "", etiqueta = "", velink, classe = "class='painel'", dtmes = "", total = 0, dtotal = 0, positivo = 0, negativo = 0;
+			
+	for (var i=0; i<TabExtrato.length; i++) {
+		if (TabExtrato[i].Data.substr(0,7) == deftabela && TabExtrato[i].Data <= hoje) {
+			if (TabExtrato[i].Valor > 0) EntradaSaldo = EntradaSaldo + TabExtrato[i].Valor;
+			if (TabExtrato[i].Valor < 0) DespesaSaldo = DespesaSaldo + TabExtrato[i].Valor;
+		}
+	}
+	ReceitaSaldo = EntradaSaldo + DespesaSaldo;
+			
+	for (var i=0; i<TabExtrato.length; i++) {
+		if (TabExtrato[i].Data.substr(0,7) == deftabela && TabExtrato[i].Data <= hoje) {
+			if (data!=TabExtrato[i].Data) {
+				total = ReceitaSaldo+(positivo-negativo);
+				if (total<0) total = dtotal*-1;
+				data = TabExtrato[i].Data;
+				for (var j=0; j<TabExtrato.length; j++) {
+					if (TabExtrato[j].Data.substr(0,7) == deftabela && TabExtrato[j].Data == data && TabExtrato[j].Descricao!="Saldo") {
+						dtotal = dtotal + TabExtrato[j].Valor;
+					}
+				}
+				if (dtotal!=0 && dtotal<0) dtotal = dtotal*-1; etiqueta = "R$ "+formatamoeda(dtotal);
+				html += "<TR height='25'><TD vAlign='middle' align='center' width='100%'>";
+				html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+				html += "<TD width='10'></TD><TD vAlign='middle'><font size='1'>"+vediasemana(TabExtrato[i].Data).substr(0,3).toUpperCase()+" "+data.substr(8,2)+" "+nomedomes(data.substr(5,2)).substr(0,3).toUpperCase()+" "+data.substr(2,2)+"</font></TD>";
+				html += "<TD vAlign='middle'><font size='1'>"+etiqueta+"</font></td><TD width='10'></TD>";
+				html += "<TD vAlign='middle' align='right'><font size='2'>R$ "+formatamoeda(total)+"</font></td><TD width='10'></TD>";
+				html += "</TR></TABLE></center></TD></TR>";
+			}
+			dtotal = 0;
+			etiqueta = "";
+			if (TabExtrato[i].Valor > 0) {positivo+=TabExtrato[i].Valor;var CorFonte = "#5CACEE"}
+			if (TabExtrato[i].Valor < 0) {negativo+=TabExtrato[i].Valor;var CorFonte = "#CD5555"}
+			if (TabExtrato[i].Descricao == "Saldo") {var CorFonte = "#528B8B"}
+			descricao = TabExtrato[i].Descricao;
+			forma = TabExtrato[i].Forma;
+			valor = TabExtrato[i].Valor;
+			if (valor<0) valor = valor*-1;
+			dtmes = TabExtrato[i].Data.substr(5,2)-Zerado(1,2,"");
+			if (dtmes==0) dtmes = 12;
+			if (TabExtrato[i].Descricao == "Saldo") {descricao = DefineForma(forma) + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
+			if (TabExtrato[i].Descricao == "Salario") {descricao = descricao + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
+			if (TabExtrato[i].Data.substr(5,2)==Mes) {
+				velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Codigo+"'";
+				if (TabExtrato[i].Descricao.substr(0,4)==Ano) velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Descricao+"'";
+				classe="class='painel toque'";
+			}
+			html += "<TR height='50'><TD vAlign='middle' align='center' width='100%' "+velink+" "+classe+">";
+			html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+			html += "<TD width='20'></TD><TD vAlign='middle'><font style='color:"+CorFonte+"' size='2'><font style='color:"+CorFonte+"' size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
+			html += "<TD vAlign=middle align=right><font style='color:"+CorFonte+"' size='3'>R$ "+formatamoeda(valor)+"</font></TD><TD width='20'></TD>";
+			html += "</TR></TABLE></center></TD></TR>";
+		}
+	}
+	fatmes1 = eval("fatmes1"+N);
+	fatmes2 = eval("fatmes2"+N);
+	Total1 = eval("Total1"+N);
+	Total2 = eval("Total2"+N);
+	Total3 = eval("Total3"+N);
+	var Cor = "#2F4F4F";
+	var CorF = "#528B8B";
+	if (ReceitaSaldo>0) {PSaldo = (((DespesaSaldo*-1)*100)/EntradaSaldo).toFixed(0);} else {PSaldo = 0;Cor = "#696969";CorF = "#696969";}
+	PreencheCirculo("CSaldo"+N,PSaldo,Cor);
+	fatmes1.innerHTML = nomedomes(deftabela.substr(5,2)).substr(0,1).toUpperCase();
+	fatmes2.innerHTML = nomedomes(deftabela.substr(5,2)).substring(1, nomedomes(deftabela.substr(5,2)).length).substr(0,2).toUpperCase()+"</font> <font size='3'>"+deftabela.substr(2,2);
+	Total1.innerHTML = "<font style=color:"+CorF+">R$ "+formatamoeda(ReceitaSaldo)+"</font>";
+	Total2.innerHTML = "R$ "+formatamoeda(EntradaSaldo)+"<p>Receita";
+	Total3.innerHTML = "R$ "+formatamoeda(DespesaSaldo*-1)+"<p>Despesa";
+	exSaldo = eval("exSaldo"+N);
+	exSaldo.innerHTML = html;
+}
+function PesquisaItem(texto) {
+	for (var n=0;n<12;n++) {
+		if (Mes-n>0) {mesbase=Mes-n;anobase = Ano;}
+		if (Mes-n==0) {mesbase=12;anobase=Ano-1;}
+		if (Mes-n<0) {mesbase=mesbase-1;anobase=Ano-1;}
+		MontaPesquisa(texto,anobase+"/"+Zerado(mesbase,2,""),n);
+	}
+}
+function MontaPesquisa(texto,deftabela,N) {
+	var EntradaExtrato=0,DespesaExtrato=0,ReceitaExtrato=0;
+
+	if (N==0) {
+		var TabExtrato = JSON.parse(pegaCorrente);
+	} else {
+		var TabExtrato = JSON.parse(pegaPassado);
+	}
+		
+	TabExtrato.sort(function(a, b) {
+		return a.Data > b.Data ? -1 : a.Data < b.Data ? 1 : 0;
+		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+	});
+			
+	var html = "", descricao = "", forma = "", data = "", dtmes = "", valor = 0; pesquisa = "", pesqDescri = "";
+	
+	for (var i=0; i<TabExtrato.length; i++) {
+		if (TabExtrato[i].Data.substr(0,7) == deftabela && TabExtrato[i].Data <= hoje) {
+			pesqDescri = TabExtrato[i].Descricao;
+			pesqDescri = pesqDescri.substring(0,texto.length);
+			if (pesqDescri == Maiuscula(texto)) {
+				pesquisa = TabExtrato[i].Descricao;
+				if (TabExtrato[i].Descricao.indexOf(pesquisa)>=0) {
+					if (data!=TabExtrato[i].Data.substr(5,2)) {
+						data = TabExtrato[i].Data.substr(5,2);
+						html += "<TR height='25'><TD vAlign='middle' align='center' width='100%'>";
+						html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+						html += "<TD width='10'></TD><TD vAlign='middle'><font size='1'><font size='2'>"+nomedomes(TabExtrato[i].Data.substr(5,2)).substr(0,1).toUpperCase()+"</font>"+nomedomes(TabExtrato[i].Data.substr(5,2)).substring(1, nomedomes(TabExtrato[i].Data.substr(5,2)).length).toUpperCase()+"</font></TD><TD vAlign='middle' align='right'><font size='2'>"+TabExtrato[i].Data.substr(0,4)+"</font></TD><TD width='10'></TD>";
+						html += "</TR></TABLE></center></TD></TR>";
+					}
+					descricao = TabExtrato[i].Descricao;
+					forma = TabExtrato[i].Forma;
+					dtmes = TabExtrato[i].Data.substr(5,2)-Zerado(1,2,"");
+					valor = TabExtrato[i].Valor;
+					if (valor<0) valor = valor*-1;
+					if (dtmes==0) dtmes = 12;
+					if (TabExtrato[i].Descricao == "Saldo") {descricao = DefineForma(forma) + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
+					if (TabExtrato[i].Descricao == "Salario") {descricao = descricao + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
+					if (TabExtrato[i].Valor > 0) {var CorFonte = "#5CACEE"} else {var CorFonte = "#CD5555"}
+					if (TabExtrato[i].Descricao == "Saldo") {var CorFonte = "#528B8B"}
+					html += "<TR height='50'><TD vAlign='middle' align='center' width='100%' class='painel'>";
+					html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+					html += "<TD width='20'></TD><TD vAlign='middle' align='center'><font style='color:"+CorFonte+"' size='1'>"+vediasemana(TabExtrato[i].Data).substr(0,3).toUpperCase()+"</font><p><font style='color:"+CorFonte+"' size='3'><b>"+formatadata(TabExtrato[i].Data).substr(0,2)+"</b></font></TD>";
+					html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font style='color:"+CorFonte+"' size='2'><font style='color:"+CorFonte+"' size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
+					html += "<TD vAlign=middle align=right width=40%><font style='color:"+CorFonte+"' size='3'>R$ "+formatamoeda(valor)+"</font></TD><TD width='20'></TD>";
+					html += "</TR></TABLE></center></TD></TR>";
+				}
+			}
+		}
+	}
+	exPesquisa = eval("exPesquisa"+N);
+	exPesquisa.innerHTML = html;
+	if (texto!="") {
+		exibicao.hidden='true';
+		pesquisado.hidden='';
+	} else {
+		exibicao.hidden='';
+		pesquisado.hidden='true';
+	}
+}
+var elem = document.getElementById('mySwipe');
+window.mySwipe = Swipe(elem, {
+    startSlide: 0
+});
+</script>
+</body>
+</html>
