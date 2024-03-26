@@ -8,7 +8,7 @@ if (screen.width < 640 || screen.height < 480) {
 	var dispositivo = false;
 }
 
-if (dispositivo) var caminho = "file:///C:/storage/emulated/0/.contas"; else var caminho = "file:///C:/Users/USER5/OneDrive/Documentos/.contas";
+if (dispositivo) var caminho = "/storage/emulated/0/.contas"; else var caminho = "file:///C:/Users/USER5/OneDrive/Documentos/.contas";
 
 
 var MinhaData = new Date();
