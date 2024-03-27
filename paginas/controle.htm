@@ -2,11 +2,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
-<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/corrente.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/mensal.js"></script>
+<link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
+<script type="text/javascript" src="../codigos/codigo.js"></script>
+<!--script type="text/javascript" src="../base/corrente.js"></script>
+<script type="text/javascript" src="../base/mensal.js"></script-->
+<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script>
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -18,8 +20,8 @@
 	<TD vAlign="middle">
 		<font size="5"><font size="6"><span id="nomemes1"></span></font><span id="nomemes2"></span></font>
 	</TD>
-	<TD align="center" width="50" class="Ctoque"><div style="background: url(https://marcosfransa.github.io/contas/imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=mensal'" class="btimg btico"></div></TD>
-	<TD align="center" width="50" class="Ctoque"><div style="background: url(https://marcosfransa.github.io/contas/imagens/calculadora.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg btico" onclick="if (dispositivo) android.AbreApp('app.popupcalculator')"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(../imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" onclick="window.location.href='../paginas/registro.htm?pgn=mensal'" class="btimg btico"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(../imagens/calculadora.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg btico" onclick="if (dispositivo) android.AbreApp('app.popupcalculator')"></div></TD>
 	<TD align="center" width="5"></TD>
   </TR>
 </TABLE>
@@ -590,8 +592,8 @@
 </div>
     </div>
 </div>
-<script src='https://marcosfransa.github.io/contas/codigos/swipe.js'></script>
-<script src="https://marcosfransa.github.io/contas/codigos/RadialBar.js"></script>
+<script src='../codigos/swipe.js'></script>
+<script src="../codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
 function PreencheCirculo(n,PConta,cor) {
@@ -727,7 +729,7 @@ function AtualizaControle() {
 					mensalidade = mensalidade*-1;
 				}
 			}
-			velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
+			velink = "onclick=window.location.href='../paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
 			html += "<TR><TD vAlign='middle' align='center' width='100%'>";
 			html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
 			html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(Ano+"/"+Mes+"/"+TabMensal[i].Data).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+Zerado(TabMensal[i].Data,2,'')+"</b></font></TD>";
@@ -832,7 +834,7 @@ function MontaTabela(conta) {
 						}
 					}
 					if (Zerado(promes,2,"")==Mes) {
-						velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
+						velink = "onclick=window.location.href='../paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
 						classe = "class='painel toque'";
 					}
 					html += "<TR height='50'><TD vAlign='middle' align='center' width='99%' "+velink+" "+classe+">";

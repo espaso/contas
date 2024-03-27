@@ -2,11 +2,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
-<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/corrente.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/passado.js"></script>
+<link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
+<script type="text/javascript" src="../codigos/codigo.js"></script>
+<!--script type="text/javascript" src="../base/corrente.js"></script>
+<script type="text/javascript" src="../base/passado.js"></script-->
+<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/passado.js'></\script>");</script>
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -16,7 +18,7 @@
   <TR>
 	<TD align="center" width="20"></TD>
 	<TD vAlign="middle" align="right">
-		<INPUT style="background: url(https://marcosfransa.github.io/contas/imagens/lupa.png) #323232 no-repeat right; width: 100%; height: 40; font-size: 35px; color: #FFFFFF; padding: 0.5em; border: solid 0px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; border-radius: 0.1em;" maxLength=25 size=3 id="find" name="find" onkeyup="PesquisaItem(this.value)" class="btimg" />
+		<INPUT style="background: url(../imagens/lupa.png) #323232 no-repeat right; width: 100%; height: 40; font-size: 35px; color: #FFFFFF; padding: 0.5em; border: solid 0px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; border-radius: 0.1em;" maxLength=25 size=3 id="find" name="find" onkeyup="PesquisaItem(this.value)" class="btimg" />
 	</TD>
 	<TD align="center" width="20"></TD>
   </TR>
@@ -587,8 +589,8 @@
 </div>
     </div>
 </div>
-<script src='https://marcosfransa.github.io/contas/codigos/swipe.js'></script>
-<script src="https://marcosfransa.github.io/contas/codigos/RadialBar.js"></script>
+<script src='../codigos/swipe.js'></script>
+<script src="../codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
 function PreencheCirculo(Circ,PConta,cor) {
@@ -673,8 +675,8 @@ function MontaTabela(deftabela,N) {
 			if (TabExtrato[i].Descricao == "Saldo") {descricao = DefineForma(forma) + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
 			if (TabExtrato[i].Descricao == "Salario") {descricao = descricao + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
 			if (TabExtrato[i].Data.substr(5,2)==Mes) {
-				velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Codigo+"'";
-				if (TabExtrato[i].Descricao.substr(0,4)==Ano) velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Descricao+"'";
+				velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Codigo+"'";
+				if (TabExtrato[i].Descricao.substr(0,4)==Ano) velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Descricao+"'";
 				classe="class='painel toque'";
 			}
 			html += "<TR height='50'><TD vAlign='middle' align='center' width='100%' "+velink+" "+classe+">";

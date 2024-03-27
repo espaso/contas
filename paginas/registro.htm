@@ -2,11 +2,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
-<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/corrente.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/mensal.js"></script>
+<link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
+<script type="text/javascript" src="../codigos/codigo.js"></script>
+<!--script type="text/javascript" src="../base/corrente.js"></script>
+<script type="text/javascript" src="../base/mensal.js"></script-->
+<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script>
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -18,7 +20,7 @@
 	<TD vAlign="middle">
 		<font size="5"><font size="6">R</font>EGISTRO</font>
 	</TD>
-	<TD align="center" width="50" class="Ctoque"><div style="background: url(https://marcosfransa.github.io/contas/imagens/calculadora.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg btico" onclick="if (dispositivo) android.AbreApp('app.popupcalculator')"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(../imagens/calculadora.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg btico" onclick="if (dispositivo) android.AbreApp('app.popupcalculator')"></div></TD>
 	<TD align="center" width="5"></TD>
   </TR>
 </TABLE>
@@ -42,7 +44,7 @@
   </TR>
   <TR id="regsimples">
 	<TD vAlign="middle" colspan="3">
-		<INPUT type="date" style="background: #111111; width: 100%; height: 50; font-size: 40px; color: #FFFFFF; border-radius: 0.0em; box-shadow: #FFFFFF 0.0em 0.0em 0.0em; border-bottom: solid 1px #909090; padding: 0.5em; border-radius: 0.2em;" onchange="salvo=true" id="data" name="data" class="btimg" /><p><font style="color:#909090" size="3">Data</font>
+		<INPUT type="date" style="background: #111111; width: 100%; height: 50; font-size: 40px; color: #FFFFFF; color-scheme: dark; border-radius: 0.0em; box-shadow: #FFFFFF 0.0em 0.0em 0.0em; border-bottom: solid 1px #909090; padding: 0.5em; border-radius: 0.2em;" onchange="salvo=true" id="data" name="data" class="btimg" /><p><font style="color:#909090" size="3">Data</font>
 	</TD>
   </TR>
   <TR id="regmensal" hidden>
@@ -68,7 +70,7 @@
 	<TD vAlign="middle" align="center" width="20%">
 		<TABLE id="bradesco" border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/bradesco.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(../imagens/bradesco.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
 			</tr>
 			<TR height="5"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -79,7 +81,7 @@
 	<TD vAlign="middle" align="center" width="20%">
 		<TABLE id="caixa" border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/caixa.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(../imagens/caixa.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
 			</tr>
 			<TR height="5"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -90,7 +92,7 @@
 	<TD vAlign="middle" align="center" width="20%">
 		<TABLE id="dinheiro" border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/dinheiro.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(../imagens/dinheiro.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
 			</tr>
 			<TR height="5"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -101,7 +103,7 @@
 	<TD vAlign="middle" align="center" width="20%">
 		<TABLE id="itau" border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/itau.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(../imagens/itau.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
 			</tr>
 			<TR height="5"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -112,7 +114,7 @@
 	<TD vAlign="middle" align="center" width="20%">
 		<TABLE id="modal" border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/modal.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(../imagens/modal.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg"></div></TD>
 			</tr>
 			<TR height="5"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -364,7 +366,11 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
+				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				if (dispositivo) {
+					android.SalvaBKP("base", "corrente.js", jsonCorrente);
+					android.SalvaGIT("corrente.js");
+				}
 			} else {
 				const htmlMensal = TabExtrato.map(objeto => {
 					if (objeto.Codigo === RegCodigo) {
@@ -372,7 +378,11 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				if (dispositivo) android.SalvaBKP("base", "mensal.js", htmlMensal);
+				var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+				if (dispositivo) {
+					android.SalvaBKP("base", "mensal.js", jsonMensal);
+					android.SalvaGIT("mensal.js");
+				}
 				
 				var TabCorrente = JSON.parse(pegaCorrente);
 				
@@ -398,17 +408,29 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
+				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				if (dispositivo) {
+					android.SalvaBKP("base", "corrente.js", jsonCorrente);
+					android.SalvaGIT("corrente.js");
+				}
 			}
 			window.history.back();
 		}
 	} else {
 		if (pagina=="registro") {
 			TabExtrato.push({"Codigo": agora, "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": RegValor});
-			if (dispositivo) android.SalvaBKP("base", "corrente.js", eval(TabExtrato));
+			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabExtrato)+"';";
+			if (dispositivo) {
+				android.SalvaBKP("base", "corrente.js", jsonCorrente);
+				android.SalvaGIT("corrente.js");
+			}
 		} else {
 			TabExtrato.push({"Codigo": agora, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Data": Zerado(RegVencimento,2,''), "Parcela": RegParcela, "Resto": RegResto});
-			if (dispositivo) android.SalvaBKP("base", "mensal.js", TabExtrato);
+			var jsonMensal = "var pegaMensal = '"+JSON.stringify(TabExtrato)+"';";
+			if (dispositivo) {
+				android.SalvaBKP("base", "mensal.js", jsonMensal);
+				android.SalvaGIT("mensal.js");
+			}
 				
 			var TabCorrente = JSON.parse(pegaCorrente);
 					
@@ -421,7 +443,11 @@ function GravaRegistro() {
 			if (Zerado(RegVencimento,2,'')>Dia) {
 				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
 				TabCorrente.push({"Codigo": agora, "Data": Ano+"/"+Mes+"/"+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": arredondamoeda(parcelamento(RegValor,RegParcela))});
-				if (dispositivo) android.SalvaBKP("base", "corrente.js", TabCorrente);
+				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabCorrente)+"';";
+				if (dispositivo) {
+					android.SalvaBKP("base", "corrente.js", jsonCorrente);
+					android.SalvaGIT("corrente.js");
+				}
 			}
 		}
 		window.location.reload();
@@ -457,10 +483,18 @@ function ExcluiRegistro() {
 	if (confirm("EXCLUIR "+RegDescricao.toUpperCase()+"\n"+MostraData+" :: R$ "+formatamoeda(MostraValor))) {
 		if (pagina=="registro") {
 			const htmlCorrente = TabExtrato.filter(item => item.Codigo !== RegCodigo);
-			if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
+			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+			if (dispositivo) {
+				android.SalvaBKP("base", "corrente.js", jsonCorrente);
+				android.SalvaGIT("corrente.js");
+			}
 		} else {
 			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			if (dispositivo) android.SalvaBKP("base", "mensal.js", htmlMensal);
+			var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+			if (dispositivo) {
+				android.SalvaBKP("base", "mensal.js", jsonMensal);
+				android.SalvaGIT("mensal.js");
+			}
 		}
 	}
 	window.history.back();

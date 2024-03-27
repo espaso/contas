@@ -2,12 +2,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
-<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/corrente.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/passado.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/mensal.js"></script>
+<link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
+<script type="text/javascript" src="../codigos/codigo.js"></script>
+<!--script type="text/javascript" src="../base/corrente.js"></script>
+<script type="text/javascript" src="../base/passado.js"></script>
+<script type="text/javascript" src="../base/mensal.js"></script-->
+<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/passado.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script>
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -20,8 +23,8 @@
 		<font size="5"><font size="6"><span id="nomemes1"></span></font><span id="nomemes2"></span></font>
 	</TD>
 	<TD align="center" width="50" class="Ctoque"><div id="linkapp" class="btimg btico" onclick="if (dispositivo) VerificaApp();"></div></TD>
-	<TD align="center" width="50" class="Ctoque"><div style="background: url(https://marcosfransa.github.io/contas/imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro'" class="btimg btico"></div></TD>
-	<TD align="center" width="50" class="Ctoque"><div style="background: url(https://marcosfransa.github.io/contas/imagens/calculadora.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg btico" onclick="if (dispositivo) android.AbreApp('app.popupcalculator')"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(../imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" onclick="window.location.href='../paginas/registro.htm?pgn=registro'" class="btimg btico"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(../imagens/calculadora.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7;" class="btimg btico" onclick="if (dispositivo) android.AbreApp('app.popupcalculator')"></div></TD>
 	<TD align="center" width="5"></TD>
   </TR>
 </TABLE>
@@ -577,8 +580,8 @@
 </div>
     </div>
 </div>
-<script src='https://marcosfransa.github.io/contas/codigos/swipe.js'></script>
-<script src="https://marcosfransa.github.io/contas/codigos/RadialBar.js"></script>
+<script src='../codigos/swipe.js'></script>
+<script src="../codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
 function PreencheCirculo(N,PConta,cor) {
@@ -601,7 +604,7 @@ param_nome = param_nome.substring(1, param_nome.lenght);
 var formaPgto = param_nome;
 nomemes1.innerHTML = DefineForma(formaPgto).substr(0,1).toUpperCase();
 nomemes2.innerHTML = DefineForma(formaPgto).substr(1,DefineForma(formaPgto).length).toUpperCase();
-linkapp.style = "background: url(https://marcosfransa.github.io/contas/imagens/"+DefineForma(formaPgto).toLowerCase()+".png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7";
+linkapp.style = "background: url(../imagens/"+DefineForma(formaPgto).toLowerCase()+".png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7";
 if (formaPgto=="DM") linkapp.hidden = true;
 function VerificaApp() {
 	AbreBanking(formaPgto);
@@ -753,8 +756,8 @@ function MontaTabela(deftabela,N) {
 			if (TabExtrato[i].Descricao == "Saldo") {descricao = descricao + " " + nomedomes(dtmes)}
 			if (TabExtrato[i].Descricao == "Salario") {descricao = descricao + " " + nomedomes(TabExtrato[i].Data.substr(5,2))}
 			if (TabExtrato[i].Data.substr(5,2)==Mes) {
-				velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Codigo+"'";
-				if (TabExtrato[i].Descricao.substr(0,4)==Ano) velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Descricao+"'";
+				velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Codigo+"'";
+				if (TabExtrato[i].Descricao.substr(0,4)==Ano) velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabExtrato[i].Descricao+"'";
 				classe = "class='painel toque'";
 			}
 			html += "<TR height='50'><TD vAlign='middle' align='center' width='100%' "+velink+" "+classe+">";
@@ -831,7 +834,7 @@ function ExibeHoje(tipo) {
 						var descricao = TabCorrente[j].Descricao;
 						var valor = TabCorrente[j].Valor;
 						var forma = TabCorrente[j].Forma;
-						velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
+						velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
 						html += "<TR><TD vAlign='middle' align='center' width='100%'>";
 						html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
 						html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(TabCorrente[j].Data).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+TabCorrente[j].Data.substr(8,2)+"</b></font></TD>";
@@ -905,7 +908,7 @@ function ExibeFuturo(registro) {
 						var valor = TabCorrente[j].Valor;
 						if (valor < 0) valor = valor*-1;
 						var forma = TabCorrente[j].Forma;
-						velink = "onclick=window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
+						velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
 						html += "<TR><TD vAlign='middle' align='center' width='100%'>";
 						html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
 						html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(TabCorrente[j].Data).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+TabCorrente[j].Data.substr(8,2)+"</b></font></TD>";
