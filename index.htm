@@ -2,12 +2,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link rel="stylesheet" href="https://marcosfransa.github.io/contas/codigos/estilo.css" type="text/css" />
-<link rel="shortcut icon" type="image/png" href="https://marcosfransa.github.io/contas/imagens/icone.png"/>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/codigos/codigo.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/corrente.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/mensal.js"></script>
-<script type="text/javascript" src="https://marcosfransa.github.io/contas/base/passado.js"></script>
+<link rel="stylesheet" href="codigos/estilo.css" type="text/css" />
+<link rel="shortcut icon" type="image/png" href="imagens/icone.png"/>
+<script type="text/javascript" src="codigos/codigo.js"></script>
+<!--script type="text/javascript" src="base/corrente.js"></script>
+<script type="text/javascript" src="base/mensal.js"></script>
+<script type="text/javascript" src="base/passado.js"></script-->
+<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/passado.js'></\script>");</script>
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -17,7 +20,7 @@
   <TR>
 	<TD align="center" width="10"></TD><TD vAlign="middle"></TD>
 	<TD id="atualizado" width="50" align="right"><div style="border: solid 0px" class="btimg"></div></TD>
-	<TD align="center" width="50" class="Ctoque"><div style="background: url(https://marcosfransa.github.io/contas/imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/registro.htm?pgn=registro'" class="btimg btico"></div></TD>
+	<TD align="center" width="50" class="Ctoque"><div style="background: url(imagens/registro.png) no-repeat center; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7" onclick="window.location.href='paginas/registro.htm?pgn=registro'" class="btimg btico"></div></TD>
 	<TD align="center" width="5"></TD>
   </TR>
 </TABLE>
@@ -27,7 +30,7 @@
 <TABLE border=0 style="border-collapse: collapse; height: 35%" cellspacing="2" width="90%" cellpadding="0">
   <TBODY>
   <TR>
-	<TD vAlign="middle" align="center" width="50%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/controle.htm?pgn=despesa'" class="Ctoque">
+	<TD vAlign="middle" align="center" width="50%" onclick="window.location.href='paginas/controle.htm?pgn=despesa'" class="Ctoque">
 		<TABLE border="0" style="border-collapse: collapse; width: 100%" cellspacing="0" cellpadding="0">
 			<tr>
 				<TD vAlign="middle" align="center"><canvas id="CDespesa" style="width: 150; height: 150"></canvas></TD>
@@ -38,7 +41,7 @@
 			</tr>
 		</TABLE>
 	</TD>
-	<TD vAlign="middle" align="center" width="50%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/controle.htm?pgn=receita'" class="Ctoque">
+	<TD vAlign="middle" align="center" width="50%" onclick="window.location.href='paginas/controle.htm?pgn=receita'" class="Ctoque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
 				<TD vAlign="middle" align="center"><canvas id="CReceita" style="width: 150; height: 150"></canvas></TD>
@@ -79,10 +82,10 @@
 <TABLE border="0" style="position: relative; height: 50%" cellspacing="3" width="99%" cellpadding="0">
   <TBODY>
   <TR>
-	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/extrato.htm?bco=BR'" class="painel toque">
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='paginas/extrato.htm?bco=BR'" class="painel toque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/bradesco.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(imagens/bradesco.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
 			</tr>
 			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -90,10 +93,10 @@
 			</tr>
 		</TABLE>
 	</TD>
-	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/extrato.htm?bco=CX'" class="painel toque">
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='paginas/extrato.htm?bco=CX'" class="painel toque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/caixa.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(imagens/caixa.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
 			</tr>
 			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -101,10 +104,10 @@
 			</tr>
 		</TABLE>
 	</TD>
-	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/extrato.htm?bco=IT'" class="painel toque">
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='paginas/extrato.htm?bco=IT'" class="painel toque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/itau.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(imagens/itau.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
 			</tr>
 			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -114,10 +117,10 @@
 	</TD>
   </TR>
   <TR>
-	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/extrato.htm?bco=DM'" class="painel toque">
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='paginas/extrato.htm?bco=DM'" class="painel toque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/dinheiro.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(imagens/dinheiro.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
 			</tr>
 			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -125,10 +128,10 @@
 			</tr>
 		</TABLE>
 	</TD>
-	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/saldo.htm'" class="painel toque">
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='paginas/saldo.htm'" class="painel toque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/saldo.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(imagens/saldo.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
 			</tr>
 			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -136,10 +139,10 @@
 			</tr>
 		</TABLE>
 	</TD>
-	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='https://marcosfransa.github.io/contas/paginas/extrato.htm?bco=MD'" class="painel toque">
+	<TD vAlign="middle" align="center" width="33%" onclick="window.location.href='paginas/extrato.htm?bco=MD'" class="painel toque">
 		<TABLE border="0" style="border-collapse: collapse" cellspacing="0" width="100%" cellpadding="0">
 			<tr>
-				<TD align="center"><div style="background: url(https://marcosfransa.github.io/contas/imagens/modal.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
+				<TD align="center"><div style="background: url(imagens/modal.png) no-repeat center; width: 45; height: 45; border-radius: 5em; border: solid 2px #1E90FF;-webkit-filter: grayscale(100%); opacity: 0.7; box-shadow: #223344 0.1em 0.1em 0.5em" class="btimg"></div></TD>
 			</tr>
 			<TR height="10"><TD valign="middle" align="center" width="100%"></TD></TR>
 			<tr>
@@ -153,7 +156,7 @@
 </center>
     </div>
 </div>
-<script src="https://marcosfransa.github.io/contas/codigos/RadialBar.js"></script>
+<script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
 function PreencheCirculo(Circ,cor,PConta) {
@@ -482,11 +485,22 @@ if (TabCorrente[0].Data.substr(0,7) == Ano+"/"+Mes) {
 	}
 	MesesPassados(anou+"/"+ulti+"/"+Dia);
 	
-	if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
-	if (dispositivo) android.SalvaBKP("base", "mensal.js", htmlMensal);
-	if (dispositivo) android.SalvaBKP("base", "passado.js", htmlPassado);
-	if (dispositivo) android.SalvaBKP("html", "B"+ultimomes+".html", htmlPassado);
-
+	if (dispositivo) {
+		android.SalvaBKP("base", "corrente.js", htmlCorrente);
+		android.SalvaGIT("corrente.js");
+	}
+	
+	if (dispositivo) {
+		android.SalvaBKP("base", "mensal.js", htmlMensal);
+		android.SalvaGIT("mensal.js");
+	}
+	
+	if (dispositivo) {
+		android.SalvaBKP("base", "passado.js", htmlPassado);
+		android.SalvaGIT("passado.js");
+	}
+	
+	if (dispositivo) android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
 }
 </script>
 </body>
