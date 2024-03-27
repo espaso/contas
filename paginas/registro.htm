@@ -405,7 +405,7 @@ function GravaRegistro() {
 	} else {
 		if (pagina=="registro") {
 			TabExtrato.push({"Codigo": agora, "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": RegValor});
-			if (dispositivo) android.SalvaBKP("base", "corrente.js", TabExtrato);
+			if (dispositivo) android.SalvaBKP("base", "corrente.js", eval(TabExtrato));
 		} else {
 			TabExtrato.push({"Codigo": agora, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Data": Zerado(RegVencimento,2,''), "Parcela": RegParcela, "Resto": RegResto});
 			if (dispositivo) android.SalvaBKP("base", "mensal.js", TabExtrato);
