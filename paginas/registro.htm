@@ -405,10 +405,10 @@ function GravaRegistro() {
 	} else {
 		if (pagina=="registro") {
 			TabExtrato.push({"Codigo": agora, "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": RegValor});
-			if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
+			if (dispositivo) android.SalvaBKP("base", "corrente.js", TabExtrato);
 		} else {
 			TabExtrato.push({"Codigo": agora, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Data": Zerado(RegVencimento,2,''), "Parcela": RegParcela, "Resto": RegResto});
-			if (dispositivo) android.SalvaBKP("base", "mensal.js", htmlMensal);
+			if (dispositivo) android.SalvaBKP("base", "mensal.js", TabExtrato);
 				
 			var TabCorrente = JSON.parse(pegaCorrente);
 					
@@ -421,7 +421,7 @@ function GravaRegistro() {
 			if (Zerado(RegVencimento,2,'')>Dia) {
 				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
 				TabCorrente.push({"Codigo": agora, "Data": Ano+"/"+Mes+"/"+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": arredondamoeda(parcelamento(RegValor,RegParcela))});
-				if (dispositivo) android.SalvaBKP("base", "corrente.js", htmlCorrente);
+				if (dispositivo) android.SalvaBKP("base", "corrente.js", TabCorrente);
 			}
 		}
 		window.location.reload();
