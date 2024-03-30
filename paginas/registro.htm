@@ -5,10 +5,10 @@
 <link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
 <link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
 <script type="text/javascript" src="../codigos/codigo.js"></script>
-<!--script type="text/javascript" src="../base/corrente.js"></script>
-<script type="text/javascript" src="../base/mensal.js"></script-->
-<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
-<script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script>
+<script type="text/javascript" src="../base/corrente.js"></script>
+<script type="text/javascript" src="../base/mensal.js"></script>
+<!--script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script-->
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -44,7 +44,7 @@
   </TR>
   <TR id="regsimples">
 	<TD vAlign="middle" colspan="3">
-		<INPUT type="date" style="background: #111111; width: 100%; height: 50; font-size: 40px; color: #FFFFFF; color-scheme: dark; border-radius: 0.0em; box-shadow: #FFFFFF 0.0em 0.0em 0.0em; border-bottom: solid 1px #909090; padding: 0.5em; border-radius: 0.2em;" onchange="salvo=true" id="data" name="data" class="btimg" /><p><font style="color:#909090" size="3">Data</font>
+		<INPUT type="date" style="background: #111111; width: 100%; height: 50; font-size: 40px; color: #FFFFFF; border-radius: 0.0em; box-shadow: #FFFFFF 0.0em 0.0em 0.0em; border-bottom: solid 1px #909090; padding: 0.5em; border-radius: 0.2em;" onchange="salvo=true" id="data" name="data" class="btimg" /><p><font style="color:#909090" size="3">Data</font>
 	</TD>
   </TR>
   <TR id="regmensal" hidden>
@@ -197,7 +197,7 @@ function PopulaCamposRegistro(pagina,codigo) {
 			document.getElementById('btExcluir').hidden = "";
 			document.getElementById('btEspaco').hidden = "";
 			document.getElementById('codigo').value = TabExtrato[i].Codigo;
-			document.getElementById('valor').value = TabExtrato[i].Valor.toFixed(2);
+			document.getElementById('valor').value = TabExtrato[i].Valor;//.toFixed(2);
 			document.getElementById('descricao').value = TabExtrato[i].Descricao;
 			if (pagina=="registro") {
 				document.getElementById('data').value = TabExtrato[i].Data.replace(/\//g,"-");
@@ -369,7 +369,7 @@ function GravaRegistro() {
 				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					android.SalvaGIT("corrente.js");
+					//android.SalvaGIT("corrente.js");
 				}
 			} else {
 				const htmlMensal = TabExtrato.map(objeto => {
@@ -381,7 +381,7 @@ function GravaRegistro() {
 				var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
 				if (dispositivo) {
 					android.SalvaBKP("base", "mensal.js", jsonMensal);
-					android.SalvaGIT("mensal.js");
+					//android.SalvaGIT("mensal.js");
 				}
 				
 				var TabCorrente = JSON.parse(pegaCorrente);
@@ -404,32 +404,32 @@ function GravaRegistro() {
 					
 				const htmlCorrente = TabCorrente.map(objeto => {
 					if (objeto.Codigo === codCorrente) {
-						return {"Codigo": codCorrente, "Data": codData, "Forma": codForma, "Descricao": codDescricao, "Valor": parcelamento(parseFloat(RegValor),RegParcela)};
+						return {"Codigo": codCorrente, "Data": codData, "Forma": codForma, "Descricao": codDescricao, "Valor": parseFloat(parcelamento(RegValor,RegParcela))};
 					}
 					return objeto;
 				});
 				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					android.SalvaGIT("corrente.js");
+					//android.SalvaGIT("corrente.js");
 				}
 			}
 			window.history.back();
 		}
 	} else {
 		if (pagina=="registro") {
-			TabExtrato.push({"Codigo": agora, "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": RegValor});
+			TabExtrato.push({"Codigo": agora, "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)});
 			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabExtrato)+"';";
 			if (dispositivo) {
 				android.SalvaBKP("base", "corrente.js", jsonCorrente);
-				android.SalvaGIT("corrente.js");
+				//android.SalvaGIT("corrente.js");
 			}
 		} else {
 			TabExtrato.push({"Codigo": agora, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Data": Zerado(RegVencimento,2,''), "Parcela": RegParcela, "Resto": RegResto});
 			var jsonMensal = "var pegaMensal = '"+JSON.stringify(TabExtrato)+"';";
 			if (dispositivo) {
 				android.SalvaBKP("base", "mensal.js", jsonMensal);
-				android.SalvaGIT("mensal.js");
+				//android.SalvaGIT("mensal.js");
 			}
 				
 			var TabCorrente = JSON.parse(pegaCorrente);
@@ -442,11 +442,11 @@ function GravaRegistro() {
 					
 			if (Zerado(RegVencimento,2,'')>Dia) {
 				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
-				TabCorrente.push({"Codigo": agora, "Data": Ano+"/"+Mes+"/"+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": arredondamoeda(parcelamento(RegValor,RegParcela))});
+				TabCorrente.push({"Codigo": agora, "Data": Ano+"/"+Mes+"/"+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(parcelamento(RegValor,RegParcela))});
 				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabCorrente)+"';";
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					android.SalvaGIT("corrente.js");
+					//android.SalvaGIT("corrente.js");
 				}
 			}
 		}
@@ -486,14 +486,14 @@ function ExcluiRegistro() {
 			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
 			if (dispositivo) {
 				android.SalvaBKP("base", "corrente.js", jsonCorrente);
-				android.SalvaGIT("corrente.js");
+				//android.SalvaGIT("corrente.js");
 			}
 		} else {
 			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
 			var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
 			if (dispositivo) {
 				android.SalvaBKP("base", "mensal.js", jsonMensal);
-				android.SalvaGIT("mensal.js");
+				//android.SalvaGIT("mensal.js");
 			}
 		}
 	}
