@@ -5,12 +5,12 @@
 <link rel="stylesheet" href="codigos/estilo.css" type="text/css" />
 <link rel="shortcut icon" type="image/png" href="imagens/icone.png"/>
 <script type="text/javascript" src="codigos/codigo.js"></script>
-<!--script type="text/javascript" src="base/corrente.js"></script>
+<script type="text/javascript" src="base/corrente.js"></script>
 <script type="text/javascript" src="base/mensal.js"></script>
-<script type="text/javascript" src="base/passado.js"></script-->
-<script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
+<script type="text/javascript" src="base/passado.js"></script>
+<!--script>document.write("<script src='"+caminho+"base/corrente.js'></\script>");</script>
 <script>document.write("<script src='"+caminho+"base/mensal.js'></\script>");</script>
-<script>document.write("<script src='"+caminho+"base/passado.js'></\script>");</script>
+<script>document.write("<script src='"+caminho+"base/passado.js'></\script>");</script-->
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -402,8 +402,9 @@ if (TabCorrente[0].Data.substr(0,7) == Ano+"/"+Mes) {
 		}
 	
 		if (iCor == 0) {var CorLinha = "#EFEFEF";iCor = 1} else {var CorLinha = "#FEFEFE";iCor = 0;}
-		if (TabCorrente[i].Valor > 0) {var CorFonte = "#5CACEE"} else {var CorFonte = "#CD5555"}
-		htmlBackup += "<tr bgcolor='"+CorLinha+"'><td><font style='color:"+CorFonte+"'>"+vediasemana(TabCorrente[i].Data).substr(0,3)+" "+formatadata(TabCorrente[i].Data).substr(0,2)+"/"+nomedomes(formatadata(TabCorrente[i].Data).substr(3,2)).substr(0,3)+"/"+TabCorrente[i].Data.substr(2,2)+"</font></td><td><font style='color:"+CorFonte+"'>"+DefineForma(TabCorrente[i].Forma)+"</font></td><td><font style='color:"+CorFonte+"'>"+TabCorrente[i].Descricao+"</font></td><td><font style='color:"+CorFonte+"'>R$ "+formatamoeda(TabCorrente[i].Valor)+"</font></td></tr>\n";
+		var valorbkp = TabCorrente[i].Valor;
+		if (TabCorrente[i].Valor > 0) {var CorFonte = "#5CACEE"} else {var CorFonte = "#CD5555"; valorbkp = valorbkp*-1;}
+		htmlBackup += "<tr bgcolor='"+CorLinha+"'><td><font style='color:"+CorFonte+"'>"+vediasemana(TabCorrente[i].Data).substr(0,3)+" "+formatadata(TabCorrente[i].Data).substr(0,2)+"/"+nomedomes(formatadata(TabCorrente[i].Data).substr(3,2)).substr(0,3)+"/"+TabCorrente[i].Data.substr(2,2)+"</font></td><td><font style='color:"+CorFonte+"'>"+DefineForma(TabCorrente[i].Forma)+"</font></td><td><font style='color:"+CorFonte+"'>"+TabCorrente[i].Descricao+"</font></td><td><font style='color:"+CorFonte+"'>R$ "+formatamoeda(valorbkp)+"</font></td></tr>\n";
 
 		totalBackup = totalBackup + TabCorrente[i].Valor;
 		
@@ -411,15 +412,15 @@ if (TabCorrente[0].Data.substr(0,7) == Ano+"/"+Mes) {
 	}
 	datasaldo = Ano+"/"+Mes+"/01";
 	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
-	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "BR", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoBRanterior)+'}, ';
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "BR", "Descricao": "Saldo", "Valor": '+parseFloat(SaldoBRanterior)+'}, ';
 	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
-	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "CX", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoCXanterior)+'}, ';
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "CX", "Descricao": "Saldo", "Valor": '+parseFloat(SaldoCXanterior)+'}, ';
 	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
-	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "MD", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoMDanterior)+'}, ';
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "MD", "Descricao": "Saldo", "Valor": '+parseFloat(SaldoMDanterior)+'}, ';
 	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
-	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "IT", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoITanterior)+'}, ';
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "IT", "Descricao": "Saldo", "Valor": '+parseFloat(SaldoITanterior)+'}, ';
 	dsaldo = Ano+""+Mes+""+Dia+""+hh+""+mm+""+Zerado(cs++,2,"");
-	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "DM", "Descricao": "Saldo", "Valor": '+arredondamoeda(SaldoDManterior)+'}, ';
+	htmlCorrente += '{"Codigo": "'+dsaldo+'", "Data": "'+datasaldo+'", "Forma": "DM", "Descricao": "Saldo", "Valor": '+parseFloat(SaldoDManterior)+'}, ';
 
 	htmlPagina += "<tr bgcolor='#C0C0C0'><td colspan='3'>"+nomedomes(ultimomes.substr(5,2))+"/"+ultimomes.substr(0,4)+"</td><td>R$ "+formatamoeda(totalBackup)+"</font></td></tr>\n";
 	htmlPagina += htmlBackup;
@@ -468,7 +469,7 @@ if (TabCorrente[0].Data.substr(0,7) == Ano+"/"+Mes) {
 				}
 			}
 			dataMen = dataMen.substr(0,8)+""+Zerado(ndata,2,"");
-			htmlCorrente += '{"Codigo": "'+TabMensal[i].Codigo+'", "Data": "'+dataMen+'", "Forma": "'+TabMensal[i].Forma+'", "Descricao": "'+descricaoMen+'", "Valor": '+arredondamoeda(parcelamento(valorMen,TabMensal[i].Parcela))+'}, ';
+			htmlCorrente += '{"Codigo": "'+TabMensal[i].Codigo+'", "Data": "'+dataMen+'", "Forma": "'+TabMensal[i].Forma+'", "Descricao": "'+descricaoMen+'", "Valor": '+parseFloat(parcelamento(valorMen,TabMensal[i].Parcela))+'}, ';
 			htmlMensal += '{"Codigo": '+TabMensal[i].Codigo+', "Forma": "'+TabMensal[i].Forma+'", "Descricao": "'+TabMensal[i].Descricao+'", "Valor": '+TabMensal[i].Valor+', "Data": "'+TabMensal[i].Data+'", "Parcela": '+TabMensal[i].Parcela+', "Resto": '+restanteMen+'}, ';
 		}
 	}
@@ -485,18 +486,21 @@ if (TabCorrente[0].Data.substr(0,7) == Ano+"/"+Mes) {
 	}
 	MesesPassados(anou+"/"+ulti+"/"+Dia);
 	
+	var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
 	if (dispositivo) {
-		android.SalvaBKP("base", "corrente.js", htmlCorrente);
+		android.SalvaBKP("base", "corrente.js", jsonCorrente);
 		android.SalvaGIT("corrente.js");
 	}
 	
+	var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
 	if (dispositivo) {
-		android.SalvaBKP("base", "mensal.js", htmlMensal);
+		android.SalvaBKP("base", "mensal.js", jsonMensal);
 		android.SalvaGIT("mensal.js");
 	}
 	
+	var jsonPassaso = "var pegaPassado = '"+JSON.stringify(htmlPassado)+"';";
 	if (dispositivo) {
-		android.SalvaBKP("base", "passado.js", htmlPassado);
+		android.SalvaBKP("base", "passado.js", jsonPassaso);
 		android.SalvaGIT("passado.js");
 	}
 	
