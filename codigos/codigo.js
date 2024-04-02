@@ -54,10 +54,10 @@ function mesesAneriores(date, diff) {
 function Remuneracao(holerite) {
 	var adianta = 0;//holerite*0.4;
 	var noturno = holerite*0.3;
-	var hextra = 0;//holerite*0.1875;
-	var dsr = 0;//(noturno+hextra)/5.5;
-	var inss = 0;//holerite*0.09;
-	var irrf = 0;//(holerite*0.225)-636.13;
+	var hextra = holerite*0.1875;
+	var dsr = (noturno+hextra)/5.5;
+	var inss = holerite*0.09;
+	var irrf = (holerite*0.225)-636.13;
 	return ((holerite+noturno+hextra+dsr)-(adianta+inss+irrf));
 }
 
