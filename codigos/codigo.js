@@ -342,10 +342,3 @@ function parcelamento(valor,parcela) {
 	}
 	return vp;
 }
-
-function AbreBanking(texto) {
-	if (texto=="BR") android.AbreApp('com.bradesco');
-	if (texto=="CX") android.AbreApp('gabba');
-	if (texto=="IT") android.AbreApp('com.itau');
-	if (texto=="MD") android.AbreApp('xpinc.modal');
-}
