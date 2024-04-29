@@ -144,7 +144,7 @@ function invertedata(texto) {
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
 		mes = Zerado(mes,2,"");
-		texto = (ano + "/" + mes + "/" + dia);
+		texto = (ano + "/" + dia + "/" + mes);
 	} else {
 		texto = "";
 	}
