@@ -131,14 +131,15 @@ function formatadata(texto) {
 }
 
 function invertedata(texto) {
-	if (texto!==null) {
+	/*if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
 		tamanho = separa.length;  
 		dia = separa[tamanho-1];
-	}
+	}*/
 	if (texto !== '') {
 		texto = new Date(texto);
+		dia = texto.getDate();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
