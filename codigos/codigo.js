@@ -132,6 +132,7 @@ function formatadata(texto) {
 }
 
 function arrumadata(texto) {
+		console.log(texto);
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
@@ -146,7 +147,6 @@ function arrumadata(texto) {
 		dia = Zerado(dia,2,"");
 		mes = Zerado(mes,2,"");
 		texto = (ano + "/" + mes + "/" + dia);
-		console.log(texto);
 	} else {
 		texto = "";
 	}
