@@ -119,7 +119,6 @@ function formatadata(texto) {
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
-		dia = texto.getDate();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
@@ -140,7 +139,6 @@ function arrumadata(texto) {
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
-		dia = texto.getDate();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
@@ -177,11 +175,11 @@ function vediasemana(texto) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
 		tamanho = separa.length;  
-		dia = separa[tamanho-1];
+		diasemana = separa[tamanho-1];
 	}
 	if (texto !== '') {
-		datahoje = new Date(texto);
-		diasemana = datahoje.getDay(texto);
+		//datahoje = new Date(texto);
+		//diasemana = datahoje.getDay(texto);
 		if (diasemana == 0) diasemana = "Domingo ";
 		if (diasemana == 1) diasemana = "Segunda ";
 		if (diasemana == 2) diasemana = "Terça ";
