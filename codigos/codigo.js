@@ -135,8 +135,7 @@ function arrumadata(texto) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
 		tamanho = separa.length;
-		console.log(separa);
-		dia = separa[tamanho-1];
+		dia = separa[tamanho-3];
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
@@ -172,15 +171,9 @@ function nomedomes(texto) {
 }
 
 function vediasemana(texto) {
-	if (texto!==null) {
-		var extenso = texto;  
-		var separa = extenso.split("/");  
-		tamanho = separa.length;  
-		diasemana = separa[tamanho-1];
-	}
 	if (texto !== '') {
-		//datahoje = new Date(texto);
-		//diasemana = datahoje.getDay(texto);
+		datahoje = new Date(texto);
+		diasemana = datahoje.getDay(texto);
 		if (diasemana == 0) diasemana = "Domingo ";
 		if (diasemana == 1) diasemana = "Segunda ";
 		if (diasemana == 2) diasemana = "Terça ";
