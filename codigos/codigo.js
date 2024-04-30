@@ -134,7 +134,8 @@ function arrumadata(texto) {
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
-		tamanho = separa.length;  
+		tamanho = separa.length;
+		console.log(separa);
 		dia = separa[tamanho-1];
 	}
 	if (texto !== '') {
