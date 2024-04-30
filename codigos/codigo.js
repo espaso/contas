@@ -146,6 +146,7 @@ function arrumadata(texto) {
 		dia = Zerado(dia,2,"");
 		mes = Zerado(mes,2,"");
 		texto = (ano + "/" + mes + "/" + dia);
+		console.log(texto);
 	} else {
 		texto = "";
 	}
@@ -182,7 +183,6 @@ function vediasemana(texto) {
 	if (texto !== '') {
 		datahoje = new Date(texto);
 		diasemana = datahoje.getDay(texto);
-		console.log(datahoje);
 		if (diasemana == 0) diasemana = "Domingo ";
 		if (diasemana == 1) diasemana = "Segunda ";
 		if (diasemana == 2) diasemana = "Terça ";
