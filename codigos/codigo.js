@@ -145,7 +145,7 @@ function arrumadata(texto) {
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
 		mes = Zerado(mes,2,"");
-		texto = (ano + "/" + dia + "/" + mes);
+		texto = (ano + "/" + mes + "/" + dia);
 	} else {
 		texto = "";
 	}
