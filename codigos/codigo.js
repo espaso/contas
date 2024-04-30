@@ -48,7 +48,7 @@ var agora = Ano+""+Mes+""+Dia+""+HH+""+MM+""+SS;
 function mesesAneriores(date, diff) {
   const m = new Date(date);
   m.setMonth(m.getMonth() + diff);
-  return m.getFullYear()+"/"+Zerado(((m.getMonth() + 1)),2,"");
+  return Zerado(((m.getMonth() + 1)),2,"")+"/"+m.getFullYear();
 }
 
 function Remuneracao(holerite) {
