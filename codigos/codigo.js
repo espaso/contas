@@ -120,6 +120,7 @@ function formatadata(texto) {
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
+		dia = texto.getDay();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
@@ -136,16 +137,16 @@ function arrumadata(texto) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
 		tamanho = separa.length;  
-		dia = separa[tamanho-2];
+		dia = separa[tamanho-1];
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
-		//dia = texto.getDate();
+		dia = texto.getDay();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
 		mes = Zerado(mes,2,"");
-		texto = (ano + "/" + dia + "/" + mes);
+		texto = (ano + "/" + mes + "/" + dia);
 	} else {
 		texto = "";
 	}
@@ -173,7 +174,7 @@ function nomedomes(texto) {
 }
 
 function vediasemana(texto) {
-	arrumadata(texto);
+	//arrumadata(texto);
 	if (texto!=null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
