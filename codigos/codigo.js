@@ -119,7 +119,7 @@ function formatadata(texto) {
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
-		dia = texto.getDay();
+		dia = texto.getDate();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
@@ -140,7 +140,7 @@ function arrumadata(texto) {
 	}
 	if (texto !== '') {
 		texto = new Date(texto);
-		dia = texto.getDay();
+		dia = texto.getDate();
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
