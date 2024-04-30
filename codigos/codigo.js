@@ -41,7 +41,7 @@ if (teste==02) {ante='12';anoa=Ano-1;anou=Ano;}
 var antepenultimo = anoa+ante;
 var ultimomes = anou+ulti;
 var mesanterior = anou+ulti;
-var hoje = Ano+'/'+Mes+'/'+Dia;
+var hoje = Dia+'/'+Mes+'/'+Ano;
 var hora = HH+':'+MM+':'+SS;
 var agora = Ano+""+Mes+""+Dia+""+HH+""+MM+""+SS;
 
@@ -111,6 +111,7 @@ function arredondamoeda(num){
 }
 
 function formatadata(texto) {
+	arrumadata(texto);
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
@@ -130,7 +131,7 @@ function formatadata(texto) {
 	return texto;
 }
 
-function invertedata(texto) {
+function arrumadata(texto) {
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
@@ -172,6 +173,7 @@ function nomedomes(texto) {
 }
 
 function vediasemana(texto) {
+	arrumadata(texto);
 	if (texto!=null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
