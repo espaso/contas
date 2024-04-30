@@ -131,18 +131,20 @@ function formatadata(texto) {
 }
 
 function arrumadata(texto) {
-	if (texto!==null) {
+	if (texto!==null || texto!=="") {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
 		tamanho = separa.length;
 		dia = separa[tamanho-3];
-	}
-	if (texto !== '') {
-		texto = new Date(texto);
+		mes = separa[tamanho-2];
+		ano = separa[tamanho-1];
+	//}
+	//if (texto !== '') {
+		/*texto = new Date(texto);
 		mes = texto.getMonth()+1;
 		ano = texto.getFullYear();
 		dia = Zerado(dia,2,"");
-		mes = Zerado(mes,2,"");
+		mes = Zerado(mes,2,"");*/
 		texto = (ano + "/" + mes + "/" + dia);
 	} else {
 		texto = "";
