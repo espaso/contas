@@ -173,7 +173,6 @@ function nomedomes(texto) {
 }
 
 function vediasemana(texto) {
-	console.log(texto);
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
@@ -183,7 +182,7 @@ function vediasemana(texto) {
 	if (texto !== '') {
 		datahoje = new Date(texto);
 		diasemana = datahoje.getDay(texto);
-		console.log(diasemana);
+		console.log(datahoje);
 		if (diasemana == 0) diasemana = "Domingo ";
 		if (diasemana == 1) diasemana = "Segunda ";
 		if (diasemana == 2) diasemana = "Terça ";
