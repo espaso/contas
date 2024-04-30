@@ -111,7 +111,6 @@ function arredondamoeda(num){
 }
 
 function formatadata(texto) {
-	arrumadata(texto);
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
@@ -174,7 +173,6 @@ function nomedomes(texto) {
 }
 
 function vediasemana(texto) {
-	//arrumadata(texto);
 	if (texto!=null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
