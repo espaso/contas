@@ -132,7 +132,6 @@ function formatadata(texto) {
 }
 
 function arrumadata(texto) {
-		console.log(texto);
 	if (texto!==null) {
 		var extenso = texto;  
 		var separa = extenso.split("/");  
