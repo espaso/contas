@@ -41,9 +41,9 @@ if (teste==02) {ante='12';anoa=Ano-1;anou=Ano;}
 var antepenultimo = anoa+ante;
 var ultimomes = anou+ulti;
 var mesanterior = anou+ulti;
-var hoje = Dia+'/'+Mes+'/'+Ano;
+var hoje = Ano+""+Mes+""+Dia;
 var hora = HH+':'+MM+':'+SS;
-var agora = Ano+""+Mes+""+Dia+""+HH+""+MM+""+SS;
+var agora = hoje+""+HH+""+MM+""+SS;
 
 function mesesAneriores(date, diff) {
   const m = new Date(date);
