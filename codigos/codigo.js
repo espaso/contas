@@ -132,13 +132,13 @@ function formatadata(texto) {
 
 function arrumadata(texto) {
 	if (texto!==null || texto!=="") {
-		var extenso = texto;  
+		/*var extenso = texto;  
 		var separa = extenso.split("/");  
 		tamanho = separa.length;
 		dia = separa[tamanho-3];
 		mes = separa[tamanho-2];
-		ano = separa[tamanho-1];
-		texto = (ano + "/" + mes + "/" + dia);
+		ano = separa[tamanho-1];*/
+		texto = texto.substr(0,4) + "/" + texto.substr(4,2) + "/" + texto.substr(6,2);
 	} else {
 		texto = "";
 	}
