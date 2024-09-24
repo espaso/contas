@@ -197,6 +197,7 @@ function AlteraForma(texto) {
 		if (texto == "Itau") texto = "IT";
 		if (texto == "Itaucard") texto = "CI";
 		if (texto == "Modal") texto = "MD";
+		if (texto == "Toro") texto = "TR";
 		if (texto == "Refeicao") texto = "RM";
 		if (texto == "Santander") texto = "SM";
 		if (texto == "Visa") texto = "CV";
@@ -221,6 +222,7 @@ function DefineForma(texto) {
 		if (texto == "CI") texto = "Itaucard";
 		if (texto == "RM") texto = "Refeicao";
 		if (texto == "MD") texto = "Modal";
+		if (texto == "TR") texto = "Toro";
 		if (texto == "SA" || texto == "SM") texto = "Santander";
 		if (texto == "CV") texto = "Visa";
 		return texto;
