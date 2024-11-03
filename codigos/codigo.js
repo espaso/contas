@@ -61,7 +61,7 @@ function Remuneracao(holerite) {
 	var irrf = (bruto*0.275)-884.96;
 	var desconto = adia+inss+irrf;
 	var liquido = (bruto)-(desconto);
-	document.write(holerite+" - "+noturno+" - "+dsr+" - "+inss+" - "+irrf+" - "+bruto+" - "+desconto+" - "+liquido);
+	//document.write(holerite+" - "+noturno+" - "+dsr+" - "+inss+" - "+irrf+" - "+bruto+" - "+desconto+" - "+liquido);
 	return liquido;
 }
 
