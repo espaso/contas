@@ -56,8 +56,8 @@ function Remuneracao(holerite) {
 	var noturno = holerite*0.3;
 	var hextra = 0;//holerite*0.1875;
 	var dsr = 0;//(noturno+hextra)/5.5;
-	var inss = (1412*0.075)+((2666.68-1412)*0.09)+((4000.03-2666.68)*0.12)+((noturno-4000.03)*0.14);
-	var irrf = (noturno*0.275)-884.96;
+	var inss = (1412*0.075)+((2666.68-1412)*0.09)+((4000.03-2666.68)*0.12)+((holerite+noturno)-4000.03)*0.14);
+	var irrf = ((holerite+noturno)*0.275)-884.96;
 	var totais = ((holerite+noturno+hextra+dsr)-(adianta+inss+irrf));
 	alert(holerite+" - "+noturno+" - "+inss+" - "+irrf+" - "+totais);
 	return totais;
