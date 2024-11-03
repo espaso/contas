@@ -52,15 +52,16 @@ function mesesAneriores(date, diff) {
 }
 
 function Remuneracao(holerite) {
-	var adianta = 0;//holerite*0.4;
 	var noturno = holerite*0.3;
 	var hextra = 0;//holerite*0.1875;
 	var dsr = (noturno+hextra)/5.5;
 	var bruto = holerite+noturno+hextra+dsr;
+	var adia = 0;//holerite*0.4;
 	var inss = (1412*0.075)+((2666.68-1412)*0.09)+((4000.03-2666.68)*0.12)+((bruto-4000.03)*0.14);
 	var irrf = (bruto*0.275)-884.96;
-	var liquido = (bruto)-(adianta+inss+irrf);
-	alert(holerite+" - "+noturno+" - "+dsr+" - "+inss+" - "+irrf+" - "+bruto+" - "+liquido);
+	var desconto = adia+inss+irrf;
+	var liquido = (bruto)-(desconto);
+	alert(holerite+" - "+noturno+" - "+dsr+" - "+inss+" - "+irrf+" - "+bruto+" - "+desconto+" - "+liquido);
 	return liquido;
 }
 
