@@ -56,7 +56,7 @@ function Remuneracao(holerite) {
 	var noturno = holerite*0.3;
 	var hextra = 0;//holerite*0.1875;
 	var dsr = 0;//(noturno+hextra)/5.5;
-	var inss = holerite*0.09;
+	var inss = (1412*0.075)+((2666.68-1412)*0.09)+((4000.03-2666.68)*0.12)+((noturno-4000.03)*0.14);
 	var irrf = (holerite*0.225)-636.13;
 	return ((holerite+noturno+hextra+dsr)-(adianta+inss+irrf));
 }
