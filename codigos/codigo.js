@@ -332,7 +332,7 @@ function ScriptErro(msg, url, line, col, err) {
 	url = url[url.length-1];
 	msg = msg.split(": ");  
 	msg = msg[msg.length-1];
-	if (dispositivo) android.MandaSms(url+" - "+err,"21998103976",url+", "+line+"\n"+msg); else alert(url+", "+line+"\n"+msg);
+	/*if (dispositivo) android.MandaSms(url+" - "+err,"21998103976",url+", "+line+"\n"+msg); else */alert(url+", "+line+"\n"+msg);
 	window.onerror = null;
 	return true
 }
@@ -343,7 +343,7 @@ function MensagemErro(msg, url, line, col, err) {
 	url = url[url.length-1];
 	msg = msg.split(": ");  
 	msg = msg[msg.length-1];
-	if (dispositivo) android.MandaSms(url+" - "+err,"21998103976",url+", "+line+"\n"+msg); else alert(url+", "+line+"\n"+msg);
+	/*if (dispositivo) android.MandaSms(url+" - "+err,"21998103976",url+", "+line+"\n"+msg); else */alert(url+", "+line+"\n"+msg);
 	window.onerror = null;
 	return true
 }
