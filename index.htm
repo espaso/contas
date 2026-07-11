@@ -180,8 +180,8 @@ $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	var param1 = param1.substring(1,param1.length);
 	//var obj = JSON.parse(favorito);
 	//console.log(favorito);
-	//alert(obj.roots.pegaCorrente);
-	if (param1=="") {var pagina = obj.pegaCorrente;}else{var pagina = obj.pegaCorrente;}
+	//alert(obj.pegCorrente);
+	if (param1=="") {var pagina = obj.pegCorrente;}else{var pagina = obj.pegCorrente;}
 	alert(pagina);
 });
 
