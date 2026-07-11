@@ -183,7 +183,7 @@ $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	//alert(obj.pegCorrente);
 	if (param1=="") {var pagina = obj.pegCorrente;}else{var pagina = obj.pegCorrente;}
 	var conta = 0, texto = "";
-	conta = pag8na.lenght;
+	conta = pagina.lenght;
 	for (i = 0; i < conta; i++) {
 		texto += pagina[i].Descricao + "\n";
 	}
