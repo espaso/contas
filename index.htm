@@ -183,12 +183,12 @@ $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	//alert(obj.pegCorrente);
 	//if (param1=="") {var pagina = obj.pegaCorrente;}else{var pagina = obj.pegCorrente;}
 	TabCorrente = obj.pegaCorrente;
-	/*var conta = 0, texto = "";
+	var conta = 0, texto = "";
 	conta = pagina.length;
 	for (i = 0; i < conta; i++) {
-		texto += pagina[i].Descricao + "\n";
+		texto += TabCorrente[i].Descricao + "\n";
 	}
-	alert(texto);*/
+	alert(texto);
 });
 
 //var TabCorrente = JSON.parse(pegaCorrente);
