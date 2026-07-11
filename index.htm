@@ -172,7 +172,8 @@ function PreencheCirculo(Circ,cor,PConta) {
 	Circulo.update();
 	return;
 }
-
+	
+/*
 $.getJSON("base/corrente", function(obj) {
 	var loc = location.search.substring(1,location.search.length);
 	var params = loc.split("&");
@@ -190,6 +191,29 @@ $.getJSON("base/corrente", function(obj) {
 	}
 	alert(texto);
 });
+
+$.when(
+    $.getJSON(),
+    $.getJSON(arquivo2),
+    $.getJSON(arquivo3)
+).done(function(resposta1, resposta2, resposta3) {
+    
+    // O jQuery retorna um array para cada resposta: [dados, statusText, jqXHR]
+    // Pegamos apenas a primeira posição (os dados JSON de fato)
+    const dados1 = resposta1[0];
+    const dados2 = resposta2[0];
+    const dados3 = resposta3[0];
+
+    console.log("Todos os arquivos foram carregados com sucesso!");
+    
+    // Agora você pode usar os dados como quiser
+    console.log(dados1, dados2, dados3);
+
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    // Se QUALQUER uma das requisições falhar, este bloco é executado
+    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+});
+*/
 
 var TabCorrente = JSON.parse(pegaCorrente);
 var TabMensal = JSON.parse(pegaMensal);
