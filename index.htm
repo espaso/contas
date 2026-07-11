@@ -172,8 +172,8 @@ function PreencheCirculo(Circ,cor,PConta) {
 	Circulo.update();
 	return;
 }
-
-$.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
+var TabCorrente = "";
+$.getJSON("base/corrente", function(obj) {
 	var loc = location.search.substring(1,location.search.length);
 	var params = loc.split("&");
 	var param1 = params[0].substring(params[0].indexOf('='),params[0].length);
@@ -181,16 +181,17 @@ $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	//var obj = JSON.parse(favorito);
 	//console.log(favorito);
 	//alert(obj.pegCorrente);
-	if (param1=="") {var pagina = obj.pegCorrente;}else{var pagina = obj.pegCorrente;}
-	var conta = 0, texto = "";
+	//if (param1=="") {var pagina = obj.pegaCorrente;}else{var pagina = obj.pegCorrente;}
+	TabCorrente = obj.pegaCorrente;
+	/*var conta = 0, texto = "";
 	conta = pagina.length;
 	for (i = 0; i < conta; i++) {
 		texto += pagina[i].Descricao + "\n";
 	}
-	alert(texto);
+	alert(texto);*/
 });
 
-var TabCorrente = JSON.parse(pegaCorrente);
+//var TabCorrente = JSON.parse(pegaCorrente);
 var TabMensal = JSON.parse(pegaMensal);
 var TabPassado = JSON.parse(pegaPassado);
 
