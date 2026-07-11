@@ -172,7 +172,7 @@ function PreencheCirculo(Circ,cor,PConta) {
 	Circulo.update();
 	return;
 }
-//var TabCorrente = "";
+
 $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	var loc = location.search.substring(1,location.search.length);
 	var params = loc.split("&");
@@ -191,7 +191,7 @@ $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	alert(texto);
 });
 
-//var TabCorrente = JSON.parse(pegaCorrente);
+var TabCorrente = JSON.parse(pegaCorrente);
 var TabMensal = JSON.parse(pegaMensal);
 var TabPassado = JSON.parse(pegaPassado);
 
