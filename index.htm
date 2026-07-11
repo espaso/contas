@@ -184,7 +184,7 @@ $.getJSON("https://espaso.github.io/contas/base/corrente", function(obj) {
 	//if (param1=="") {var pagina = obj.pegaCorrente;}else{var pagina = obj.pegCorrente;}
 	var TabCorrente = obj.pegaCorrente;
 	var conta = 0, texto = "";
-	conta = pagina.length;
+	conta = TabCorrente.length;
 	for (i = 0; i < conta; i++) {
 		texto += TabCorrente[i].Descricao + "\n";
 	}
