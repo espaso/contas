@@ -181,9 +181,9 @@ $.when(
     
     // O jQuery retorna um array para cada resposta: [dados, statusText, jqXHR]
     // Pegamos apenas a primeira posição (os dados JSON de fato)
-    const dadCorrente = resCorrente[0];
-    const dadMensal = resMensal[0];
-    const dadPassado = resPassado[0];
+    const TabCorrente = resCorrente[0];
+    const TabMensal = resMensal[0];
+    const TabPassado = resPassado[0];
 
     console.log("Todos os arquivos foram carregados com sucesso!");
     
@@ -196,9 +196,9 @@ $.when(
     console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
 });
 
-var TabCorrente = JSON.parse(pegaCorrente);
+/*var TabCorrente = JSON.parse(pegaCorrente);
 var TabMensal = JSON.parse(pegaMensal);
-var TabPassado = JSON.parse(pegaPassado);
+var TabPassado = JSON.parse(pegaPassado);*/
 
 console.log("JS");
 console.log(TabCorrente, TabMensal, TabPassado);
