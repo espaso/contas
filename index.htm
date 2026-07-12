@@ -221,12 +221,6 @@ TabPassado.sort(function(a, b) {
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
 });
 
-}).fail(function(jqXHR, textStatus, errorThrown) {
-    // Se QUALQUER uma das requisições falhar, este bloco é executado
-    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-});
-
-
 if (TabCorrente[0].Data.substr(0,6) == Ano+""+Mes) {
 	var ReceitaCredito = 0, DespesaDivida = 0;
 	var ReceitaBradesco=0,EntradaBradesco=0,DespesaBradesco=0;
@@ -536,6 +530,11 @@ if (TabCorrente[0].Data.substr(0,6) == Ano+""+Mes) {
 	
 	setTimeout(function() {window.location.reload();}, 20000)
 }
+
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    // Se QUALQUER uma das requisições falhar, este bloco é executado
+    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+});
 </script>
 </body>
 </html>
