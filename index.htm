@@ -185,10 +185,10 @@ $.when(
     
     // O jQuery retorna um array para cada resposta: [dados, statusText, jqXHR]
     // Pegamos apenas a primeira posição (os dados JSON de fato)
-    TabCorrente = resCorrente[0];
-    TabMensal = resMensal[0];
-    TabPassado = resPassado[0];
-console.log("1");
+    TabCorrente = resCorrente[0].pegaCorrente;
+    TabMensal = resMensal[0].pegaMensal;
+    TabPassado = resPassado[0].pegaPassado;
+console.log("2");
     /*console.log("Todos os arquivos foram carregados com sucesso!");
     
     // Agora você pode usar os dados como quiser
