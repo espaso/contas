@@ -158,6 +158,10 @@
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
+var TabCorrente = "";
+var TabMensal = "";
+var TabPassado = "";
+
 function PreencheCirculo(Circ,cor,PConta) {
 	var canvas = document.getElementById('C'+Circ);
 	var ctx = canvas.getContext('2d');
@@ -181,9 +185,9 @@ $.when(
     
     // O jQuery retorna um array para cada resposta: [dados, statusText, jqXHR]
     // Pegamos apenas a primeira posição (os dados JSON de fato)
-    const TabCorrente = resCorrente[0];
-    const TabMensal = resMensal[0];
-    const TabPassado = resPassado[0];
+    TabCorrente = resCorrente[0];
+    TabMensal = resMensal[0];
+    TabPassado = resPassado[0];
 
     /*console.log("Todos os arquivos foram carregados com sucesso!");
     
