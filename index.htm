@@ -188,9 +188,8 @@ $.when(
     console.log("Todos os arquivos foram carregados com sucesso!");
     
     // Agora você pode usar os dados como quiser
-    console.log("corrente.json\n"+dadCorrente);
-    console.log("mensal.json\n"+dadMensal);
-    console.log("passado.json\n"+dadPassado);
+	console.log("JSON");
+    console.log(dadCorrente, dadMensal, dadPassado);
 
 }).fail(function(jqXHR, textStatus, errorThrown) {
     // Se QUALQUER uma das requisições falhar, este bloco é executado
@@ -201,9 +200,8 @@ var TabCorrente = JSON.parse(pegaCorrente);
 var TabMensal = JSON.parse(pegaMensal);
 var TabPassado = JSON.parse(pegaPassado);
 
-    console.log("corrente.js\n"+TabCorrente);
-    console.log("mensal.js\n"+TabMensal);
-    console.log("passado.js\n"+TabPassado);
+console.log("JS");
+console.log(TabCorrente, TabMensal, TabPassado);
 	
 TabCorrente.sort(function(a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
