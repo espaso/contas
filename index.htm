@@ -207,23 +207,23 @@ var TabPassado = JSON.parse(pegaPassado);*/
 /*console.log("JS");
 console.log(TabCorrente, TabMensal, TabPassado);*/
 	
-TabCorrente.sort((a, b) =>
+TabCorrente.sort((a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-);
+});
 
-TabMensal.sort((a, b) =>
+TabMensal.sort((a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-);
+});
 
-TabPassado.sort((a, b) =>
+TabPassado.sort((a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-);
+});
 
 if (TabCorrente[0].Data.substr(0,6) == Ano+""+Mes) {
 	var ReceitaCredito = 0, DespesaDivida = 0;
