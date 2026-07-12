@@ -158,9 +158,9 @@
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
-var TabCorrente = "";
-var TabMensal = "";
-var TabPassado = "";
+let TabCorrente = [];
+let TabMensal = [];
+let TabPassado = [];
 
 function PreencheCirculo(Circ,cor,PConta) {
 	var canvas = document.getElementById('C'+Circ);
