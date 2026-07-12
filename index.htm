@@ -213,13 +213,13 @@ TabCorrente.sort(function(a, b) {
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
 });
 
-TabMensal.sort((a, b) {
+TabMensal.sort(function(a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
 });
 
-TabPassado.sort((a, b) {
+TabPassado.sort(function(a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
 	return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
