@@ -173,25 +173,6 @@ function PreencheCirculo(Circ,cor,PConta) {
 	return;
 }
 	
-/*
-$.getJSON("base/corrente", function(obj) {
-	var loc = location.search.substring(1,location.search.length);
-	var params = loc.split("&");
-	var param1 = params[0].substring(params[0].indexOf('='),params[0].length);
-	var param1 = param1.substring(1,param1.length);
-	//var obj = JSON.parse(favorito);
-	//console.log(favorito);
-	//alert(obj.pegCorrente);
-	//if (param1=="") {var pagina = obj.pegaCorrente;}else{var pagina = obj.pegCorrente;}
-	var TabCorrente = obj.pegaCorrente;
-	var conta = 0, texto = "";
-	conta = TabCorrente.length;
-	for (i = 0; i < conta; i++) {
-		texto += TabCorrente[i].Descricao + "\n";
-	}
-	alert(texto);
-});*/
-
 $.when(
     $.getJSON("base/corrente"),
     $.getJSON("base/mensal"),
@@ -218,6 +199,8 @@ var TabCorrente = JSON.parse(pegaCorrente);
 var TabMensal = JSON.parse(pegaMensal);
 var TabPassado = JSON.parse(pegaPassado);
 
+	console.log(TabCorrente, TabMensal, TabPassado);
+	
 TabCorrente.sort(function(a, b) {
 	return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 	return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
