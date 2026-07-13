@@ -621,16 +621,13 @@ console.log("versao: "+versao);
 
 let TabCorrente = [];
 let TabMensal = [];
-let TabPassado = [];
 $.when(
     $.getJSON("../base/corrente"),
-    $.getJSON("../base/mensal"),
-    $.getJSON("../base/passado")
-).done(function(resCorrente, resMensal, resPassado) {
+    $.getJSON("../base/mensal")
+).done(function(resCorrente, resMensal) {
     TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
-    TabPassado = resPassado[0];
-
+console.log(TabCorrente);
 	AtualizaControle();
 	AtualizaPagina();
 
