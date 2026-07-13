@@ -147,226 +147,6 @@
 </center>
 <script>
 window.onerror = MensagemErro;
-
-
-var versao = 2;
-console.log("versao: "+versao);
-
-let TabCorrente = [];
-let TabMensal = [];
-let TabPassado = [];
-$.when(
-    $.getJSON("../base/corrente"),
-    $.getJSON("../base/mensal"),
-    $.getJSON("../base/passado")
-).done(function(resCorrente, resMensal, resPassado) {
-    TabCorrente = resCorrente[0];
-    TabMensal = resMensal[0];
-    TabPassado = resPassado[0];
-	
-function SalvaRegistro() {
-	var RegValor = document.getElementById('valor').value;
-	var RegDescricao = document.getElementById('descricao').value;
-	if (pagina=="registro") {
-		var RegData = document.getElementById('data').value;
-	} else {
-		var RegSite = document.getElementById('site').value; 
-		var RegVencimento = document.getElementById('vencimento').value; 
-		var RegParcela = document.getElementById('parcela').value;
-		var RegResto = document.getElementById('resto').value;
-	}
-	var RegForma = document.getElementById('forma').value;
-	if (RegValor=="") {return false;}
-	if (RegDescricao=="") {return false;}
-	if (pagina=="registro") {if (RegData=="") {return false;}}
-	if (pagina=="mensal") {if (RegSite=="") {return false;}}
-	if (pagina=="mensal") {if (RegVencimento=="") {return false;}}
-	if (pagina=="mensal") {if (RegParcela=="") {return false;}}
-	if (pagina=="mensal") {if (RegResto=="") {return false;}}
-	if (RegForma=="") {return false;}
-	else if (salvo) {GravaRegistro();}
-}
-function GravaRegistro() {
-	var RegCodigo = document.getElementById('codigo').value;
-	var RegValor = parseFloat(document.getElementById('valor').value);//.replace(".","").replace(",",".");
-	var RegDescricao = document.getElementById('descricao').value;
-	if (pagina=="registro") {
-		var RegData = document.getElementById('data').value;
-	} else {
-		var RegSite = document.getElementById('site').value; 
-		var RegVencimento = Zerado(document.getElementById('vencimento').value,2,''); 
-		var RegParcela = parseInt(document.getElementById('parcela').value);
-		var RegResto = parseInt(document.getElementById('resto').value);
-	}
-	var RegForma = document.getElementById('forma').value;
-
-	if (pagina=="registro") {
-		var TabExtrato = resCorrente[0];
-	} else {
-		var TabExtrato = resMensal[0];
-	}
-		
-	TabExtrato.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-	
-	if (RegCodigo!="") {
-			if (pagina=="registro") {
-				const htmlCorrente = TabExtrato.map(objeto => {
-					if (objeto.Codigo == RegCodigo) {
-						return {"Codigo": parseInt(RegCodigo), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)};
-					}
-					return objeto;
-				});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
-				if (dispositivo) {
-					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
-				} else {console.log("corrente\n"+jsonCorrente);}
-			} else {
-				const htmlMensal = TabExtrato.map(objeto => {
-					if (objeto.Codigo == RegCodigo) {
-						return {"Codigo": parseInt(RegCodigo), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": RegVencimento, "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)};
-					}
-					return objeto;
-				});
-				var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
-				if (dispositivo) {
-					//android.SalvaBKP("base", "mensal.js", jsonMensal);
-					AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
-				} else {console.log("mensal\n"+jsonMensal);}
-				
-				TabCorrente.sort(function(a, b) {
-					return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-					return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-					return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-				});
-				
-				var codCorrente = 0;
-				for (var j=0; j<TabCorrente.length; j++) {
-					if (TabCorrente[j].Descricao.indexOf(RegDescricao)>=0 && TabCorrente[j].Codigo != codCorrente) {
-						codCorrente = parseInt(TabCorrente[j].Codigo);
-						codDescricao = TabCorrente[j].Descricao;
-						codData = TabCorrente[j].Data;
-						codForma = TabCorrente[j].Forma;
-					}
-				}
-				
-				var codValor = parseFloat(RegValor);
-				if (RegDescricao == "Salario") {
-					codValor = Remuneracao(codValor).toFixed(2);
-				} else {
-					codValor = parcelamento(codValor,RegParcela).toFixed(2);
-				}
-				
-				const htmlCorrente = TabCorrente.map(objeto => {
-					if (objeto.Codigo == codCorrente) {
-						return {"Codigo": parseInt(codCorrente), "Data": codData, "Forma": codForma, "Descricao": codDescricao, "Valor": parseFloat(codValor)};
-					}
-					return objeto;
-				});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
-				if (dispositivo) {
-					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 20000)
-				} else {console.log("corrente\n"+jsonCorrente);}
-			}
-			setTimeout(function() {window.history.back();}, 20000)
-	} else {
-		if (pagina=="registro") {
-			TabExtrato.push({"Codigo": parseInt(agora), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)});
-			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabExtrato)+"';";
-			if (dispositivo) {
-				//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
-			} else {console.log("corrente\n"+jsonCorrente);}
-		} else {
-			TabExtrato.push({"Codigo": parseInt(agora), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": Zerado(RegVencimento,2,''), "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)});
-			var jsonMensal = "var pegaMensal = '"+JSON.stringify(TabExtrato)+"';";
-			if (dispositivo) {
-				//android.SalvaBKP("base", "mensal.js", jsonMensal);
-				AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
-			} else {console.log("mensal\n"+jsonMensal);}
-				
-			TabCorrente.sort(function(a, b) {
-				return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-				return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-				return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-			});
-			
-			var codValor = parseFloat(RegValor);
-			if (RegDescricao == "Salario") {
-				codValor = Remuneracao(codValor).toFixed(2);
-			} else {
-				codValor = parcelamento(codValor,RegParcela).toFixed(2);
-			}
-			
-			if (Zerado(RegVencimento,2,'')>Dia) {
-				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
-				TabCorrente.push({"Codigo": parseInt(agora), "Data": Ano+""+Mes+""+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(codValor)});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabCorrente)+"';";
-				if (dispositivo) {
-					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 20000)
-				} else {console.log("corrente\n"+jsonCorrente);}
-			}
-		}
-		setTimeout(function() {window.location.reload();}, 0)
-	}
-}
-function ExcluiRegistro() {
-	var RegCodigo = document.getElementById('codigo').value;
-	var RegValor = document.getElementById('valor').value;//.replace(".","").replace(",",".");
-	var RegDescricao = document.getElementById('descricao').value;
-	if (pagina=="registro") {
-		var RegData = document.getElementById('data').value;//.replace(/-/g,"/");
-	} else {
-		var RegSite = document.getElementById('site').value; 
-		var RegVencimento = document.getElementById('vencimento').value; 
-		var RegParcela = document.getElementById('parcela').value;
-		var RegResto = document.getElementById('resto').value;
-	}
-	var RegForma = document.getElementById('forma').value;
-	
-	if (pagina=="registro") {
-		var TabExtrato = resCorrente[0];
-	} else {
-		var TabExtrato = resMensal[0];
-	}
-		
-	TabExtrato.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-		if (pagina=="registro") {
-			const htmlCorrente = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
-			if (dispositivo) {
-				//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
-			} else {console.log("corrente\n"+jsonCorrente);}
-		} else {
-			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
-			if (dispositivo) {
-				//android.SalvaBKP("base", "mensal.js", jsonMensal);
-				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
-			} else {console.log("mensal\n"+jsonMensal);}
-		}
-	setTimeout(function() {window.history.back();}, 0)
-}
-	
-}).fail(function(jqXHR, textStatus, errorThrown) {
-    // Se QUALQUER uma das requisições falhar, este bloco é executado
-    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-});
-
-
-
 window.addEventListener('focus', function(){
     document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
 });
@@ -552,7 +332,249 @@ document.getElementById("dinheiro").onclick = function() {
 	}
 	salvo = true;
 }
+	
+function SalvaRegistro() {
+	var RegValor = document.getElementById('valor').value;
+	var RegDescricao = document.getElementById('descricao').value;
+	if (pagina=="registro") {
+		var RegData = document.getElementById('data').value;
+	} else {
+		var RegSite = document.getElementById('site').value; 
+		var RegVencimento = document.getElementById('vencimento').value; 
+		var RegParcela = document.getElementById('parcela').value;
+		var RegResto = document.getElementById('resto').value;
+	}
+	var RegForma = document.getElementById('forma').value;
+	if (RegValor=="") {return false;}
+	if (RegDescricao=="") {return false;}
+	if (pagina=="registro") {if (RegData=="") {return false;}}
+	if (pagina=="mensal") {if (RegSite=="") {return false;}}
+	if (pagina=="mensal") {if (RegVencimento=="") {return false;}}
+	if (pagina=="mensal") {if (RegParcela=="") {return false;}}
+	if (pagina=="mensal") {if (RegResto=="") {return false;}}
+	if (RegForma=="") {return false;}
+	else if (salvo) {GravaRegistro();}
+}
+function GravaRegistro() {
+	var RegCodigo = document.getElementById('codigo').value;
+	var RegValor = parseFloat(document.getElementById('valor').value);//.replace(".","").replace(",",".");
+	var RegDescricao = document.getElementById('descricao').value;
+	if (pagina=="registro") {
+		var RegData = document.getElementById('data').value;
+	} else {
+		var RegSite = document.getElementById('site').value; 
+		var RegVencimento = Zerado(document.getElementById('vencimento').value,2,''); 
+		var RegParcela = parseInt(document.getElementById('parcela').value);
+		var RegResto = parseInt(document.getElementById('resto').value);
+	}
+	var RegForma = document.getElementById('forma').value;
 
+	var versao = 2;
+	console.log("versao: "+versao);
+	
+	let TabCorrente = [];
+	let TabMensal = [];
+	let TabPassado = [];
+	$.when(
+	    $.getJSON("../base/corrente"),
+	    $.getJSON("../base/mensal"),
+	    $.getJSON("../base/passado")
+	).done(function(resCorrente, resMensal, resPassado) {
+	    TabCorrente = resCorrente[0];
+	    TabMensal = resMensal[0];
+	    TabPassado = resPassado[0];
+	
+	if (pagina=="registro") {
+		var TabExtrato = resCorrente[0];
+	} else {
+		var TabExtrato = resMensal[0];
+	}
+		
+	TabExtrato.sort(function(a, b) {
+		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+	});
+	
+	if (RegCodigo!="") {
+			if (pagina=="registro") {
+				const htmlCorrente = TabExtrato.map(objeto => {
+					if (objeto.Codigo == RegCodigo) {
+						return {"Codigo": parseInt(RegCodigo), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)};
+					}
+					return objeto;
+				});
+				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				if (dispositivo) {
+					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
+					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+				} else {console.log("corrente\n"+jsonCorrente);}
+			} else {
+				const htmlMensal = TabExtrato.map(objeto => {
+					if (objeto.Codigo == RegCodigo) {
+						return {"Codigo": parseInt(RegCodigo), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": RegVencimento, "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)};
+					}
+					return objeto;
+				});
+				var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+				if (dispositivo) {
+					//android.SalvaBKP("base", "mensal.js", jsonMensal);
+					AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
+				} else {console.log("mensal\n"+jsonMensal);}
+				
+				TabCorrente.sort(function(a, b) {
+					return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+					return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+					return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+				});
+				
+				var codCorrente = 0;
+				for (var j=0; j<TabCorrente.length; j++) {
+					if (TabCorrente[j].Descricao.indexOf(RegDescricao)>=0 && TabCorrente[j].Codigo != codCorrente) {
+						codCorrente = parseInt(TabCorrente[j].Codigo);
+						codDescricao = TabCorrente[j].Descricao;
+						codData = TabCorrente[j].Data;
+						codForma = TabCorrente[j].Forma;
+					}
+				}
+				
+				var codValor = parseFloat(RegValor);
+				if (RegDescricao == "Salario") {
+					codValor = Remuneracao(codValor).toFixed(2);
+				} else {
+					codValor = parcelamento(codValor,RegParcela).toFixed(2);
+				}
+				
+				const htmlCorrente = TabCorrente.map(objeto => {
+					if (objeto.Codigo == codCorrente) {
+						return {"Codigo": parseInt(codCorrente), "Data": codData, "Forma": codForma, "Descricao": codDescricao, "Valor": parseFloat(codValor)};
+					}
+					return objeto;
+				});
+				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				if (dispositivo) {
+					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
+					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 20000)
+				} else {console.log("corrente\n"+jsonCorrente);}
+			}
+			setTimeout(function() {window.history.back();}, 20000)
+	} else {
+		if (pagina=="registro") {
+			TabExtrato.push({"Codigo": parseInt(agora), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)});
+			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabExtrato)+"';";
+			if (dispositivo) {
+				//android.SalvaBKP("base", "corrente.js", jsonCorrente);
+				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+			} else {console.log("corrente\n"+jsonCorrente);}
+		} else {
+			TabExtrato.push({"Codigo": parseInt(agora), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": Zerado(RegVencimento,2,''), "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)});
+			var jsonMensal = "var pegaMensal = '"+JSON.stringify(TabExtrato)+"';";
+			if (dispositivo) {
+				//android.SalvaBKP("base", "mensal.js", jsonMensal);
+				AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
+			} else {console.log("mensal\n"+jsonMensal);}
+				
+			TabCorrente.sort(function(a, b) {
+				return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+				return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+				return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+			});
+			
+			var codValor = parseFloat(RegValor);
+			if (RegDescricao == "Salario") {
+				codValor = Remuneracao(codValor).toFixed(2);
+			} else {
+				codValor = parcelamento(codValor,RegParcela).toFixed(2);
+			}
+			
+			if (Zerado(RegVencimento,2,'')>Dia) {
+				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
+				TabCorrente.push({"Codigo": parseInt(agora), "Data": Ano+""+Mes+""+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(codValor)});
+				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabCorrente)+"';";
+				if (dispositivo) {
+					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
+					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 20000)
+				} else {console.log("corrente\n"+jsonCorrente);}
+			}
+		}
+		setTimeout(function() {window.location.reload();}, 0)
+	}
+
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // Se QUALQUER uma das requisições falhar, este bloco é executado
+	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+	});
+
+}
+function ExcluiRegistro() {
+	var RegCodigo = document.getElementById('codigo').value;
+	var RegValor = document.getElementById('valor').value;//.replace(".","").replace(",",".");
+	var RegDescricao = document.getElementById('descricao').value;
+	if (pagina=="registro") {
+		var RegData = document.getElementById('data').value;//.replace(/-/g,"/");
+	} else {
+		var RegSite = document.getElementById('site').value; 
+		var RegVencimento = document.getElementById('vencimento').value; 
+		var RegParcela = document.getElementById('parcela').value;
+		var RegResto = document.getElementById('resto').value;
+	}
+	var RegForma = document.getElementById('forma').value;
+
+	let TabCorrente = [];
+		let TabMensal = [];
+		let TabPassado = [];
+		$.when(
+		    $.getJSON("../base/corrente"),
+		    $.getJSON("../base/mensal"),
+		    $.getJSON("../base/passado")
+		).done(function(resCorrente, resMensal, resPassado) {
+		    TabCorrente = resCorrente[0];
+		    TabMensal = resMensal[0];
+		    TabPassado = resPassado[0];
+	
+	if (pagina=="registro") {
+		var TabExtrato = resCorrente[0];
+	} else {
+		var TabExtrato = resMensal[0];
+	}
+	
+	
+	if (pagina=="registro") {
+		var TabExtrato = resCorrente[0];
+	} else {
+		var TabExtrato = resMensal[0];
+	}
+		
+	TabExtrato.sort(function(a, b) {
+		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+	});
+
+		if (pagina=="registro") {
+			const htmlCorrente = TabExtrato.filter(item => item.Codigo != RegCodigo);
+			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+			if (dispositivo) {
+				//android.SalvaBKP("base", "corrente.js", jsonCorrente);
+				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+			} else {console.log("corrente\n"+jsonCorrente);}
+		} else {
+			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
+			var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+			if (dispositivo) {
+				//android.SalvaBKP("base", "mensal.js", jsonMensal);
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
+			} else {console.log("mensal\n"+jsonMensal);}
+		}
+	setTimeout(function() {window.history.back();}, 0)
+	
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // Se QUALQUER uma das requisições falhar, este bloco é executado
+	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+	});
+
+}
+	
 $( function() {
 $( "#datepicker" ).datepicker();
 } );
