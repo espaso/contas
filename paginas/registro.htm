@@ -147,191 +147,7 @@
 </center>
 <script>
 window.onerror = MensagemErro;
-window.addEventListener('focus', function(){
-    document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
-});
-window.addEventListener('load', function(){
-	document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
-});
-var pagina = "", codigo = "";
-window.onload = function() {
-	var loc = location.search.substring(1, location.search.length);
-	var params = loc.split("&");
-	pagina = params[0].substring(params[0].indexOf('='), params[0].length);
-	pagina = pagina.substring(1, pagina.lenght);
-	if (params.length>1) {
-		codigo = params[1].substring(params[1].indexOf('='), params[1].length);
-		codigo = codigo.substring(1, codigo.lenght);
-	}
-	if (codigo=="") {
-		LimparCamposRegistro(pagina);
-	} else {
-		PopulaCamposRegistro(pagina,codigo);
-	}
-}
-var salvo = false;
-function PopulaCamposRegistro(pagina,codigo) {
-	if (pagina=="registro") {
-		var TabExtrato = JSON.parse(pegaCorrente);
-		document.getElementById("regsimples").hidden = "";
-		document.getElementById("regmensal").hidden = "true";
-		document.getElementById('trsite').hidden = "true";
-		document.getElementById('datepicker').hidden = "";
-		document.getElementById('vencimento').hidden = "true";
-		document.getElementById('parcela').hidden = "true";
-		document.getElementById('resto').hidden = "true";
-	} else {
-		var TabExtrato = JSON.parse(pegaMensal);
-		document.getElementById("regsimples").hidden = "true";
-		document.getElementById("regmensal").hidden = "";
-		document.getElementById('trsite').hidden = "";
-		document.getElementById('datepicker').hidden = "true";
-		document.getElementById('vencimento').hidden = "";
-		document.getElementById('parcela').hidden = "";
-		document.getElementById('resto').hidden = "";
-	}
-		
-	TabExtrato.sort(function(a, b) {
-		return a.Data > b.Data ? -1 : a.Data < b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
 
-	for (var i=0; i<TabExtrato.length; i++) {
-		if (TabExtrato[i].Codigo == codigo) {
-			document.getElementById('btExcluir').hidden = "";
-			document.getElementById('btEspaco').hidden = "";
-			document.getElementById('codigo').value = TabExtrato[i].Codigo;
-			document.getElementById('valor').value = TabExtrato[i].Valor.toFixed(2);
-			document.getElementById('descricao').value = TabExtrato[i].Descricao;
-			if (pagina=="registro") {
-				document.getElementById('data').value = TabExtrato[i].Data;//.replace(/\//g,"-");
-				document.getElementById('datepicker').value = formatadata(arrumadata(TabExtrato[i].Data));//.replace(/\//g,"-");
-			} else {
-				document.getElementById('site').value = TabExtrato[i].Site;
-				document.getElementById('vencimento').value = TabExtrato[i].Data;
-				document.getElementById('parcela').value = TabExtrato[i].Parcela;
-				document.getElementById('resto').value = TabExtrato[i].Resto;
-			}
-			document.getElementById('forma').value = TabExtrato[i].Forma;
-			document.getElementById('caixa').style.opacity = 0.3;
-			document.getElementById('modal').style.opacity = 0.3;
-			document.getElementById('toro').style.opacity = 0.3;
-			document.getElementById('bradesco').style.opacity = 0.3;
-			document.getElementById('dinheiro').style.opacity = 0.3;
-			if (TabExtrato[i].Forma=="CX") document.getElementById('caixa').style.opacity = 1;
-			if (TabExtrato[i].Forma=="MD") document.getElementById('modal').style.opacity = 1;
-			if (TabExtrato[i].Forma=="TR") document.getElementById('toro').style.opacity = 1;
-			if (TabExtrato[i].Forma=="BR") document.getElementById('bradesco').style.opacity = 1;
-			if (TabExtrato[i].Forma=="DM") document.getElementById('dinheiro').style.opacity = 1;
-		}
-	}
-}
-function LimparCamposRegistro(pagina) {
-	AcendeForma();
-	document.getElementById('btExcluir').hidden = "true";
-	document.getElementById('btEspaco').hidden = "true";
-	document.getElementById('codigo').value = "";
-	document.getElementById('valor').value = "";
-	document.getElementById('descricao').value = "";
-	document.getElementById('forma').value = "";
-	document.getElementById('data').value = "";
-	document.getElementById('datepicker').value = "";
-	document.getElementById('site').value = "";
-	document.getElementById('vencimento').value = "";
-	document.getElementById('parcela').value = "";
-	document.getElementById('resto').value = "";
-	if (pagina=="registro") {
-		document.getElementById("regsimples").hidden = "";
-		document.getElementById("regmensal").hidden = "true";
-		document.getElementById('trsite').hidden = "true";
-		document.getElementById('datepicker').hidden = "";
-		document.getElementById('vencimento').hidden = "true";
-		document.getElementById('parcela').hidden = "true";
-		document.getElementById('resto').hidden = "true";
-	} else {
-		document.getElementById("regsimples").hidden = "true";
-		document.getElementById("regmensal").hidden = "";
-		document.getElementById('trsite').hidden = "";
-		document.getElementById('datepicker').hidden = "true";
-		document.getElementById('vencimento').hidden = "";
-		document.getElementById('parcela').hidden = "";
-		document.getElementById('resto').hidden = "";
-	}
-}
-function AcendeForma() {
-	document.getElementById('forma').value = "";
-	document.getElementById('caixa').style.opacity = 0.3;
-	document.getElementById('modal').style.opacity = 0.3;
-	document.getElementById('toro').style.opacity = 0.3;
-	document.getElementById('bradesco').style.opacity = 0.3;
-	document.getElementById('dinheiro').style.opacity = 0.3;
-}
-function AbreLink() {
-	var veSite = document.getElementById('site').value;
-	if (veSite != "") {
-		if (veSite.substr(0,4) == "http") {
-			window.open(document.getElementById('site').value);
-		} else {
-			if (dispositivo) android.AbreApp(veSite);
-		}
-	}
-}
-document.getElementById("caixa").onclick = function() {
-	if (document.getElementById('forma').value!="CX") {
-		AcendeForma();
-		document.getElementById('caixa').style.opacity = 1;
-		document.getElementById('forma').value = "CX";
-	} else {
-		if (document.getElementById('forma').value=="CX") document.getElementById('forma').value = "";
-		AcendeForma();
-	}
-	salvo = true;
-}
-document.getElementById("modal").onclick = function() {
-	if (document.getElementById('forma').value!="MD") {
-		AcendeForma();
-		document.getElementById('modal').style.opacity = 1;
-		document.getElementById('forma').value = "MD";
-	} else {
-		if (document.getElementById('forma').value=="MD") document.getElementById('forma').value = "";
-		AcendeForma();
-	}
-	salvo = true;
-}
-document.getElementById("toro").onclick = function() {
-	if (document.getElementById('forma').value!="TR") {
-		AcendeForma();
-		document.getElementById('toro').style.opacity = 1;
-		document.getElementById('forma').value = "TR";
-	} else {
-		if (document.getElementById('forma').value=="TR") document.getElementById('forma').value = "";
-		AcendeForma();
-	}
-	salvo = true;
-}
-document.getElementById("bradesco").onclick = function() {
-	if (document.getElementById('forma').value!="BR") {
-		AcendeForma();
-		document.getElementById('bradesco').style.opacity = 1;
-		document.getElementById('forma').value = "BR";
-	} else {
-		if (document.getElementById('forma').value=="BR") document.getElementById('forma').value = "";
-		AcendeForma();
-	}
-	salvo = true;
-}
-document.getElementById("dinheiro").onclick = function() {
-	if (document.getElementById('forma').value!="DM") {
-		AcendeForma();
-		document.getElementById('dinheiro').style.opacity = 1;
-		document.getElementById('forma').value = "DM";
-	} else {
-		if (document.getElementById('forma').value=="DM") document.getElementById('forma').value = "";
-		AcendeForma();
-	}
-	salvo = true;
-}
 
 var versao = 1;
 console.log("versao: "+versao);
@@ -549,6 +365,193 @@ function ExcluiRegistro() {
     console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
 });
 
+
+
+window.addEventListener('focus', function(){
+    document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
+});
+window.addEventListener('load', function(){
+	document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
+});
+var pagina = "", codigo = "";
+window.onload = function() {
+	var loc = location.search.substring(1, location.search.length);
+	var params = loc.split("&");
+	pagina = params[0].substring(params[0].indexOf('='), params[0].length);
+	pagina = pagina.substring(1, pagina.lenght);
+	if (params.length>1) {
+		codigo = params[1].substring(params[1].indexOf('='), params[1].length);
+		codigo = codigo.substring(1, codigo.lenght);
+	}
+	if (codigo=="") {
+		LimparCamposRegistro(pagina);
+	} else {
+		PopulaCamposRegistro(pagina,codigo);
+	}
+}
+var salvo = false;
+function PopulaCamposRegistro(pagina,codigo) {
+	if (pagina=="registro") {
+		var TabExtrato = JSON.parse(pegaCorrente);
+		document.getElementById("regsimples").hidden = "";
+		document.getElementById("regmensal").hidden = "true";
+		document.getElementById('trsite').hidden = "true";
+		document.getElementById('datepicker').hidden = "";
+		document.getElementById('vencimento').hidden = "true";
+		document.getElementById('parcela').hidden = "true";
+		document.getElementById('resto').hidden = "true";
+	} else {
+		var TabExtrato = JSON.parse(pegaMensal);
+		document.getElementById("regsimples").hidden = "true";
+		document.getElementById("regmensal").hidden = "";
+		document.getElementById('trsite').hidden = "";
+		document.getElementById('datepicker').hidden = "true";
+		document.getElementById('vencimento').hidden = "";
+		document.getElementById('parcela').hidden = "";
+		document.getElementById('resto').hidden = "";
+	}
+		
+	TabExtrato.sort(function(a, b) {
+		return a.Data > b.Data ? -1 : a.Data < b.Data ? 1 : 0;
+		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+	});
+
+	for (var i=0; i<TabExtrato.length; i++) {
+		if (TabExtrato[i].Codigo == codigo) {
+			document.getElementById('btExcluir').hidden = "";
+			document.getElementById('btEspaco').hidden = "";
+			document.getElementById('codigo').value = TabExtrato[i].Codigo;
+			document.getElementById('valor').value = TabExtrato[i].Valor.toFixed(2);
+			document.getElementById('descricao').value = TabExtrato[i].Descricao;
+			if (pagina=="registro") {
+				document.getElementById('data').value = TabExtrato[i].Data;//.replace(/\//g,"-");
+				document.getElementById('datepicker').value = formatadata(arrumadata(TabExtrato[i].Data));//.replace(/\//g,"-");
+			} else {
+				document.getElementById('site').value = TabExtrato[i].Site;
+				document.getElementById('vencimento').value = TabExtrato[i].Data;
+				document.getElementById('parcela').value = TabExtrato[i].Parcela;
+				document.getElementById('resto').value = TabExtrato[i].Resto;
+			}
+			document.getElementById('forma').value = TabExtrato[i].Forma;
+			document.getElementById('caixa').style.opacity = 0.3;
+			document.getElementById('modal').style.opacity = 0.3;
+			document.getElementById('toro').style.opacity = 0.3;
+			document.getElementById('bradesco').style.opacity = 0.3;
+			document.getElementById('dinheiro').style.opacity = 0.3;
+			if (TabExtrato[i].Forma=="CX") document.getElementById('caixa').style.opacity = 1;
+			if (TabExtrato[i].Forma=="MD") document.getElementById('modal').style.opacity = 1;
+			if (TabExtrato[i].Forma=="TR") document.getElementById('toro').style.opacity = 1;
+			if (TabExtrato[i].Forma=="BR") document.getElementById('bradesco').style.opacity = 1;
+			if (TabExtrato[i].Forma=="DM") document.getElementById('dinheiro').style.opacity = 1;
+		}
+	}
+}
+function LimparCamposRegistro(pagina) {
+	AcendeForma();
+	document.getElementById('btExcluir').hidden = "true";
+	document.getElementById('btEspaco').hidden = "true";
+	document.getElementById('codigo').value = "";
+	document.getElementById('valor').value = "";
+	document.getElementById('descricao').value = "";
+	document.getElementById('forma').value = "";
+	document.getElementById('data').value = "";
+	document.getElementById('datepicker').value = "";
+	document.getElementById('site').value = "";
+	document.getElementById('vencimento').value = "";
+	document.getElementById('parcela').value = "";
+	document.getElementById('resto').value = "";
+	if (pagina=="registro") {
+		document.getElementById("regsimples").hidden = "";
+		document.getElementById("regmensal").hidden = "true";
+		document.getElementById('trsite').hidden = "true";
+		document.getElementById('datepicker').hidden = "";
+		document.getElementById('vencimento').hidden = "true";
+		document.getElementById('parcela').hidden = "true";
+		document.getElementById('resto').hidden = "true";
+	} else {
+		document.getElementById("regsimples").hidden = "true";
+		document.getElementById("regmensal").hidden = "";
+		document.getElementById('trsite').hidden = "";
+		document.getElementById('datepicker').hidden = "true";
+		document.getElementById('vencimento').hidden = "";
+		document.getElementById('parcela').hidden = "";
+		document.getElementById('resto').hidden = "";
+	}
+}
+function AcendeForma() {
+	document.getElementById('forma').value = "";
+	document.getElementById('caixa').style.opacity = 0.3;
+	document.getElementById('modal').style.opacity = 0.3;
+	document.getElementById('toro').style.opacity = 0.3;
+	document.getElementById('bradesco').style.opacity = 0.3;
+	document.getElementById('dinheiro').style.opacity = 0.3;
+}
+function AbreLink() {
+	var veSite = document.getElementById('site').value;
+	if (veSite != "") {
+		if (veSite.substr(0,4) == "http") {
+			window.open(document.getElementById('site').value);
+		} else {
+			if (dispositivo) android.AbreApp(veSite);
+		}
+	}
+}
+document.getElementById("caixa").onclick = function() {
+	if (document.getElementById('forma').value!="CX") {
+		AcendeForma();
+		document.getElementById('caixa').style.opacity = 1;
+		document.getElementById('forma').value = "CX";
+	} else {
+		if (document.getElementById('forma').value=="CX") document.getElementById('forma').value = "";
+		AcendeForma();
+	}
+	salvo = true;
+}
+document.getElementById("modal").onclick = function() {
+	if (document.getElementById('forma').value!="MD") {
+		AcendeForma();
+		document.getElementById('modal').style.opacity = 1;
+		document.getElementById('forma').value = "MD";
+	} else {
+		if (document.getElementById('forma').value=="MD") document.getElementById('forma').value = "";
+		AcendeForma();
+	}
+	salvo = true;
+}
+document.getElementById("toro").onclick = function() {
+	if (document.getElementById('forma').value!="TR") {
+		AcendeForma();
+		document.getElementById('toro').style.opacity = 1;
+		document.getElementById('forma').value = "TR";
+	} else {
+		if (document.getElementById('forma').value=="TR") document.getElementById('forma').value = "";
+		AcendeForma();
+	}
+	salvo = true;
+}
+document.getElementById("bradesco").onclick = function() {
+	if (document.getElementById('forma').value!="BR") {
+		AcendeForma();
+		document.getElementById('bradesco').style.opacity = 1;
+		document.getElementById('forma').value = "BR";
+	} else {
+		if (document.getElementById('forma').value=="BR") document.getElementById('forma').value = "";
+		AcendeForma();
+	}
+	salvo = true;
+}
+document.getElementById("dinheiro").onclick = function() {
+	if (document.getElementById('forma').value!="DM") {
+		AcendeForma();
+		document.getElementById('dinheiro').style.opacity = 1;
+		document.getElementById('forma').value = "DM";
+	} else {
+		if (document.getElementById('forma').value=="DM") document.getElementById('forma').value = "";
+		AcendeForma();
+	}
+	salvo = true;
+}
 
 $( function() {
 $( "#datepicker" ).datepicker();
