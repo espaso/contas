@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
 <link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
 <script type="text/javascript" src="../codigos/codigo.js"></script>
-<script type="text/javascript" src="../base/corrente.js"></script>
-<script type="text/javascript" src="../base/mensal.js"></script>
+<script type="text/javascript" src="../codigos/jquery.js"></script>
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -616,297 +615,308 @@ nomemes1.innerHTML = nomepg.substr(0,1).toUpperCase();
 nomemes2.innerHTML = nomepg.substr(1,nomepg.length).toUpperCase();
 nomemes3.innerHTML = nomepg.substr(0,1).toUpperCase();
 nomemes4.innerHTML = nomepg.substr(1,nomepg.length).toUpperCase();
-window.onload = function() {
+
+var versao = 0;
+console.log("versao: "+versao);
+
+let TabCorrente = [];
+let TabMensal = [];
+$.when(
+    $.getJSON("../base/corrente"),
+    $.getJSON("../base/mensal")
+).done(function(resCorrente, resMensal) {
+    TabCorrente = resCorrente[0];
+    TabMensal = resMensal[0];
+
 	AtualizaControle();
 	AtualizaPagina();
-}
-var CreditoVisa = 0, TiraFies = 0;
-function AtualizaControle() {
-	var TotalApagar=0, TotalPago=0, TotalControle = 0, etiqueta1 = "", etiqueta2 = "";
+
+	var CreditoVisa = 0, TiraFies = 0;
+	function AtualizaControle() {
+		var TotalApagar=0, TotalPago=0, TotalControle = 0, etiqueta1 = "", etiqueta2 = "";
 		
-	var TabCorrente = JSON.parse(pegaCorrente);
-	var TabMensal = JSON.parse(pegaMensal);
-
-	TabCorrente.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-	TabMensal.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-	if (nomepg=="despesa") {
-		var filtro1 = "TabCorrente[i].Valor < 0";
-		var filtro2 = "TabMensal[i].Valor < 0";
-		var filtro3 = "TabCorrente[j].Valor < 0";
-		var filtro4 = "TabMensal[j].Valor < 0";
-	} else {
-		var filtro1 = "TabCorrente[i].Valor > 0";
-		var filtro2 = "TabMensal[i].Valor > 0";
-		var filtro3 = "TabCorrente[j].Valor > 0";
-		var filtro4 = "TabMensal[j].Valor > 0";
-	}
-
-	for (var i=0; i<TabCorrente.length; i++) {
-		if (TabCorrente[i].Data>hoje) {
-			if (eval(filtro1)) {
-				TotalApagar = TotalApagar + TabCorrente[i].Valor;
-			}
+		TabCorrente.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+	
+		TabMensal.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+	
+		if (nomepg=="despesa") {
+			var filtro1 = "TabCorrente[i].Valor < 0";
+			var filtro2 = "TabMensal[i].Valor < 0";
+			var filtro3 = "TabCorrente[j].Valor < 0";
+			var filtro4 = "TabMensal[j].Valor < 0";
+		} else {
+			var filtro1 = "TabCorrente[i].Valor > 0";
+			var filtro2 = "TabMensal[i].Valor > 0";
+			var filtro3 = "TabCorrente[j].Valor > 0";
+			var filtro4 = "TabMensal[j].Valor > 0";
 		}
-		if (TabCorrente[i].Data<=hoje) {
-			if (eval(filtro1)) {
-				TotalPago = TotalPago + TabCorrente[i].Valor;
-			}
-		}
-	}
-	TotalControle = TotalApagar + TotalPago;
-
-	if (nomepg=="despesa") {
-		TotalApagar = TotalApagar*-1;
-		TotalPago = TotalPago*-1;
-		TotalControle = TotalControle*-1;
-		etiqueta1 = "Despesa";
-		etiqueta2 = "Gasto";
-		var Cor = "#8B4513";
-		var CorF = "#CD5555";
-	} else {
-		etiqueta1 = "Receita";
-		etiqueta2 = "Recebido";
-		var Cor = "#2F4F4F";
-		var CorF = "#528B8B";
-	}
-
-	if (TotalControle>0) {PControle = (((TotalPago)*100)/TotalControle).toFixed(0);} else {PControle = 0;Cor = "#696969";CorF = "#696969";}
-	PreencheCirculo('',PControle,Cor);
-	Total1.innerHTML = "<font style='color:"+CorF+"'>R$ "+formatamoeda(TotalApagar)+"</font>";
-	Total2.innerHTML = "R$ "+formatamoeda(TotalControle)+"<p>"+etiqueta1;
-	Total3.innerHTML = "R$ "+formatamoeda(TotalPago)+"<p>"+etiqueta2;
-
-	var TabCorrente = JSON.parse(pegaCorrente);
-	var TabMensal = JSON.parse(pegaMensal);
-
-	TabCorrente.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-	TabMensal.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-	if (nomepg=="despesa") {
-		var filtro1 = "TabCorrente[i].Valor < 0";
-		var filtro2 = "TabMensal[i].Valor < 0";
-		var filtro3 = "TabMensal[j].Valor < 0";
-	} else {
-		var filtro1 = "TabCorrente[i].Valor > 0";
-		var filtro2 = "TabMensal[i].Valor > 0";
-		var filtro3 = "TabMensal[j].Valor > 0";
-	}
-			
-	var html = "", velink;
-	for (var i=0; i<TabMensal.length; i++) {
-		if (eval(filtro2)) {
-			var descricao = TabMensal[i].Descricao;
-			var forma = TabMensal[i].Forma;
-			if (TabMensal[i].Descricao == "Salario") {
-				valor = TabMensal[i].Valor;
-				mensalidade = Remuneracao(TabMensal[i].Valor);
-			} else {
-				valor = TabMensal[i].Valor;
-				mensalidade = parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
-				if (nomepg=="despesa") {
-					valor = valor*-1;
-					mensalidade = mensalidade*-1;
+	
+		for (var i=0; i<TabCorrente.length; i++) {
+			if (TabCorrente[i].Data>hoje) {
+				if (eval(filtro1)) {
+					TotalApagar = TotalApagar + TabCorrente[i].Valor;
 				}
 			}
-			velink = "onclick=window.location.href='../paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
-			html += "<TR><TD vAlign='middle' align='center' width='100%'>";
-			html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
-			html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(arrumadata(Ano+""+Mes+""+TabMensal[i].Data)).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+Zerado(TabMensal[i].Data,2,'')+"</b></font></TD>";
-			html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font size='1'><font size='2'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font><p><font size='1'><i>"+DefineForma(forma)+"</i></font></TD>";
-			html += "<TD vAlign=middle align=right width=40%><font size='3'>R$ "+formatamoeda(mensalidade)+"</font></td><TD width='40'></TD>";
-			html += "</TR></TABLE></center></TD></TR>";
-			html += "<div id='exib"+descricao+"' hidden></div>";
+			if (TabCorrente[i].Data<=hoje) {
+				if (eval(filtro1)) {
+					TotalPago = TotalPago + TabCorrente[i].Valor;
+				}
+			}
+		}
+		TotalControle = TotalApagar + TotalPago;
+	
+		if (nomepg=="despesa") {
+			TotalApagar = TotalApagar*-1;
+			TotalPago = TotalPago*-1;
+			TotalControle = TotalControle*-1;
+			etiqueta1 = "Despesa";
+			etiqueta2 = "Gasto";
+			var Cor = "#8B4513";
+			var CorF = "#CD5555";
+		} else {
+			etiqueta1 = "Receita";
+			etiqueta2 = "Recebido";
+			var Cor = "#2F4F4F";
+			var CorF = "#528B8B";
+		}
+	
+		if (TotalControle>0) {PControle = (((TotalPago)*100)/TotalControle).toFixed(0);} else {PControle = 0;Cor = "#696969";CorF = "#696969";}
+		PreencheCirculo('',PControle,Cor);
+		Total1.innerHTML = "<font style='color:"+CorF+"'>R$ "+formatamoeda(TotalApagar)+"</font>";
+		Total2.innerHTML = "R$ "+formatamoeda(TotalControle)+"<p>"+etiqueta1;
+		Total3.innerHTML = "R$ "+formatamoeda(TotalPago)+"<p>"+etiqueta2;
+	
+		var TabCorrente = JSON.parse(pegaCorrente);
+		var TabMensal = JSON.parse(pegaMensal);
+	
+		TabCorrente.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+	
+		TabMensal.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+	
+		if (nomepg=="despesa") {
+			var filtro1 = "TabCorrente[i].Valor < 0";
+			var filtro2 = "TabMensal[i].Valor < 0";
+			var filtro3 = "TabMensal[j].Valor < 0";
+		} else {
+			var filtro1 = "TabCorrente[i].Valor > 0";
+			var filtro2 = "TabMensal[i].Valor > 0";
+			var filtro3 = "TabMensal[j].Valor > 0";
+		}
+				
+		var html = "", velink;
+		for (var i=0; i<TabMensal.length; i++) {
+			if (eval(filtro2)) {
+				var descricao = TabMensal[i].Descricao;
+				var forma = TabMensal[i].Forma;
+				if (TabMensal[i].Descricao == "Salario") {
+					valor = TabMensal[i].Valor;
+					mensalidade = Remuneracao(TabMensal[i].Valor);
+				} else {
+					valor = TabMensal[i].Valor;
+					mensalidade = parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
+					if (nomepg=="despesa") {
+						valor = valor*-1;
+						mensalidade = mensalidade*-1;
+					}
+				}
+				velink = "onclick=window.location.href='../paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
+				html += "<TR><TD vAlign='middle' align='center' width='100%'>";
+				html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
+				html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(arrumadata(Ano+""+Mes+""+TabMensal[i].Data)).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+Zerado(TabMensal[i].Data,2,'')+"</b></font></TD>";
+				html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font size='1'><font size='2'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font><p><font size='1'><i>"+DefineForma(forma)+"</i></font></TD>";
+				html += "<TD vAlign=middle align=right width=40%><font size='3'>R$ "+formatamoeda(mensalidade)+"</font></td><TD width='40'></TD>";
+				html += "</TR></TABLE></center></TD></TR>";
+				html += "<div id='exib"+descricao+"' hidden></div>";
+			}
+		}
+		desptipo.innerHTML = html;
+	}
+	function AtualizaPagina() {
+		for (var n=0;n<12;n++) {
+			MontaTabela(n);
 		}
 	}
-	desptipo.innerHTML = html;
-}
-function AtualizaPagina() {
-	for (var n=0;n<12;n++) {
-		MontaTabela(n);
-	}
-}
-function MontaTabela(conta) {
-	var premes = parseFloat(ulti)+conta;
-	var promes = parseFloat(Mes)+conta;
-	var proano = Ano;
-	if (promes>12) {proano = parseFloat(Ano)+1; promes = promes - 12;}
-	if (premes>12) premes = premes - 12;
-	var html = "", velink, classe = "class='painel'", vencido, vence, soma = 0, mensalidade = 0, total = 0, TotalGPagar=0, TotalGMensal=0, TotalGValor=0;
-
-	var TabCorrente = JSON.parse(pegaCorrente);
-	var TabMensal = JSON.parse(pegaMensal);
-
-	TabCorrente.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-	TabMensal.sort(function(a, b) {
-		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-	});
-
-	if (nomepg=="despesa") {
-		var filtro1 = "TabCorrente[i].Valor <= 0";
-		var filtro2 = "TabMensal[i].Valor <= 0";
-		var filtro3 = "TabMensal[j].Valor <= 0";
-	} else {
-		var filtro1 = "TabCorrente[i].Valor > 0";
-		var filtro2 = "TabMensal[i].Valor > 0";
-		var filtro3 = "TabMensal[j].Valor > 0";
-	}
-
-	for (var i=0; i<TabMensal.length; i++) {
-		var resto = TabMensal[i].Resto-conta;
-		if (TabMensal[i].Parcela==0 || (TabMensal[i].Parcela-resto)>0) {
-			if (TabMensal[i].Parcela==0 || (TabMensal[i].Parcela-resto<=TabMensal[i].Parcela)) {
-				if (vence!=Zerado(TabMensal[i].Data,2,"")+"/"+Zerado(promes,2,"")) {
-					vencido = Zerado(TabMensal[i].Data,2,"")+"/"+Zerado(promes,2,"");
-					for (var j=0; j<TabMensal.length; j++) {
-						var resto2 = TabMensal[j].Resto-conta;
-						if (TabMensal[j].Parcela==0 || (TabMensal[j].Parcela-resto2)>0) {
-							if (TabMensal[j].Parcela==0 || (TabMensal[j].Parcela-resto2<=TabMensal[j].Parcela)) {
-								if (vencido==Zerado(TabMensal[j].Data,2,"")+"/"+Zerado(promes,2,"")) {
-									if (eval(filtro3)) {
-										if (TabMensal[j].Descricao.indexOf("Salario")>=0) {
-											soma = soma + Remuneracao(TabMensal[j].Valor);
-										} else {
-											soma = soma + parcelamento(TabMensal[j].Valor,TabMensal[j].Parcela);
+	function MontaTabela(conta) {
+		var premes = parseFloat(ulti)+conta;
+		var promes = parseFloat(Mes)+conta;
+		var proano = Ano;
+		if (promes>12) {proano = parseFloat(Ano)+1; promes = promes - 12;}
+		if (premes>12) premes = premes - 12;
+		var html = "", velink, classe = "class='painel'", vencido, vence, soma = 0, mensalidade = 0, total = 0, TotalGPagar=0, TotalGMensal=0, TotalGValor=0;
+	
+		TabCorrente.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+	
+		TabMensal.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+	
+		if (nomepg=="despesa") {
+			var filtro1 = "TabCorrente[i].Valor <= 0";
+			var filtro2 = "TabMensal[i].Valor <= 0";
+			var filtro3 = "TabMensal[j].Valor <= 0";
+		} else {
+			var filtro1 = "TabCorrente[i].Valor > 0";
+			var filtro2 = "TabMensal[i].Valor > 0";
+			var filtro3 = "TabMensal[j].Valor > 0";
+		}
+	
+		for (var i=0; i<TabMensal.length; i++) {
+			var resto = TabMensal[i].Resto-conta;
+			if (TabMensal[i].Parcela==0 || (TabMensal[i].Parcela-resto)>0) {
+				if (TabMensal[i].Parcela==0 || (TabMensal[i].Parcela-resto<=TabMensal[i].Parcela)) {
+					if (vence!=Zerado(TabMensal[i].Data,2,"")+"/"+Zerado(promes,2,"")) {
+						vencido = Zerado(TabMensal[i].Data,2,"")+"/"+Zerado(promes,2,"");
+						for (var j=0; j<TabMensal.length; j++) {
+							var resto2 = TabMensal[j].Resto-conta;
+							if (TabMensal[j].Parcela==0 || (TabMensal[j].Parcela-resto2)>0) {
+								if (TabMensal[j].Parcela==0 || (TabMensal[j].Parcela-resto2<=TabMensal[j].Parcela)) {
+									if (vencido==Zerado(TabMensal[j].Data,2,"")+"/"+Zerado(promes,2,"")) {
+										if (eval(filtro3)) {
+											if (TabMensal[j].Descricao.indexOf("Salario")>=0) {
+												soma = soma + Remuneracao(TabMensal[j].Valor);
+											} else {
+												soma = soma + parcelamento(TabMensal[j].Valor,TabMensal[j].Parcela);
+											}
 										}
+										total = soma;
+									} else {
+										soma = 0;
 									}
-									total = soma;
-								} else {
-									soma = 0;
 								}
 							}
 						}
-					}
-					if (nomepg=="despesa") total = total*-1;
-					if (total!=0) {
-						vence = Zerado(TabMensal[i].Data,2,"")+"/"+Zerado(promes,2,"");
-						etiqueta = "V</font>ENCIMENTO: "+vence;
-						if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"") <= hoje) {var CorFonte = "#909090";} else {var CorFonte = "#F0F0F0";}
-						html += "<TR height='25'><TD vAlign='middle' align='center' width='100%'>";
-						html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
-						html += "<TD width='10'></TD><TD vAlign='middle'><font style='color:"+CorFonte+"' size='1'><font style='color:"+CorFonte+"' size='2'>"+etiqueta+"</font></TD>";
-						html += "<TD vAlign='middle' align='right'><font style='color:"+CorFonte+"' size='2'>R$ "+formatamoeda(total)+"</font></td><TD width='10'></TD>";
-						html += "</TR></TABLE></center></TD></TR>";
-					}
-				}
-				if (eval(filtro2)) {
-					total = 0;
-					var parcresto = resto;
-					var parcelas = TabMensal[i].Parcela;
-					if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"") > hoje) if (parcelas>1) parcresto = parcresto+1;
-					var descricao = TabMensal[i].Descricao;
-					if (TabMensal[i].Descricao == "Salario") {
-						valor = TabMensal[i].Valor;
-						mensalidade = Remuneracao(TabMensal[i].Valor);
-					} else {
-						valor = TabMensal[i].Valor;
-						mensalidade = parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
-						if (nomepg=="despesa") {
-							valor = valor*-1;
-							mensalidade = mensalidade*-1;
+						if (nomepg=="despesa") total = total*-1;
+						if (total!=0) {
+							vence = Zerado(TabMensal[i].Data,2,"")+"/"+Zerado(promes,2,"");
+							etiqueta = "V</font>ENCIMENTO: "+vence;
+							if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"") <= hoje) {var CorFonte = "#909090";} else {var CorFonte = "#F0F0F0";}
+							html += "<TR height='25'><TD vAlign='middle' align='center' width='100%'>";
+							html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+							html += "<TD width='10'></TD><TD vAlign='middle'><font style='color:"+CorFonte+"' size='1'><font style='color:"+CorFonte+"' size='2'>"+etiqueta+"</font></TD>";
+							html += "<TD vAlign='middle' align='right'><font style='color:"+CorFonte+"' size='2'>R$ "+formatamoeda(total)+"</font></td><TD width='10'></TD>";
+							html += "</TR></TABLE></center></TD></TR>";
 						}
 					}
-					if (Zerado(promes,2,"")==Mes) {
-						velink = "onclick=window.location.href='../paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
-						classe = "class='painel toque'";
+					if (eval(filtro2)) {
+						total = 0;
+						var parcresto = resto;
+						var parcelas = TabMensal[i].Parcela;
+						if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"") > hoje) if (parcelas>1) parcresto = parcresto+1;
+						var descricao = TabMensal[i].Descricao;
+						if (TabMensal[i].Descricao == "Salario") {
+							valor = TabMensal[i].Valor;
+							mensalidade = Remuneracao(TabMensal[i].Valor);
+						} else {
+							valor = TabMensal[i].Valor;
+							mensalidade = parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
+							if (nomepg=="despesa") {
+								valor = valor*-1;
+								mensalidade = mensalidade*-1;
+							}
+						}
+						if (Zerado(promes,2,"")==Mes) {
+							velink = "onclick=window.location.href='../paginas/registro.htm?pgn=mensal&codigo="+TabMensal[i].Codigo+"'";
+							classe = "class='painel toque'";
+						}
+						html += "<TR height='50'><TD vAlign='middle' align='center' width='99%' "+velink+" "+classe+">";
+						html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+						html += "<TD width='20'></TD><TD vAlign='middle' width='40%'><font style='color:"+CorFonte+"' size='1'><font style='color:"+CorFonte+"' size='2'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font><p><font style='color:"+CorFonte+"' size='1'><i>R$ "+formatamoeda(valor)+"</i></font></TD>";
+						if (parcelas!=0 && parcresto!=0) {html += "<TD vAlign=middle align=center width=10%><font style='color:"+CorFonte+"' size='2'>"+Zerado(parcresto,'2','')+"/"+Zerado(parcelas,'2','')+"</font></td>";} else {html += "<TD vAlign=middle width=10%></td>";}
+						html += "<TD vAlign=middle align=right width='40%'><font style='color:"+CorFonte+"' size='3'>R$ "+formatamoeda(mensalidade)+"</font></td><TD width='20'></TD>";
+						html += "</TR></TABLE></center></TD></TR>";
+						if (Zerado(promes,2,"")==Mes) html += "<div id='exibX"+descricao+"' hidden></div>";
 					}
-					html += "<TR height='50'><TD vAlign='middle' align='center' width='99%' "+velink+" "+classe+">";
-					html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
-					html += "<TD width='20'></TD><TD vAlign='middle' width='40%'><font style='color:"+CorFonte+"' size='1'><font style='color:"+CorFonte+"' size='2'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font><p><font style='color:"+CorFonte+"' size='1'><i>R$ "+formatamoeda(valor)+"</i></font></TD>";
-					if (parcelas!=0 && parcresto!=0) {html += "<TD vAlign=middle align=center width=10%><font style='color:"+CorFonte+"' size='2'>"+Zerado(parcresto,'2','')+"/"+Zerado(parcelas,'2','')+"</font></td>";} else {html += "<TD vAlign=middle width=10%></td>";}
-					html += "<TD vAlign=middle align=right width='40%'><font style='color:"+CorFonte+"' size='3'>R$ "+formatamoeda(mensalidade)+"</font></td><TD width='20'></TD>";
-					html += "</TR></TABLE></center></TD></TR>";
-					if (Zerado(promes,2,"")==Mes) html += "<div id='exibX"+descricao+"' hidden></div>";
+					if (eval(filtro2)) {
+						if (TabMensal[i].Descricao == "Salario") {
+							TotalGMensal = TotalGMensal + Remuneracao(TabMensal[i].Valor);
+						} else {
+							TotalGMensal = TotalGMensal + parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
+						}
+					}
 				}
-				if (eval(filtro2)) {
-					if (TabMensal[i].Descricao == "Salario") {
-						TotalGMensal = TotalGMensal + Remuneracao(TabMensal[i].Valor);
-					} else {
-						TotalGMensal = TotalGMensal + parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
+				if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"")>hoje) {
+					if (eval(filtro2)) {
+						if (TabMensal[i].Descricao == "Salario") {
+							TotalGPagar = TotalGPagar + Remuneracao(TabMensal[i].Valor);
+						} else {
+							TotalGPagar = TotalGPagar + parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
+						}
 					}
 				}
 			}
-			if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"")>hoje) {
+			if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"")<=hoje) {
 				if (eval(filtro2)) {
 					if (TabMensal[i].Descricao == "Salario") {
-						TotalGPagar = TotalGPagar + Remuneracao(TabMensal[i].Valor);
+						TotalGValor = TotalGValor + Remuneracao(TabMensal[i].Valor);
 					} else {
-						TotalGPagar = TotalGPagar + parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
+						TotalGValor = TotalGValor + parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
 					}
 				}
 			}
 		}
-		if (proano+""+Zerado(promes,2,"")+""+Zerado(TabMensal[i].Data,2,"")<=hoje) {
-			if (eval(filtro2)) {
-				if (TabMensal[i].Descricao == "Salario") {
-					TotalGValor = TotalGValor + Remuneracao(TabMensal[i].Valor);
-				} else {
-					TotalGValor = TotalGValor + parcelamento(TabMensal[i].Valor,TabMensal[i].Parcela);
-				}
-			}
+		if (nomepg=="despesa") {
+			TotalGPagar = TotalGPagar*-1;
+			TotalGValor = TotalGValor*-1;
+			TotalGMensal = TotalGMensal*-1;
+			etiqueta1 = "Despesa";
+			etiqueta2 = "Gasto";
+			var Cor = "#8B4513";
+			var CorF = "#CD5555";
+		} else {
+			etiqueta1 = "Receita";
+			etiqueta2 = "Recebido";
+			var Cor = "#2F4F4F";
+			var CorF = "#528B8B";
 		}
+	
+		fatmes1 = eval("fatmes1"+conta);
+		fatmes2 = eval("fatmes2"+conta);
+		fatmes3 = eval("fatmes3"+conta);
+		totalmes1 = eval("totalmes1"+conta);
+		totalmes2 = eval("totalmes2"+conta);
+		totalmes3 = eval("totalmes3"+conta);
+		if (TotalGMensal>0)	{PControle = ((TotalGValor*100)/TotalGMensal).toFixed(0);} else {PControle = 0;Cor = "#696969";CorF = "#696969";}
+		PreencheCirculo(conta,PControle,Cor);
+		fatmes1.innerHTML = nomedomes(promes).substr(0,1).toUpperCase();
+		fatmes2.innerHTML = nomedomes(promes).substring(1, nomedomes(promes).length).substr(0,2).toUpperCase();
+		fatmes3.innerHTML = proano.toString().substr(2,2);
+		totalmes1.innerHTML = "<font style='color:"+CorF+"' size='4'><b>R$ "+formatamoeda(TotalGPagar)+"</b></font>";
+		totalmes2.innerHTML = "R$ "+formatamoeda(TotalGMensal)+"<p>"+etiqueta1;
+		totalmes3.innerHTML = "R$ "+formatamoeda(TotalGValor)+"<p>"+etiqueta2;
+		if (TotalGValor<0) totalmes3.innerHTML = "R$ "+formatamoeda(0)+"<p>"+etiqueta2;
+		exSaldo = eval("exSaldo"+conta);
+		exSaldo.innerHTML = html;
 	}
-	if (nomepg=="despesa") {
-		TotalGPagar = TotalGPagar*-1;
-		TotalGValor = TotalGValor*-1;
-		TotalGMensal = TotalGMensal*-1;
-		etiqueta1 = "Despesa";
-		etiqueta2 = "Gasto";
-		var Cor = "#8B4513";
-		var CorF = "#CD5555";
-	} else {
-		etiqueta1 = "Receita";
-		etiqueta2 = "Recebido";
-		var Cor = "#2F4F4F";
-		var CorF = "#528B8B";
-	}
-
-	fatmes1 = eval("fatmes1"+conta);
-	fatmes2 = eval("fatmes2"+conta);
-	fatmes3 = eval("fatmes3"+conta);
-	totalmes1 = eval("totalmes1"+conta);
-	totalmes2 = eval("totalmes2"+conta);
-	totalmes3 = eval("totalmes3"+conta);
-	if (TotalGMensal>0)	{PControle = ((TotalGValor*100)/TotalGMensal).toFixed(0);} else {PControle = 0;Cor = "#696969";CorF = "#696969";}
-	PreencheCirculo(conta,PControle,Cor);
-	fatmes1.innerHTML = nomedomes(promes).substr(0,1).toUpperCase();
-	fatmes2.innerHTML = nomedomes(promes).substring(1, nomedomes(promes).length).substr(0,2).toUpperCase();
-	fatmes3.innerHTML = proano.toString().substr(2,2);
-	totalmes1.innerHTML = "<font style='color:"+CorF+"' size='4'><b>R$ "+formatamoeda(TotalGPagar)+"</b></font>";
-	totalmes2.innerHTML = "R$ "+formatamoeda(TotalGMensal)+"<p>"+etiqueta1;
-	totalmes3.innerHTML = "R$ "+formatamoeda(TotalGValor)+"<p>"+etiqueta2;
-	if (TotalGValor<0) totalmes3.innerHTML = "R$ "+formatamoeda(0)+"<p>"+etiqueta2;
-	exSaldo = eval("exSaldo"+conta);
-	exSaldo.innerHTML = html;
-}
-var elem = document.getElementById("mySwipe");
-window.mySwipe = Swipe(elem, {
-    startSlide: 0
+	var elem = document.getElementById("mySwipe");
+	window.mySwipe = Swipe(elem, {
+	    startSlide: 0
+	});
+	
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    // Se QUALQUER uma das requisições falhar, este bloco é executado
+    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
 });
 </script>
 </body>
