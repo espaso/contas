@@ -696,9 +696,6 @@ console.log(resCorrente);
 		Total2.innerHTML = "R$ "+formatamoeda(TotalControle)+"<p>"+etiqueta1;
 		Total3.innerHTML = "R$ "+formatamoeda(TotalPago)+"<p>"+etiqueta2;
 	
-		var TabCorrente = JSON.parse(pegaCorrente);
-		var TabMensal = JSON.parse(pegaMensal);
-	
 		TabCorrente.sort(function(a, b) {
 			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
