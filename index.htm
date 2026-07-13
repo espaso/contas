@@ -156,7 +156,7 @@
 <script>
 window.onerror = MensagemErro;
 
-var versao = 3;
+var versao = 4;
 console.log("versao: "+versao);
 	
 function PreencheCirculo(Circ,cor,PConta) {
@@ -491,20 +491,20 @@ $.when(
 		var jsonCorrente = "["+htmlCorrente+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-			AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);
-		} else {console.log(jsonCorrente);}
+			AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+		} else {console.log("corrente\n"+jsonCorrente);}
 		
 		var jsonMensal = "["+htmlMensal+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "mensal.js", jsonMensal);
-			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal.js", jsonMensal);}, 20000)
-		} else {console.log(jsonMensal);}
+			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
+		} else {console.log("mensal\n"+jsonMensal);}
 		
 		var jsonPassado = "["+htmlPassado+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "passado.js", jsonPassado);
-			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado.js", jsonPassado);}, 20000)
-		} else {console.log(jsonPassado);}
+			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
+		} else {console.log("passado\n"+jsonPassado);}
 		
 		if (dispositivo) {
 			//android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
