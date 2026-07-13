@@ -611,7 +611,7 @@ function AbreBanking(texto) {
 	if (texto=="TR") android.AbreApp('com.toroinvestimentos');
 }
 
-var versao = 1;
+var versao = 2;
 console.log("versao: "+versao);
 
 let TabCorrente = [];
@@ -661,7 +661,7 @@ $.when(
 			etiqtipo.innerHTML = html;
 		}
 		if (despesa<0) {
-			velink = "onclick=ExibeFuturo('Despesa')";
+			velink = "onclick=console.log('Despesa')";
 			dhtml += "<TR height='50'><TD vAlign='middle' align='center' width='100%' "+velink+" class='painel toque'>";
 			dhtml += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
 			dhtml += "<TD width='20'></TD><TD vAlign='middle'><font size='3'><font size='4'>D</font>ÉBITO</font></TD>";
@@ -863,7 +863,6 @@ $.when(
 	}
 	var guarda1 = "";
 	function ExibeFuturo(registro) {
-		console.log(registro);
 		if (guarda!="") {
 			exibe = eval("exibe"+guarda);
 			exibe.innerHTML = "";
