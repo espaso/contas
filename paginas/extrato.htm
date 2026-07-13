@@ -611,7 +611,7 @@ function AbreBanking(texto) {
 	if (texto=="TR") android.AbreApp('com.toroinvestimentos');
 }
 
-var versao = 0;
+var versao = 1;
 console.log("versao: "+versao);
 
 let TabCorrente = [];
@@ -863,6 +863,7 @@ $.when(
 	}
 	var guarda1 = "";
 	function ExibeFuturo(registro) {
+		console.log(registro);
 		if (guarda!="") {
 			exibe = eval("exibe"+guarda);
 			exibe.innerHTML = "";
