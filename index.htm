@@ -155,10 +155,6 @@
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
-
-var versao = 5;
-console.log("versao: "+versao);
-	
 function PreencheCirculo(Circ,cor,PConta) {
 	var canvas = document.getElementById('C'+Circ);
 	var ctx = canvas.getContext('2d');
@@ -173,6 +169,9 @@ function PreencheCirculo(Circ,cor,PConta) {
 	Circulo.update();
 	return;
 }
+
+var versao = 6;
+console.log("versao: "+versao);
 
 let TabCorrente = [];
 let TabMensal = [];
