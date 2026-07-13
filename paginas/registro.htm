@@ -237,6 +237,12 @@ function PopulaCamposRegistro(pagina,codigo) {
 			if (TabExtrato[i].Forma=="DM") document.getElementById('dinheiro').style.opacity = 1;
 		}
 	}
+
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    // Se QUALQUER uma das requisições falhar, este bloco é executado
+    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+});
+
 }
 function LimparCamposRegistro(pagina) {
 	AcendeForma();
@@ -546,11 +552,6 @@ function ExcluiRegistro() {
 		}
 	setTimeout(function() {window.history.back();}, 0)
 }
-
-}).fail(function(jqXHR, textStatus, errorThrown) {
-    // Se QUALQUER uma das requisições falhar, este bloco é executado
-    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-});
 
 $( function() {
 $( "#datepicker" ).datepicker();
