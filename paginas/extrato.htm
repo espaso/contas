@@ -611,150 +611,141 @@ function AbreBanking(texto) {
 	if (texto=="TR") android.AbreApp('com.toroinvestimentos');
 }
 
+var guarda="";
+var guarda0 = "";
+function ExibeHoje(tipo) {
+	if (guarda!="") {
+		exibefixas.innerHTML = "";
+		exibefixas.hidden = "true";
+		guarda = "";
+	}
+	if (guarda1!="") {
+		exibe = eval("exibe"+guarda1);
+		exibe.innerHTML = "";
+		exibe.hidden = "true";
+		guarda1 = "";
+	}
+	if (guarda2!="") {
+		exib2 = eval("exib2"+guarda2);
+		exib2.innerHTML = "";
+		exib2.hidden = "true";
+		guarda2 = "";
+	}
+	if (guarda0!=tipo) {
+		guarda3 = "";
+		guarda0 = tipo;
+			
+		TabCorrente.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
 
-	var guarda="";
-	var guarda0 = "";
-	function ExibeHoje(tipo) {
-		if (guarda!="") {
-			exibefixas.innerHTML = "";
-			exibefixas.hidden = "true";
-			guarda = "";
+		TabMensal.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+				
+		var html = "", velink, pesquisa = "", codigo = 0;
+		for (var i=0; i<TabMensal.length; i++) {
+			pesquisa = TabMensal[i].Descricao;
+			for (var j=0; j<TabCorrente.length; j++) {
+				if (TabCorrente[j].Valor < 0 && TabCorrente[j].Data == hoje && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Forma == formaPgto && TabCorrente[j].Codigo != codigo) {
+					codigo = TabCorrente[j].Codigo;
+					var descricao = TabCorrente[j].Descricao;
+					var valor = TabCorrente[j].Valor;
+					var forma = TabCorrente[j].Forma;
+					velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
+					html += "<TR><TD vAlign='middle' align='center' width='100%'>";
+					html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
+					html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(arrumadata(TabCorrente[j].Data)).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+TabCorrente[j].Data.substr(6,2)+"</b></font></TD>";
+					html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font size='2'><font size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
+					html += "<TD vAlign=middle align=right width=40%><font size='3'>R$ "+formatamoeda(valor*-1)+"</font></td><TD width='40'></TD>";
+					html += "</TR></TABLE></center></TD></TR>";
+					html += "<div id='exibH"+descricao+"' hidden></div>";
+				}
+			}
 		}
+		exibehoje.innerHTML = html;
+		exibehoje.hidden = "";
+	} else {
+		guarda0 = "";
+		exibehoje.innerHTML = "";
+		exibehoje.hidden = "true";
+	}
+}
+var guarda1 = "";
+function ExibeFuturo(registro) {
+	if (guarda!="") {
+		exibe = eval("exibe"+guarda);
+		exibe.innerHTML = "";
+		exibe.hidden = "true";
+		guarda = "";
+	}
+	if (guarda0!="") {
+		exibehoje.innerHTML = "";
+		exibehoje.hidden = "true";
+		guarda0 = "";
+	}
+	if (guarda1!=registro) {
 		if (guarda1!="") {
 			exibe = eval("exibe"+guarda1);
 			exibe.innerHTML = "";
-			exibe.hidden = "true";
-			guarda1 = "";
+			exibe.hidden="true";
 		}
-		if (guarda2!="") {
-			exib2 = eval("exib2"+guarda2);
-			exib2.innerHTML = "";
-			exib2.hidden = "true";
-			guarda2 = "";
+		guarda2 = "";
+		guarda3 = "";
+		guarda1 = registro;
+			
+		TabCorrente.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+
+		TabMensal.sort(function(a, b) {
+			return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+			
+		if (registro=="Despesa") {
+			var filtro1 = "TabCorrente[j].Valor < 0";
+		} else {
+			var filtro1 = "TabCorrente[j].Valor > 0";
 		}
-		if (guarda0!=tipo) {
-			guarda3 = "";
-			guarda0 = tipo;
-				
-			TabCorrente.sort(function(a, b) {
-				return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-				return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-				return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-			});
-	
-			TabMensal.sort(function(a, b) {
-				return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-				return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-				return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-			});
-					
-			var html = "", velink, pesquisa = "", codigo = 0;
-			for (var i=0; i<TabMensal.length; i++) {
-				pesquisa = TabMensal[i].Descricao;
-				for (var j=0; j<TabCorrente.length; j++) {
-					if (TabCorrente[j].Valor < 0 && TabCorrente[j].Data == hoje && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Forma == formaPgto && TabCorrente[j].Codigo != codigo) {
-						codigo = TabCorrente[j].Codigo;
-						var descricao = TabCorrente[j].Descricao;
-						var valor = TabCorrente[j].Valor;
-						var forma = TabCorrente[j].Forma;
-						velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
-						html += "<TR><TD vAlign='middle' align='center' width='100%'>";
-						html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
-						html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(arrumadata(TabCorrente[j].Data)).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+TabCorrente[j].Data.substr(6,2)+"</b></font></TD>";
-						html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font size='2'><font size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
-						html += "<TD vAlign=middle align=right width=40%><font size='3'>R$ "+formatamoeda(valor*-1)+"</font></td><TD width='40'></TD>";
-						html += "</TR></TABLE></center></TD></TR>";
-						html += "<div id='exibH"+descricao+"' hidden></div>";
-					}
+		var html = "", velink, pesquisa = "", codigo = 0;
+		for (var i=0; i<TabMensal.length; i++) {
+			pesquisa = TabMensal[i].Descricao;
+			for (var j=0; j<TabCorrente.length; j++) {
+				if (eval(filtro1) && TabCorrente[j].Data > hoje && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Forma == formaPgto && TabCorrente[j].Codigo != codigo) {
+					codigo = TabCorrente[j].Codigo;
+					var descricao = TabCorrente[j].Descricao;
+					var valor = TabCorrente[j].Valor;
+					if (valor < 0) valor = valor*-1;
+					var forma = TabCorrente[j].Forma;
+					velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
+					html += "<TR><TD vAlign='middle' align='center' width='100%'>";
+					html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
+					html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(arrumadata(TabCorrente[j].Data)).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+TabCorrente[j].Data.substr(6,2)+"</b></font></TD>";
+					html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font size='2'><font size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
+					html += "<TD vAlign=middle align=right width=40%><font size='3'>R$ "+formatamoeda(valor)+"</font></td><TD width='40'></TD>";
+					html += "</TR></TABLE></center></TD></TR>";
+					html += "<div id='exibR"+descricao+"' hidden></div>";
 				}
 			}
-			exibehoje.innerHTML = html;
-			exibehoje.hidden = "";
-		} else {
-			guarda0 = "";
-			exibehoje.innerHTML = "";
-			exibehoje.hidden = "true";
 		}
+		exibe = eval("exibe"+registro);
+		exibe.innerHTML = html;
+		exibe.hidden = "";
+	} else {
+		guarda1 = "";
+		exibe = eval("exibe"+registro);
+		exibe.innerHTML = "";
+		exibe.hidden = "true";
 	}
-	var guarda1 = "";
-	function ExibeFuturo(registro) {
-		if (guarda!="") {
-			exibe = eval("exibe"+guarda);
-			exibe.innerHTML = "";
-			exibe.hidden = "true";
-			guarda = "";
-		}
-		if (guarda0!="") {
-			exibehoje.innerHTML = "";
-			exibehoje.hidden = "true";
-			guarda0 = "";
-		}
-		if (guarda1!=registro) {
-			if (guarda1!="") {
-				exibe = eval("exibe"+guarda1);
-				exibe.innerHTML = "";
-				exibe.hidden="true";
-			}
-			guarda2 = "";
-			guarda3 = "";
-			guarda1 = registro;
-				
-			TabCorrente.sort(function(a, b) {
-				return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-				return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-				return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-			});
-	
-			TabMensal.sort(function(a, b) {
-				return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
-				return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-				return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-			});
-				
-			if (registro=="Despesa") {
-				var filtro1 = "TabCorrente[j].Valor < 0";
-			} else {
-				var filtro1 = "TabCorrente[j].Valor > 0";
-			}
-			var html = "", velink, pesquisa = "", codigo = 0;
-			for (var i=0; i<TabMensal.length; i++) {
-				pesquisa = TabMensal[i].Descricao;
-				for (var j=0; j<TabCorrente.length; j++) {
-					if (eval(filtro1) && TabCorrente[j].Data > hoje && TabCorrente[j].Descricao.indexOf(pesquisa)>=0 && TabCorrente[j].Forma == formaPgto && TabCorrente[j].Codigo != codigo) {
-						codigo = TabCorrente[j].Codigo;
-						var descricao = TabCorrente[j].Descricao;
-						var valor = TabCorrente[j].Valor;
-						if (valor < 0) valor = valor*-1;
-						var forma = TabCorrente[j].Forma;
-						velink = "onclick=window.location.href='../paginas/registro.htm?pgn=registro&codigo="+TabCorrente[j].Codigo+"'";
-						html += "<TR><TD vAlign='middle' align='center' width='100%'>";
-						html += "<center><TABLE border='0' cellspacing='0' width='99%' cellpadding='0' "+velink+" class='painel toque'><TR style='height: 40'>";
-						html += "<TD width='40'></TD><TD vAlign='middle' align='center'><font size='1'>"+vediasemana(arrumadata(TabCorrente[j].Data)).substr(0,3).toUpperCase()+"</font><p><font size='2'><b>"+TabCorrente[j].Data.substr(6,2)+"</b></font></TD>";
-						html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font size='2'><font size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
-						html += "<TD vAlign=middle align=right width=40%><font size='3'>R$ "+formatamoeda(valor)+"</font></td><TD width='40'></TD>";
-						html += "</TR></TABLE></center></TD></TR>";
-						html += "<div id='exibR"+descricao+"' hidden></div>";
-					}
-				}
-			}
-			exibe = eval("exibe"+registro);
-			exibe.innerHTML = html;
-			exibe.hidden = "";
-		} else {
-			guarda1 = "";
-			exibe = eval("exibe"+registro);
-			exibe.innerHTML = "";
-			exibe.hidden = "true";
-		}
-	}
-	var guarda2 = "";
-	var guarda3 = "";
-	var guarda4 = "";
-	
-
-
-var versao = 3;
-console.log("versao: "+versao);
+}
 
 let TabCorrente = [];
 let TabMensal = [];
@@ -939,6 +930,9 @@ $.when(
 		exSaldo = eval("exSaldo"+N);
 		exSaldo.innerHTML = html;
 	}
+	var guarda2 = "";
+	var guarda3 = "";
+	var guarda4 = "";
 	
 	var elem = document.getElementById("mySwipe");
 	window.mySwipe = Swipe(elem, {
