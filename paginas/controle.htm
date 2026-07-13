@@ -616,7 +616,7 @@ nomemes2.innerHTML = nomepg.substr(1,nomepg.length).toUpperCase();
 nomemes3.innerHTML = nomepg.substr(0,1).toUpperCase();
 nomemes4.innerHTML = nomepg.substr(1,nomepg.length).toUpperCase();
 
-var versao = 1;
+var versao = 2;
 console.log("versao: "+versao);
 
 let TabCorrente = [];
@@ -625,7 +625,7 @@ $.when(
     $.getJSON("../base/corrente"),
     $.getJSON("../base/mensal")
 ).done(function(resCorrente, resMensal) {
-    TabCorrente = resCorrente[0];
+    TabCorrente = resCorrente;
     TabMensal = resMensal[0];
 console.log(TabCorrente);
 	AtualizaControle();
