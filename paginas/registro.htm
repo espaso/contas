@@ -153,22 +153,6 @@ window.addEventListener('focus', function(){
 window.addEventListener('load', function(){
 	document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
 });
-var pagina = "", codigo = "";
-window.onload = function() {
-	var loc = location.search.substring(1, location.search.length);
-	var params = loc.split("&");
-	pagina = params[0].substring(params[0].indexOf('='), params[0].length);
-	pagina = pagina.substring(1, pagina.lenght);
-	if (params.length>1) {
-		codigo = params[1].substring(params[1].indexOf('='), params[1].length);
-		codigo = codigo.substring(1, codigo.lenght);
-	}
-	if (codigo=="") {
-		LimparCamposRegistro(pagina);
-	} else {
-		PopulaCamposRegistro(pagina,codigo);
-	}
-}
 
 var versao = 0;
 console.log("versao: "+versao);
@@ -181,7 +165,21 @@ $.when(
 ).done(function(resCorrente, resMensal) {
     TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
- 	
+
+	var pagina = "", codigo = "";
+	var loc = location.search.substring(1, location.search.length);
+	var params = loc.split("&");
+	pagina = params[0].substring(params[0].indexOf('='), params[0].length);
+	pagina = pagina.substring(1, pagina.lenght);
+	if (params.length>1) {
+		codigo = params[1].substring(params[1].indexOf('='), params[1].length);
+		codigo = codigo.substring(1, codigo.lenght);
+	}
+	if (codigo=="") {
+		LimparCamposRegistro(pagina);
+	} else {
+		PopulaCamposRegistro(pagina,codigo);
+	}	
 var salvo = false;
 function PopulaCamposRegistro(pagina,codigo) {
 	if (pagina=="registro") {
