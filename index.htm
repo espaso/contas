@@ -488,19 +488,19 @@ $.when(
 		htmlMensal = htmlMensal.replace(/..$/, '');
 		htmlPassado = htmlPassado.replace(/..$/, '');
 	
-		var jsonCorrente = "var pegaCorrente = '["+htmlCorrente+"]';";
+		var jsonCorrente = "["+htmlCorrente+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "corrente.js", jsonCorrente);
 			AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);
 		} else {console.log(jsonCorrente);}
 		
-		var jsonMensal = "var pegaMensal = '["+htmlMensal+"]';";
+		var jsonMensal = "["+htmlMensal+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "mensal.js", jsonMensal);
 			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal.js", jsonMensal);}, 20000)
 		} else {console.log(jsonMensal);}
 		
-		var jsonPassado = "var pegaPassado = '["+htmlPassado+"]';";
+		var jsonPassado = "["+htmlPassado+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "passado.js", jsonPassado);
 			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado.js", jsonPassado);}, 20000)
@@ -509,7 +509,7 @@ $.when(
 		if (dispositivo) {
 			//android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
 			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
-		} else {console.log(htmlPagina);}
+		} else {console.log("B"+ultimomes+".html\n"+htmlPagina);}
 		
 		setTimeout(function() {window.location.reload();}, 20000)
 	}
