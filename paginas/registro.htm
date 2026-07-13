@@ -154,6 +154,9 @@ window.addEventListener('load', function(){
 	document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
 });
 
+var versao = 1;
+console.log("versao: "+versao);
+
 var pagina = "", codigo = "";
 var loc = location.search.substring(1, location.search.length);
 var params = loc.split("&");
@@ -171,9 +174,6 @@ if (codigo=="") {
 	
 var salvo = false;
 function PopulaCamposRegistro(pagina,codigo) {
-
-var versao = 1;
-console.log("versao: "+versao);
 
 let TabCorrente = [];
 let TabMensal = [];
