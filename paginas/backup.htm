@@ -73,10 +73,12 @@
 <script>
 window.onerror = MensagemErro;
 
-var versao = 0;
+var versao = 1;
 console.log("versao: "+versao);
 
-let TabCorrente = [], let TabMensal = [], let TabPassado = [];
+let TabCorrente = [];
+let TabMensal = [];
+let TabPassado = [];
 $.when(
     $.getJSON("../base/corrente"),
     $.getJSON("../base/mensal"),
