@@ -154,7 +154,7 @@ window.addEventListener('load', function(){
 	document.getElementById("formula").style.height = document.getElementsByTagName("body")[0].clientHeight-(315);
 });
 
-var versao = 3;
+var versao = 4;
 console.log("versao: "+versao);
 
 var pagina = "", codigo = "";
@@ -417,7 +417,7 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				var jsonCorrente = JSON.stringify(htmlCorrente);
 				if (dispositivo) {
 					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
 					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
@@ -429,7 +429,7 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+				var jsonMensal = JSON.stringify(htmlMensal);
 				if (dispositivo) {
 					//android.SalvaBKP("base", "mensal.js", jsonMensal);
 					AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
@@ -464,7 +464,7 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				var jsonCorrente = JSON.stringify(htmlCorrente);
 				if (dispositivo) {
 					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
 					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 20000)
@@ -474,14 +474,14 @@ function GravaRegistro() {
 	} else {
 		if (pagina=="registro") {
 			TabExtrato.push({"Codigo": parseInt(agora), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)});
-			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabExtrato)+"';";
+			var jsonCorrente = JSON.stringify(TabExtrato);
 			if (dispositivo) {
 				//android.SalvaBKP("base", "corrente.js", jsonCorrente);
 				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
 			} else {console.log("corrente\n"+jsonCorrente);}
 		} else {
 			TabExtrato.push({"Codigo": parseInt(agora), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": Zerado(RegVencimento,2,''), "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)});
-			var jsonMensal = "var pegaMensal = '"+JSON.stringify(TabExtrato)+"';";
+			var jsonMensal = JSON.stringify(TabExtrato);
 			if (dispositivo) {
 				//android.SalvaBKP("base", "mensal.js", jsonMensal);
 				AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
@@ -503,7 +503,7 @@ function GravaRegistro() {
 			if (Zerado(RegVencimento,2,'')>Dia) {
 				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
 				TabCorrente.push({"Codigo": parseInt(agora), "Data": Ano+""+Mes+""+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(codValor)});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabCorrente)+"';";
+				var jsonCorrente = JSON.stringify(TabCorrente);
 				if (dispositivo) {
 					//android.SalvaBKP("base", "corrente.js", jsonCorrente);
 					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 20000)
@@ -563,14 +563,14 @@ function ExcluiRegistro() {
 
 		if (pagina=="registro") {
 			const htmlCorrente = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+			var jsonCorrente = JSON.stringify(htmlCorrente);
 			if (dispositivo) {
 				//android.SalvaBKP("base", "corrente.js", jsonCorrente);
 				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
 			} else {console.log("corrente\n"+jsonCorrente);}
 		} else {
 			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+			var jsonMensal = JSON.stringify(htmlMensal);
 			if (dispositivo) {
 				//android.SalvaBKP("base", "mensal.js", jsonMensal);
 				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
