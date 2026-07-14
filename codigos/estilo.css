@@ -2,7 +2,7 @@ A {TEXT-DECORATION: none}
 A:hover {TEXT-DECORATION: none}
 ::-webkit-scrollbar{width: 0px; height: 0px }
 * { margin:0; padding:0; }
-html {background: transparent; height: 100%;}
+html {background: #0F172A; height: 100%;}
 font {font-family: Arial; color: #A9A9A9}
 body {
 opacity:0;
