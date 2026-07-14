@@ -604,6 +604,76 @@ function PreencheCirculo(Circ,PConta,cor) {
 	return;
 }
 
+function PesquisaItem(texto) {
+		for (var n=0;n<12;n++) {
+			if (Mes-n>0) {mesbase=Mes-n;anobase = Ano;}
+			if (Mes-n==0) {mesbase=12;anobase=Ano-1;}
+			if (Mes-n<0) {mesbase=mesbase-1;anobase=Ano-1;}
+			MontaPesquisa(texto,anobase+""+Zerado(mesbase,2,""),n);
+		}
+	}
+	function MontaPesquisa(texto,deftabela,N) {
+		var EntradaExtrato=0,DespesaExtrato=0,ReceitaExtrato=0;
+	
+		if (N==0) {
+			var TabExtrato = resCorrente[0];
+		} else {
+			var TabExtrato = resPassado[0];
+		}
+			
+		TabExtrato.sort(function(a, b) {
+			return a.Data > b.Data ? -1 : a.Data < b.Data ? 1 : 0;
+			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
+			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
+		});
+				
+		var html = "", descricao = "", forma = "", data = "", dtmes = "", valor = 0; pesquisa = "", pesqDescri = "";
+		
+		for (var i=0; i<TabExtrato.length; i++) {
+			if (TabExtrato[i].Data.substr(0,6) == deftabela && TabExtrato[i].Data <= hoje) {
+				pesqDescri = TabExtrato[i].Descricao;
+				pesqDescri = pesqDescri.substring(0,texto.length);
+				if (pesqDescri == Maiuscula(texto)) {
+					pesquisa = TabExtrato[i].Descricao;
+					if (TabExtrato[i].Descricao.indexOf(pesquisa)>=0) {
+						if (data!=TabExtrato[i].Data.substr(4,2)) {
+							data = TabExtrato[i].Data.substr(4,2);
+							html += "<TR height='25'><TD vAlign='middle' align='center' width='100%'>";
+							html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+							html += "<TD width='10'></TD><TD vAlign='middle'><font size='1'><font size='2'>"+nomedomes(TabExtrato[i].Data.substr(4,2)).substr(0,1).toUpperCase()+"</font>"+nomedomes(TabExtrato[i].Data.substr(4,2)).substring(1, nomedomes(TabExtrato[i].Data.substr(4,2)).length).toUpperCase()+"</font></TD><TD vAlign='middle' align='right'><font size='2'>"+TabExtrato[i].Data.substr(0,4)+"</font></TD><TD width='10'></TD>";
+							html += "</TR></TABLE></center></TD></TR>";
+						}
+						descricao = TabExtrato[i].Descricao;
+						forma = TabExtrato[i].Forma;
+						dtmes = TabExtrato[i].Data.substr(4,2)-Zerado(1,2,"");
+						valor = TabExtrato[i].Valor;
+						if (valor<0) valor = valor*-1;
+						if (dtmes==0) dtmes = 12;
+						if (TabExtrato[i].Descricao == "Saldo") {descricao = DefineForma(forma) + " " + nomedomes(TabExtrato[i].Data.substr(4,2))}
+						if (TabExtrato[i].Descricao == "Salario") {descricao = descricao + " " + nomedomes(TabExtrato[i].Data.substr(4,2))}
+						if (TabExtrato[i].Valor > 0) {var CorFonte = "#5CACEE"} else {var CorFonte = "#CD5555"}
+						if (TabExtrato[i].Descricao == "Saldo") {var CorFonte = "#528B8B"}
+						html += "<TR height='50'><TD vAlign='middle' align='center' width='100%' class='painel'>";
+						html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
+						html += "<TD width='20'></TD><TD vAlign='middle' align='center'><font style='color:"+CorFonte+"' size='1'>"+vediasemana(arrumadata(TabExtrato[i].Data)).substr(0,3).toUpperCase()+"</font><p><font style='color:"+CorFonte+"' size='3'><b>"+TabExtrato[i].Data.substr(6,2)+"</b></font></TD>";
+						html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font style='color:"+CorFonte+"' size='2'><font style='color:"+CorFonte+"' size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
+						html += "<TD vAlign=middle align=right width=40%><font style='color:"+CorFonte+"' size='3'>R$ "+formatamoeda(valor)+"</font></TD><TD width='20'></TD>";
+						html += "</TR></TABLE></center></TD></TR>";
+					}
+				}
+			}
+		}
+		exPesquisa = eval("exPesquisa"+N);
+		exPesquisa.innerHTML = html;
+		if (texto!="") {
+			exibicao.hidden='true';
+			pesquisado.hidden='';
+		} else {
+			exibicao.hidden='';
+			pesquisado.hidden='true';
+		}
+	}
+
 let TabCorrente = [];
 let TabPassado = [];
 $.when(
@@ -707,75 +777,6 @@ $.when(
 		Total3.innerHTML = "R$ "+formatamoeda(DespesaSaldo*-1)+"<p>Despesa";
 		exSaldo = eval("exSaldo"+N);
 		exSaldo.innerHTML = html;
-	}
-	function PesquisaItem(texto) {
-		for (var n=0;n<12;n++) {
-			if (Mes-n>0) {mesbase=Mes-n;anobase = Ano;}
-			if (Mes-n==0) {mesbase=12;anobase=Ano-1;}
-			if (Mes-n<0) {mesbase=mesbase-1;anobase=Ano-1;}
-			MontaPesquisa(texto,anobase+""+Zerado(mesbase,2,""),n);
-		}
-	}
-	function MontaPesquisa(texto,deftabela,N) {
-		var EntradaExtrato=0,DespesaExtrato=0,ReceitaExtrato=0;
-	
-		if (N==0) {
-			var TabExtrato = resCorrente[0];
-		} else {
-			var TabExtrato = resPassado[0];
-		}
-			
-		TabExtrato.sort(function(a, b) {
-			return a.Data > b.Data ? -1 : a.Data < b.Data ? 1 : 0;
-			return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
-			return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
-		});
-				
-		var html = "", descricao = "", forma = "", data = "", dtmes = "", valor = 0; pesquisa = "", pesqDescri = "";
-		
-		for (var i=0; i<TabExtrato.length; i++) {
-			if (TabExtrato[i].Data.substr(0,6) == deftabela && TabExtrato[i].Data <= hoje) {
-				pesqDescri = TabExtrato[i].Descricao;
-				pesqDescri = pesqDescri.substring(0,texto.length);
-				if (pesqDescri == Maiuscula(texto)) {
-					pesquisa = TabExtrato[i].Descricao;
-					if (TabExtrato[i].Descricao.indexOf(pesquisa)>=0) {
-						if (data!=TabExtrato[i].Data.substr(4,2)) {
-							data = TabExtrato[i].Data.substr(4,2);
-							html += "<TR height='25'><TD vAlign='middle' align='center' width='100%'>";
-							html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
-							html += "<TD width='10'></TD><TD vAlign='middle'><font size='1'><font size='2'>"+nomedomes(TabExtrato[i].Data.substr(4,2)).substr(0,1).toUpperCase()+"</font>"+nomedomes(TabExtrato[i].Data.substr(4,2)).substring(1, nomedomes(TabExtrato[i].Data.substr(4,2)).length).toUpperCase()+"</font></TD><TD vAlign='middle' align='right'><font size='2'>"+TabExtrato[i].Data.substr(0,4)+"</font></TD><TD width='10'></TD>";
-							html += "</TR></TABLE></center></TD></TR>";
-						}
-						descricao = TabExtrato[i].Descricao;
-						forma = TabExtrato[i].Forma;
-						dtmes = TabExtrato[i].Data.substr(4,2)-Zerado(1,2,"");
-						valor = TabExtrato[i].Valor;
-						if (valor<0) valor = valor*-1;
-						if (dtmes==0) dtmes = 12;
-						if (TabExtrato[i].Descricao == "Saldo") {descricao = DefineForma(forma) + " " + nomedomes(TabExtrato[i].Data.substr(4,2))}
-						if (TabExtrato[i].Descricao == "Salario") {descricao = descricao + " " + nomedomes(TabExtrato[i].Data.substr(4,2))}
-						if (TabExtrato[i].Valor > 0) {var CorFonte = "#5CACEE"} else {var CorFonte = "#CD5555"}
-						if (TabExtrato[i].Descricao == "Saldo") {var CorFonte = "#528B8B"}
-						html += "<TR height='50'><TD vAlign='middle' align='center' width='100%' class='painel'>";
-						html += "<center><TABLE border='0' style='border-collapse: collapse' cellspacing='0' width='100%' cellpadding='0'><TR>";
-						html += "<TD width='20'></TD><TD vAlign='middle' align='center'><font style='color:"+CorFonte+"' size='1'>"+vediasemana(arrumadata(TabExtrato[i].Data)).substr(0,3).toUpperCase()+"</font><p><font style='color:"+CorFonte+"' size='3'><b>"+TabExtrato[i].Data.substr(6,2)+"</b></font></TD>";
-						html += "<TD width='10'></TD><TD vAlign='middle' width='40%'><font style='color:"+CorFonte+"' size='2'><font style='color:"+CorFonte+"' size='3'>"+descricao.substr(0,1).toUpperCase()+"</font>"+descricao.substring(1, descricao.length).toUpperCase()+"</font></TD>";
-						html += "<TD vAlign=middle align=right width=40%><font style='color:"+CorFonte+"' size='3'>R$ "+formatamoeda(valor)+"</font></TD><TD width='20'></TD>";
-						html += "</TR></TABLE></center></TD></TR>";
-					}
-				}
-			}
-		}
-		exPesquisa = eval("exPesquisa"+N);
-		exPesquisa.innerHTML = html;
-		if (texto!="") {
-			exibicao.hidden='true';
-			pesquisado.hidden='';
-		} else {
-			exibicao.hidden='';
-			pesquisado.hidden='true';
-		}
 	}
 
 }).fail(function(jqXHR, textStatus, errorThrown) {
