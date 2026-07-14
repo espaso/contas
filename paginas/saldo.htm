@@ -609,7 +609,7 @@ let TabPassado = [];
 $.when(
     $.getJSON("../base/corrente"),
     $.getJSON("../base/passado")
-).done(function(resCorrente, resMensal, resPassado) {
+).done(function(resCorrente, resPassado) {
     TabCorrente = resCorrente[0];
     TabPassado = resPassado[0];
 
