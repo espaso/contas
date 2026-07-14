@@ -604,14 +604,6 @@ function PreencheCirculo(Circ,PConta,cor) {
 	return;
 }
 
-let TabCorrente = [];
-let TabPassado = [];
-$.when(
-    $.getJSON("../base/corrente"),
-    $.getJSON("../base/passado")
-).done(function(resCorrente, resPassado) {
-    TabCorrente = resCorrente[0];
-    TabPassado = resPassado[0];
 
 	AtualizaPagina();
 
@@ -626,6 +618,16 @@ $.when(
 	function MontaTabela(deftabela,N) {
 		var EntradaSaldo=0,DespesaSaldo=0,ReceitaSaldo=0;
 	
+let TabCorrente = [];
+let TabPassado = [];
+$.when(
+    $.getJSON("../base/corrente"),
+    $.getJSON("../base/passado")
+).done(function(resCorrente, resPassado) {
+    TabCorrente = resCorrente[0];
+    TabPassado = resPassado[0];
+
+		
 		if (N==0) {
 			var TabExtrato = resCorrente[0];
 		} else {
@@ -707,6 +709,11 @@ $.when(
 		Total3.innerHTML = "R$ "+formatamoeda(DespesaSaldo*-1)+"<p>Despesa";
 		exSaldo = eval("exSaldo"+N);
 		exSaldo.innerHTML = html;
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    // Se QUALQUER uma das requisições falhar, este bloco é executado
+    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+});
+
 	}
 
 function PesquisaItem(texto) {
@@ -719,7 +726,18 @@ function PesquisaItem(texto) {
 	}
 	function MontaPesquisa(texto,deftabela,N) {
 		var EntradaExtrato=0,DespesaExtrato=0,ReceitaExtrato=0;
-	
+
+
+let TabCorrente = [];
+let TabPassado = [];
+$.when(
+    $.getJSON("../base/corrente"),
+    $.getJSON("../base/passado")
+).done(function(resCorrente, resPassado) {
+    TabCorrente = resCorrente[0];
+    TabPassado = resPassado[0];
+
+		
 		if (N==0) {
 			var TabExtrato = resCorrente[0];
 		} else {
@@ -777,13 +795,13 @@ function PesquisaItem(texto) {
 			exibicao.hidden='';
 			pesquisado.hidden='true';
 		}
-	}
-	
 }).fail(function(jqXHR, textStatus, errorThrown) {
     // Se QUALQUER uma das requisições falhar, este bloco é executado
     console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
 });
 
+	}
+	
 var elem = document.getElementById("mySwipe");
 window.mySwipe = Swipe(elem, {
     startSlide: 0
