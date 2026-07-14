@@ -152,7 +152,7 @@
 </center>
     </div>
 </div>
-	<textarea id="resultado" style="width: 100%; height: 100%;"></textarea>
+<textarea id="resultado" style="width: 100%; height: 100%;" hidden></textarea>
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
@@ -488,28 +488,28 @@ $.when(
 		var jsonCorrente = "["+htmlCorrente+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-			//AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
-			resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
+			AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+			//resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
 		} else {console.log("corrente\n"+jsonCorrente);}
 		
 		var jsonMensal = "["+htmlMensal+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "mensal.js", jsonMensal);
-			//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
-			resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
+			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
+			//resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
 		} else {console.log("mensal\n"+jsonMensal);}
 		
 		var jsonPassado = "["+htmlPassado+"]";
 		if (dispositivo) {
 			//android.SalvaBKP("base", "passado.js", jsonPassado);
-			//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
-			resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
+			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
+			//resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
 		} else {console.log("passado\n"+jsonPassado);}
 		
 		if (dispositivo) {
 			//android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
-			//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
-			resultado.innerHTML += "B202606\n"+htmlPagina;
+			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
+			//resultado.innerHTML += "B202606\n"+htmlPagina;
 		} else {console.log("B"+ultimomes+".html\n"+htmlPagina);}
 		//setTimeout(function() {window.location.reload();}, 20000)
 	}
