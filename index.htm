@@ -201,7 +201,7 @@ $.when(
 		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
 	});
 	
-	if (TabCorrente[0].Data.substr(0,6) != Ano+""+Mes) {
+	if (TabCorrente[0].Data.substr(0,6) == Ano+""+Mes) {
 		var ReceitaCredito = 0, DespesaDivida = 0;
 		var ReceitaBradesco=0,EntradaBradesco=0,DespesaBradesco=0;
 		var ReceitaDinheiro=0,EntradaDinheiro=0,DespesaDinheiro=0;
