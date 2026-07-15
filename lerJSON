@@ -1,0 +1,153 @@
+PROMPT:
+
+Tenho um app android 10 com linguagem java. Como ler arquivo JSON localmente no diretório da aplicação via javascript usando webview?
+
+
+Copilot said:
+Se o arquivo JSON está dentro do diretório privado da aplicação Android, o JavaScript executado em uma WebView não consegue acessá-lo diretamente usando fetch() ou APIs de arquivo do navegador por questões de segurança.
+
+A solução mais comum é fazer uma ponte entre Java e JavaScript.
+
+Opção 1: Ler o JSON em Java e enviar para o JavaScript
+Java
+
+
+
+Java
+public class WebAppInterface {
+
+    private Context context;
+
+    public WebAppInterface(Context context) {
+        this.context = context;
+    }
+
+    @JavascriptInterface
+    public String lerJson() {
+        try {
+            File file = new File(context.getFilesDir(), "dados.json");
+
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            byte[] buffer = new byte[1024];
+            int len;
+
+            while ((len = fis.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
+            }
+
+            fis.close();
+
+            return baos.toString("UTF-8");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "{}";
+        }
+    }
+}
+
+Mostrar menos
+Registrar interface na WebView
+
+
+
+Java
+webView.getSettings().setJavaScriptEnabled(true);
+
+webView.addJavascriptInterface(
+    new WebAppInterface(this),
+    "Android"
+);
+JavaScript
+
+
+
+JavaScript
+const jsonString = Android.lerJson();
+
+const dados = JSON.parse(jsonString);
+
+console.log(dados);
+
+Opção 2: Disponibilizar o arquivo via WebViewAssetLoader
+Se quiser usar fetch() normalmente no JavaScript, pode expor arquivos internos da aplicação como URLs locais.
+
+Dependência
+
+
+
+Gradle
+implementation "androidx.webkit:webkit:1.8.0"
+Configuração
+
+
+
+Java
+WebViewAssetLoader assetLoader =
+        new WebViewAssetLoader.Builder()
+                .addPathHandler("/files/",
+                        new WebViewAssetLoader.InternalStoragePathHandler(
+                                this,
+                                getFilesDir()))
+                .build();
+
+webView.setWebViewClient(new WebViewClient() {
+    @Override
+    public WebResourceResponse shouldInterceptRequest(
+            WebView view,
+            WebResourceRequest request) {
+
+        return assetLoader.shouldInterceptRequest(
+                request.getUrl());
+    }
+});
+
+Mostrar mais linhas
+JavaScript
+
+
+
+JavaScript
+fetch("https://appassets.androidplatform.net/files/dados.json")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    });
+Opção 3: Injetar o JSON diretamente na página
+Após carregar a página:
+
+
+
+
+Java
+String json = carregarArquivoJson();
+
+webView.evaluateJavascript(
+    "window.meuJson = " + json + ";",
+    null
+);
+E no JavaScript:
+
+
+
+
+JavaScript
+console.log(window.meuJson);
+Minha recomendação
+Para Android 10 com WebView moderna:
+
+Se o JSON for pequeno → use addJavascriptInterface().
+Se houver vários arquivos JSON e você quiser usar fetch() normalmente → use WebViewAssetLoader (solução mais elegante e próxima de um servidor web local).
+
+
+
+
+Fontes
+
+Como usar WebViewAssetLoader passo a passo?
+
+Como expor múltiplos arquivos JSON com WebViewAssetLoader?
+
+Como garantir segurança ao usar addJavascriptInterface?
