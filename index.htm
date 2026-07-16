@@ -172,10 +172,11 @@ function PreencheCirculo(Circ,cor,PConta) {
 }
 
 
-const existe = false;//Android.folderExists("minhaPasta");
+const existe = true;//Android.folderExists("minhaPasta");
 
 if (existe) {
 
+/*
 let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
@@ -187,13 +188,13 @@ $.when(
     TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
-
-	/*
+	*/
+	
 	const jsonCorrente = AndroidBridge.lerJson("corrente");
 	const dadosCorrente = JSON.parse(jsonCorrente);
 	console.log(dadosCorrente);
 	resultado.innerHTML = "CORRENTE\n"+dadosCorrente;
-	*/
+	
 	
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
