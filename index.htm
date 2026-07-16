@@ -152,7 +152,7 @@
 </center>
     </div>
 </div>
-<textarea id="resultado" style="width: 100%; height: 100%;"></textarea>
+<textarea id="resultado" style="width: 100%; height: 100%;" hidden></textarea>
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
@@ -559,7 +559,6 @@ $.when(
 	    // Se QUALQUER uma das requisições falhar, este bloco é executado
 	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
 	});
-	
 }
 </script>
 </body>
