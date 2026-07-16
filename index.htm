@@ -152,7 +152,7 @@
 </center>
     </div>
 </div>
-<textarea id="resultado" style="width: 100%; height: 100%;"></textarea>
+<textarea id="resultado" style="width: 100%; height: 100%;" hidden></textarea>
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
@@ -538,15 +538,15 @@ $.when(
 
 		//android.SalvaBKP("base", "corrente", TabCorrente);
 		console.log("CORRENTE", TabCorrente);
-		resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
+		//resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
 		
 		//android.SalvaBKP("base", "mensal", TabMensal);
 	    console.log("MENSAL", TabMensal);
-		resultado.innerHTML += "MENSAL\n"+TabMensal+"\n\n";
+		//resultado.innerHTML += "MENSAL\n"+TabMensal+"\n\n";
 		
 		//android.SalvaBKP("base", "passado", TabPassado);
 	    console.log("PASSADO", TabPassado);
-		resultado.innerHTML += "PASSADO\n"+TabPassado+"\n\n";
+		//resultado.innerHTML += "PASSADO\n"+TabPassado+"\n\n";
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // Se QUALQUER uma das requisições falhar, este bloco é executado
