@@ -187,6 +187,13 @@ $.when(
     TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
+
+	/*
+	const jsonCorrente = AndroidBridge.lerJson("corrente");
+	const dadosCorrente = JSON.parse(jsonCorrente);
+	console.log(dadosCorrente);
+	resultado.innerHTML = "CORRENTE\n"+dadosCorrente;
+	*/
 	
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
@@ -524,7 +531,7 @@ $.when(
 
 } else {
 
-	/*let TabCorrente = [];
+	let TabCorrente = [];
 	let TabMensal = [];
 	let TabPassado = [];
 	$.when(
@@ -534,25 +541,18 @@ $.when(
 	).done(function(resCorrente, resMensal, resPassado) {
 		TabCorrente = resCorrente[0];
 		TabMensal = resMensal[0];
-		TabPassado = resPassado[0];*/
+		TabPassado = resPassado[0];
 
-
-	const jsonCorrente = AndroidBridge.lerJson("corrente");
-	const dadosCorrente = JSON.parse(jsonCorrente);
-	console.log(dadosCorrente);
-	resultado.innerHTML = "CORRENTE\n"+dadosCorrente;
-
-
-		//android.SalvaBKP("base", "corrente", TabCorrente);
-		console.log("CORRENTE", TabCorrente);
+		android.SalvaBKP("base", "corrente", TabCorrente);
+		//console.log("CORRENTE", TabCorrente);
 		//resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
 		
-		//android.SalvaBKP("base", "mensal", TabMensal);
-	    console.log("MENSAL", TabMensal);
+		android.SalvaBKP("base", "mensal", TabMensal);
+	    //console.log("MENSAL", TabMensal);
 		//resultado.innerHTML += "MENSAL\n"+TabMensal+"\n\n";
 		
-		//android.SalvaBKP("base", "passado", TabPassado);
-	    console.log("PASSADO", TabPassado);
+		android.SalvaBKP("base", "passado", TabPassado);
+	    //console.log("PASSADO", TabPassado);
 		//resultado.innerHTML += "PASSADO\n"+TabPassado+"\n\n";
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
