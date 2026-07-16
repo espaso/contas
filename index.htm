@@ -517,7 +517,11 @@ $.when(
 		}
 		setTimeout(function() {window.location.reload();}, 20000)
 	}
-	
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+    	// Se QUALQUER uma das requisições falhar, este bloco é executado
+    	console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+	});
+
 } else {
 
 	let TabCorrente = [];
@@ -539,12 +543,13 @@ $.when(
 		//android.SalvaBKP("base", "passado", resPassado[0]);
 		console.log("PASSADO\n"+resPassado[0]+"\n\n");
 		//resultado.innerHTML += "PASSADO\n"+resPassado[0]+"\n\n";
-	}
 
-}).fail(function(jqXHR, textStatus, errorThrown) {
-    // Se QUALQUER uma das requisições falhar, este bloco é executado
-    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // Se QUALQUER uma das requisições falhar, este bloco é executado
+	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
+	});
+	
+}
 </script>
 </body>
 </html>
