@@ -532,8 +532,8 @@ $.when(
 		$.getJSON("base/mensal"),
 		$.getJSON("base/passado")
 	).done(function(resCorrente, resMensal, resPassado) {
-		var TabCorrente = resCorrente[0];
-		var TabMensal = resMensal[0];
+		var jsonCorrente = JSON.parse(resCorrente[0]);
+		var jsonMensal = JSON.parse(resMensal[0]);
 		var jsonPassado = JSON.parse(resPassado[0]);
 
 		//android.SalvaBKP("base", "corrente", TabCorrente);
