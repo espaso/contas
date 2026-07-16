@@ -528,25 +528,25 @@ $.when(
 	let TabMensal = [];
 	let TabPassado = [];
 	$.when(
- 	   $.getJSON("base/corrente"),
-	    $.getJSON("base/mensal"),
-	    $.getJSON("base/passado")
-		var jsonCorrente = JSON.parse(resCorrente[0]);
-		var jsonMensal = JSON.parse(resMensal[0]];
-		var jsonPassado = JSON.parse(resPassado[0]);
-
+ 		$.getJSON("base/corrente"),
+		$.getJSON("base/mensal"),
+		$.getJSON("base/passado")
 	).done(function(resCorrente, resMensal, resPassado) {
-		//android.SalvaBKP("base", "corrente", jsonCorrente);
-		console.log("CORRENTE\n"+jsonCorrente+"\n\n");
-		//resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
+		var TabCorrente = resCorrente[0];
+		var TabMensal = resMensal[0];
+		var jsonPassado = resPassado[0];
+
+		//android.SalvaBKP("base", "corrente", TabCorrente);
+		console.log("CORRENTE\n"+TabCorrente+"\n\n");
+		//resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
 		
-		//android.SalvaBKP("base", "mensal", jsonMensal);
-		console.log("MENSAL\n"+jsonMensal+"\n\n");
-		//resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
+		//android.SalvaBKP("base", "mensal", TabMensal);
+		console.log("MENSAL\n"+TabMensal+"\n\n");
+		//resultado.innerHTML += "MENSAL\n"+TabMensal+"\n\n";
 		
-		//android.SalvaBKP("base", "passado", jsonPassado);
-		console.log("PASSADO\n"+jsonPassado+"\n\n");
-		//resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
+		//android.SalvaBKP("base", "passado", TabPassado);
+		console.log("PASSADO\n"+TabPassado+"\n\n");
+		//resultado.innerHTML += "PASSADO\n"+TabPassado+"\n\n";
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // Se QUALQUER uma das requisições falhar, este bloco é executado
