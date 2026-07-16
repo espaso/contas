@@ -539,23 +539,23 @@ $.when(
 		$.getJSON("base/mensal"),
 		$.getJSON("base/passado")
 	).done(function(resCorrente, resMensal, resPassado) {
-		TabCorrente = resCorrente[0];
-		TabMensal = resMensal[0];
-		TabPassado = resPassado[0];
+		TabCorrente = JSON.stringify(resCorrente[0], null, 2);
+		TabMensal = JSON.stringify(resMensal[0], null, 2);
+		TabPassado = JSON.stringify(resPassado[0], null, 2);
 
-		resultado.value = "CORRENTE:\n" + JSON.stringify(TabCorrente, null, 2) + "\n\n" +
+		/*resultado.value = "CORRENTE:\n" + JSON.stringify(TabCorrente, null, 2) + "\n\n" +
                               "MENSAL:\n" + JSON.stringify(TabMensal, null, 2) + "\n\n" +
-                              "PASSADO:\n" + JSON.stringify(TabPassado, null, 2);
+                              "PASSADO:\n" + JSON.stringify(TabPassado, null, 2);*/
 
-		//android.SalvaBKP("base", "corrente", TabCorrente);
+		android.SalvaBKP("base", "corrente", TabCorrente);
 		//console.log("CORRENTE", TabCorrente);
 		//resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
 		
-		//android.SalvaBKP("base", "mensal", TabMensal);
+		android.SalvaBKP("base", "mensal", TabMensal);
 	    //console.log("MENSAL", TabMensal);
 		//resultado.innerHTML += "MENSAL\n"+TabMensal+"\n\n";
 		
-		//android.SalvaBKP("base", "passado", TabPassado);
+		android.SalvaBKP("base", "passado", TabPassado);
 	    //console.log("PASSADO", TabPassado);
 		//resultado.innerHTML += "PASSADO\n"+TabPassado+"\n\n";
 
