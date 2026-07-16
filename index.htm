@@ -534,7 +534,7 @@ $.when(
 	).done(function(resCorrente, resMensal, resPassado) {
 		var TabCorrente = resCorrente[0];
 		var TabMensal = resMensal[0];
-		var jsonPassado = resPassado[0];
+		var jsonPassado = JSON.parse(resPassado[0]);
 
 		//android.SalvaBKP("base", "corrente", TabCorrente);
 		console.log("CORRENTE\n"+TabCorrente+"\n\n");
