@@ -171,6 +171,11 @@ function PreencheCirculo(Circ,cor,PConta) {
 	return;
 }
 
+
+const existe = false;//Android.folderExists("minhaPasta");
+
+if (existe) {
+
 let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
@@ -201,10 +206,6 @@ $.when(
 		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
 	});
 
-	const existe = false;//Android.folderExists("minhaPasta");
-
-	if (existe) {
-	    
 	if (TabCorrente[0].Data.substr(0,6) == Ano+""+Mes) {
 		var ReceitaCredito = 0, DespesaDivida = 0;
 		var ReceitaBradesco=0,EntradaBradesco=0,DespesaBradesco=0;
@@ -490,36 +491,54 @@ $.when(
 		htmlPassado = htmlPassado.replace(/..$/, '');
 	
 		var jsonCorrente = "["+htmlCorrente+"]";
-		if (dispositivo) {
-			//android.SalvaBKP("base", "corrente.js", jsonCorrente);
-			AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
-			//resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
-		} else {console.log("corrente\n"+jsonCorrente);}
-		
 		var jsonMensal = "["+htmlMensal+"]";
-		if (dispositivo) {
-			//android.SalvaBKP("base", "mensal.js", jsonMensal);
-			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
-			//resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
-		} else {console.log("mensal\n"+jsonMensal);}
-		
 		var jsonPassado = "["+htmlPassado+"]";
 		if (dispositivo) {
-			//android.SalvaBKP("base", "passado.js", jsonPassado);
-			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
-			//resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
-		} else {console.log("passado\n"+jsonPassado);}
-		
-		if (dispositivo) {
-			//android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
-			setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
-			//resultado.innerHTML += "B202606\n"+htmlPagina;
-		} else {console.log("B"+ultimomes+".html\n"+htmlPagina);}
+				//android.SalvaBKP("base", "corrente", jsonCorrente);
+				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+				//resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
+			
+				//android.SalvaBKP("base", "mensal", jsonMensal);
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
+				//resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
+			
+				//android.SalvaBKP("base", "passado", jsonPassado);
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
+				//resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
+			
+				//android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
+				//resultado.innerHTML += "B202606\n"+htmlPagina;
+		} else {
+			console.log("CORRENTE\n"+jsonCorrente+"\n\n");
+			console.log("MENSAL\n"+jsonMensal+"\n\n");
+			console.log("PASSADO\n"+jsonPassado+"\n\n");
+			console.log("B"+ultimomes+".html\n"+htmlPagina+"\n\n");
+		}
 		setTimeout(function() {window.location.reload();}, 20000)
 	}
 	
-	} else {
-	    console.log("Pasta não existe");
+} else {
+
+	let TabCorrente = [];
+	let TabMensal = [];
+	let TabPassado = [];
+	$.when(
+ 	   $.getJSON("base/corrente"),
+	    $.getJSON("base/mensal"),
+	    $.getJSON("base/passado")
+	).done(function(resCorrente, resMensal, resPassado) {
+		//android.SalvaBKP("base", "corrente", resCorrente[0]);
+		console.log("CORRENTE\n"+resCorrente[0]+"\n\n");
+		//resultado.innerHTML = "CORRENTE\n"+resCorrente[0]+"\n\n";
+		
+		//android.SalvaBKP("base", "mensal", resMensal[0]);
+		console.log("MENSAL\n"+resMensal[0]+"\n\n");
+		//resultado.innerHTML += "MENSAL\n"+resMensal[0]+"\n\n";
+		
+		//android.SalvaBKP("base", "passado", resPassado[0]);
+		console.log("PASSADO\n"+resPassado[0]+"\n\n");
+		//resultado.innerHTML += "PASSADO\n"+resPassado[0]+"\n\n";
 	}
 
 }).fail(function(jqXHR, textStatus, errorThrown) {
