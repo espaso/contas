@@ -187,9 +187,10 @@ $.when(
     TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
+
 	
-	const jsCorrente = AndroidBridge.lerJson("corrente");
-	const dadosCorrente = JSON.parse(jsCorrente);
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const dadosCorrente = JSON.parse(arqCorrente);
 	console.log(dadosCorrente);
 	resultado.innerHTML = "CORRENTE\n"+dadosCorrente;
 	
