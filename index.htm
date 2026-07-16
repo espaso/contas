@@ -200,7 +200,11 @@ $.when(
 		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
 		return a.Valor < b.Valor ? -1 : a.Valor > b.Valor ? 1 : 0;
 	});
-	
+
+	const existe = false;//Android.folderExists("minhaPasta");
+
+	if (existe) {
+	    
 	if (TabCorrente[0].Data.substr(0,6) == Ano+""+Mes) {
 		var ReceitaCredito = 0, DespesaDivida = 0;
 		var ReceitaBradesco=0,EntradaBradesco=0,DespesaBradesco=0;
@@ -512,6 +516,10 @@ $.when(
 			//resultado.innerHTML += "B202606\n"+htmlPagina;
 		} else {console.log("B"+ultimomes+".html\n"+htmlPagina);}
 		setTimeout(function() {window.location.reload();}, 20000)
+	}
+	
+	} else {
+	    console.log("Pasta não existe");
 	}
 
 }).fail(function(jqXHR, textStatus, errorThrown) {
