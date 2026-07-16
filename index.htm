@@ -176,7 +176,7 @@ const existe = true;//Android.folderExists("minhaPasta");
 
 if (existe) {
 
-//let TabCorrente = [];
+let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
 $.when(
@@ -190,9 +190,9 @@ $.when(
 
 	
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
-	const TabCorrente = JSON.parse(arqCorrente);
+	TabCorrente = JSON.parse(arqCorrente);
 	//console.log(dadosCorrente);
-	resultado.value = "CORRENTE 7\n"+rTabCorrente;
+	resultado.value = "CORRENTE 8\n"+rTabCorrente;
 	
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
