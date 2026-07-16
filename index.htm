@@ -536,17 +536,17 @@ $.when(
 		TabMensal = JSON.parse(resMensal[0]);
 		TabPassado = JSON.parse(resPassado[0]);
 
-		//android.SalvaBKP("base", "corrente", TabCorrente);
-		console.log("CORRENTE\n"+TabCorrente+"\n\n");
-		//resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
+		//android.SalvaBKP("base", "corrente", resCorrente[0]);
+		console.log("CORRENTE\n"+resCorrente[0]+"\n\n");
+		//resultado.innerHTML = "CORRENTE\n"+resCorrente[0]+"\n\n";
 		
-		//android.SalvaBKP("base", "mensal", TabMensal);
-		console.log("MENSAL\n"+TabMensal+"\n\n");
-		//resultado.innerHTML += "MENSAL\n"+TabMensal+"\n\n";
+		//android.SalvaBKP("base", "mensal", resMensal[0]);
+		console.log("MENSAL\n"+resMensal[0]+"\n\n");
+		//resultado.innerHTML += "MENSAL\n"+resMensal[0]+"\n\n";
 		
-		//android.SalvaBKP("base", "passado", TabPassado);
-		console.log("PASSADO\n"+TabPassado+"\n\n");
-		//resultado.innerHTML += "PASSADO\n"+TabPassado+"\n\n";
+		//android.SalvaBKP("base", "passado", resPassado[0];);
+		console.log("PASSADO\n"+resPassado[0];+"\n\n");
+		//resultado.innerHTML += "PASSADO\n"+resPassado[0];+"\n\n";
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // Se QUALQUER uma das requisições falhar, este bloco é executado
