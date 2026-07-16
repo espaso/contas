@@ -152,7 +152,7 @@
 </center>
     </div>
 </div>
-<textarea id="resultado" style="width: 100%; height: 100%;" hidden></textarea>
+<textarea id="resultado" style="width: 100%; height: 100%;"></textarea>
 <script src="codigos/RadialBar.js"></script>
 <script>
 window.onerror = MensagemErro;
@@ -524,7 +524,7 @@ $.when(
 
 } else {
 
-	let TabCorrente = [];
+	/*let TabCorrente = [];
 	let TabMensal = [];
 	let TabPassado = [];
 	$.when(
@@ -534,7 +534,14 @@ $.when(
 	).done(function(resCorrente, resMensal, resPassado) {
 		TabCorrente = resCorrente[0];
 		TabMensal = resMensal[0];
-		TabPassado = resPassado[0];
+		TabPassado = resPassado[0];*/
+
+
+	const jsonCorrente = AndroidBridge.lerJson("corrente");
+	const dadosCorrente = JSON.parse(jsonCorrente);
+	console.log(dadosCorrente);
+	resultado.innerHTML = "CORRENTE\n"+dadosCorrente;
+
 
 		//android.SalvaBKP("base", "corrente", TabCorrente);
 		console.log("CORRENTE", TabCorrente);
