@@ -174,7 +174,7 @@ function PreencheCirculo(Circ,cor,PConta) {
 
 const testeDir = AndroidBridge.FolderExists("base");
 
-if (testeDir) {
+if (!testeDir) {
 	resultado.value = "1 - A base existe";
 } else {
 	resultado.value = "1 - A base não existe";
