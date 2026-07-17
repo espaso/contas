@@ -188,7 +188,7 @@ $.when(
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
 
-	const arqCorrente = AndroidBridge.lerArqJson("base/corrente");
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 
 	if (arqCorrente.startsWith("ERROR")) {
 		resultado.value = "Erro no Android:\n"+arqCorrente;
