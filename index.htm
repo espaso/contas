@@ -190,10 +190,10 @@ $.when(
 
 	
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
-	const objCorrente = JSON.parse(arqCorrente);
-	TabCorrente = JSON.stringify(objCorrente, null, 2);
+	const TabCorrente = JSON.parse(arqCorrente);
+	//TabCorrente = JSON.stringify(objCorrente, null, 2);
 	//console.log(dadosCorrente);
-	resultado.value = "CORRENTE 9\n"+TabCorrente;
+	resultado.value = "CORRENTE 10\n"+JSON.stringify(TabCorrente, null, 2);
 	
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
