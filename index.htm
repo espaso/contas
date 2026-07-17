@@ -188,7 +188,7 @@ $.when(
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
 
-	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqCorrente = AndroidBridge.lerArqJson("base/corrente");
 
 	if (arqCorrente.startsWith("ERROR")) {
 		resutado.value = "Erro no Android:\n"+arqCorrente;
@@ -198,9 +198,9 @@ $.when(
 			//TabCorrente = JSON.stringify(objCorrente, null, 2);
 			//console.log(dadosCorrente);
 			if (Array.isArray(TabCorrente)) {
-				resultado.value = "CORRENTE 12:\n"+JSON.stringify(TabCorrente, null, 2);
+				resultado.value = "CORRENTE 13:\n"+JSON.stringify(TabCorrente, null, 2);
 			} else {
-				resultado.value = "Deu erro na eitura do arquivo";
+				resultado.value = "Deu erro na leitura do arquivo";
 			}
 		} catch (e) {
 			resultado.value = "Erro: "+e.message+"\n\nTexto:\n"+arqCorrente;
