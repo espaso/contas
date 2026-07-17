@@ -176,7 +176,7 @@ const existe = true;//Android.folderExists("minhaPasta");
 
 if (existe) {
 
-let TabCorrente = [];
+/*let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
 $.when(
@@ -186,7 +186,7 @@ $.when(
 ).done(function(resCorrente, resMensal, resPassado) {
     //TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
-    TabPassado = resPassado[0];
+    TabPassado = resPassado[0];*/
 
 	// Substitua temporariamente o seu código de leitura por este para testar:
 	resultado.value = "TESTE 1\n"+AndroidBridge.listarArquivos();
@@ -404,7 +404,7 @@ $.when(
 				DescCredito.innerHTML = "R$ "+formatamoeda(somaValor);
 			}
 			TCredito.innerHTML = "R$ "+formatamoeda(ReceitaCredito+TotalCredito);
-		}*/
+		}
 	} else {
 		var SaldoBRanterior=0,EntradaBRanterior=0,SaidaBRanterior=0;
 		var SaldoDManterior=0,EntradaDManterior=0,SaidaDManterior=0;
@@ -562,7 +562,7 @@ $.when(
                               "MENSAL:\n" + JSON.stringify(TabMensal, null, 2) + "\n\n" +
                               "PASSADO:\n" + JSON.stringify(TabPassado, null, 2);*/
 
-		android.SalvaBKP("base", "corrente", TabCorrente);
+		/*android.SalvaBKP("base", "corrente", TabCorrente);
 		//console.log("CORRENTE", TabCorrente);
 		//resultado.innerHTML = "CORRENTE\n"+TabCorrente+"\n\n";
 		
@@ -577,7 +577,7 @@ $.when(
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // Se QUALQUER uma das requisições falhar, este bloco é executado
 	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});
+	});*/
 }
 </script>
 </body>
