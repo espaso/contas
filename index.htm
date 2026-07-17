@@ -188,6 +188,9 @@ $.when(
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
 
+	// Substitua temporariamente o seu código de leitura por este para testar:
+resultado.value = AndroidBridge.listarArquivos();
+
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 
 	if (arqCorrente.startsWith("ERROR")) {
