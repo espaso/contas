@@ -190,7 +190,7 @@ $.when(
 
 	
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
-	TabCorrente = JSON.parse(arqCorrente);
+	TabCorrente = JSON.stringfy(arqCorrente, null, 2);
 	//console.log(dadosCorrente);
 	resultado.value = "CORRENTE 8\n"+TabCorrente;
 	
