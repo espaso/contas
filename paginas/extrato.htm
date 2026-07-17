@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
 <link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
 <script type="text/javascript" src="../codigos/codigo.js"></script>
-<script type="text/javascript" src="../codigos/jquery.js"></script>
+<!--script type="text/javascript" src="../codigos/jquery.js"></script-->
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -61,7 +61,7 @@
 		<TABLE border="0" style="border-collapse: collapse; height: 30" cellspacing="0" width="100%" cellpadding="0">
 			<TR>
 				<TD width="11"></TD>
-				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO</font></TD>
+				<TD valign="bottom"><font size='1'><font size='2'>D</font>EMONSTRATIVO 1</font></TD>
 			</TR>
 		</TABLE>
 	</TD>
@@ -747,7 +747,7 @@ function ExibeFuturo(registro) {
 	}
 }
 
-let TabCorrente = [];
+/*let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
 $.when(
@@ -757,7 +757,15 @@ $.when(
 ).done(function(resCorrente, resMensal, resPassado) {
     TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
-    TabPassado = resPassado[0];
+    TabPassado = resPassado[0];*/
+
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqMensal = AndroidBridge.lerArqJson("mensal");
+	const arqPassado = AndroidBridge.lerArqJson("passado");
+	
+	const TabCorrente = JSON.parse(arqCorrente);
+	const TabMensal = JSON.parse(arqMensal);
+	const TabPassado = JSON.parse(arqPassado);
 
 	AtualizaFuturo();
 	AtualizaPagina();
@@ -848,9 +856,9 @@ $.when(
 		var EntradaExtrato=0,DespesaExtrato=0,ReceitaExtrato=0;
 	
 		if (N==0) {
-			var TabExtrato = resCorrente[0];
+			var TabExtrato = TabCorrente;//resCorrente[0];
 		} else {
-			var TabExtrato = resPassado[0];
+			var TabExtrato = TabPassado;//resPassado[0];
 		}
 			
 		TabExtrato.sort(function(a, b) {
@@ -939,10 +947,10 @@ $.when(
 	    startSlide: 11
 	});
 	
-}).fail(function(jqXHR, textStatus, errorThrown) {
+/*}).fail(function(jqXHR, textStatus, errorThrown) {
     // Se QUALQUER uma das requisições falhar, este bloco é executado
     console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-});
+});*/
 </script>
 </body>
 </html>
