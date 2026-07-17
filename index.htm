@@ -191,7 +191,7 @@ $.when(
 	// Substitua temporariamente o seu código de leitura por este para testar:
 	resultado.value = "TESTE 1\n"+AndroidBridge.listarArquivos();
 
-	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	/*const arqCorrente = AndroidBridge.lerArqJson("corrente");
 
 	if (arqCorrente.startsWith("ERROR")) {
 		resultado.value = "Erro no Android:\n"+arqCorrente;
@@ -404,7 +404,7 @@ $.when(
 				DescCredito.innerHTML = "R$ "+formatamoeda(somaValor);
 			}
 			TCredito.innerHTML = "R$ "+formatamoeda(ReceitaCredito+TotalCredito);
-		}
+		}*/
 	} else {
 		var SaldoBRanterior=0,EntradaBRanterior=0,SaidaBRanterior=0;
 		var SaldoDManterior=0,EntradaDManterior=0,SaidaDManterior=0;
