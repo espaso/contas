@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="../codigos/dtpicker.css" type="text/css" />
 <link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
 <script type="text/javascript" src="../codigos/codigo.js"></script>
-<!--script type="text/javascript" src="../codigos/jquery.js"></script-->
 <script type="text/javascript" src="../codigos/dtjquery.js"></script>
 <script type="text/javascript" src="../codigos/dtpicker.js"></script>
 <title>Contas</title>
@@ -155,31 +154,6 @@ window.addEventListener('load', function(){
 });
 
 var pagina = "", codigo = "";
-var loc = location.search.substring(1, location.search.length);
-var params = loc.split("&");
-pagina = params[0].substring(params[0].indexOf('='), params[0].length);
-pagina = pagina.substring(1, pagina.lenght);
-if (params.length>1) {
-	codigo = params[1].substring(params[1].indexOf('='), params[1].length);
-	codigo = codigo.substring(1, codigo.lenght);
-}
-if (codigo=="") {
-	LimparCamposRegistro(pagina);
-} else {
-	PopulaCamposRegistro(pagina,codigo);
-}	
-	
-var salvo = false;
-function PopulaCamposRegistro(pagina,codigo) {
-
-	/*let TabCorrente = [];
-	let TabMensal = [];
-	$.when(
-	    $.getJSON("../base/corrente"),
-	    $.getJSON("../base/mensal")
-	).done(function(resCorrente, resMensal) {
-	    TabCorrente = resCorrente[0];
-	    TabMensal = resMensal[0];*/
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	const arqMensal = AndroidBridge.lerArqJson("mensal");
@@ -246,10 +220,6 @@ function PopulaCamposRegistro(pagina,codigo) {
 		}
 	}
 
-	/*}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // Se QUALQUER uma das requisições falhar, este bloco é executado
-	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});*/
 }
 function LimparCamposRegistro(pagina) {
 	AcendeForma();
@@ -380,15 +350,6 @@ function SalvaRegistro() {
 	else if (salvo) {GravaRegistro();}
 }
 function GravaRegistro() {
-
-	/*let TabCorrente = [];
-	let TabMensal = [];
-	$.when(
-	    $.getJSON("../base/corrente"),
-	    $.getJSON("../base/mensal")
-	).done(function(resCorrente, resMensal) {
-	    TabCorrente = resCorrente[0];
-	    TabMensal = resMensal[0];*/
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	const arqMensal = AndroidBridge.lerArqJson("mensal");
@@ -526,22 +487,8 @@ function GravaRegistro() {
 		}
 		setTimeout(function() {window.location.reload();}, 0)
 	}
-		
-	/*}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // Se QUALQUER uma das requisições falhar, este bloco é executado
-	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});*/
 }
 function ExcluiRegistro() {
-
-	/*let TabCorrente = [];
-	let TabMensal = [];
-	$.when(
-	    $.getJSON("../base/corrente"),
-	    $.getJSON("../base/mensal")
-	).done(function(resCorrente, resMensal) {
-	    TabCorrente = resCorrente[0];
-	    TabMensal = resMensal[0];*/
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	const arqMensal = AndroidBridge.lerArqJson("mensal");
@@ -563,13 +510,6 @@ function ExcluiRegistro() {
 		var RegResto = document.getElementById('resto').value;
 	}
 	var RegForma = document.getElementById('forma').value;
-
-	/*if (pagina=="registro") {
-		var TabExtrato = TabCorrente;//resCorrente[0];
-	} else {
-		var TabExtrato = TabMensal;//resMensal[0];
-	}*/
-	
 	
 	if (pagina=="registro") {
 		var TabExtrato = TabCorrente;//resCorrente[0];
@@ -599,11 +539,6 @@ function ExcluiRegistro() {
 			} else {console.log("mensal\n"+jsonMensal);}
 		}
 	setTimeout(function() {window.history.back();}, 0)
-
-	/*}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // Se QUALQUER uma das requisições falhar, este bloco é executado
-	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});*/
 }
 
 $( function() {
