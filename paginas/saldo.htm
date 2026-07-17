@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="../codigos/estilo.css" type="text/css" />
 <link rel="shortcut icon" type="image/png" href="../imagens/icone.png"/>
 <script type="text/javascript" src="../codigos/codigo.js"></script>
-<!--script type="text/javascript" src="../codigos/jquery.js"></script-->
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -620,15 +619,6 @@ function AtualizaPagina() {
 }
 function MontaTabela(deftabela,N) {
 	var EntradaSaldo=0,DespesaSaldo=0,ReceitaSaldo=0;
-	
-	/*let TabCorrente = [];
-	let TabPassado = [];
-	$.when(
-	    $.getJSON("../base/corrente"),
-	    $.getJSON("../base/passado")
-	).done(function(resCorrente, resPassado) {
-	    TabCorrente = resCorrente[0];
-	    TabPassado = resPassado[0];*/
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	//const arqMensal = AndroidBridge.lerArqJson("mensal");
@@ -720,11 +710,6 @@ function MontaTabela(deftabela,N) {
 	Total3.innerHTML = "R$ "+formatamoeda(DespesaSaldo*-1)+"<p>Despesa";
 	exSaldo = eval("exSaldo"+N);
 	exSaldo.innerHTML = html;
-
-	/*}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // Se QUALQUER uma das requisições falhar, este bloco é executado
-	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});*/
 }
 
 function PesquisaItem(texto) {
@@ -737,15 +722,6 @@ function PesquisaItem(texto) {
 }
 function MontaPesquisa(texto,deftabela,N) {
 	var EntradaExtrato=0,DespesaExtrato=0,ReceitaExtrato=0;
-
-	/*let TabCorrente = [];
-	let TabPassado = [];
-	$.when(
-	    $.getJSON("../base/corrente"),
-	    $.getJSON("../base/passado")
-	).done(function(resCorrente, resPassado) {
-	    TabCorrente = resCorrente[0];
-	    TabPassado = resPassado[0];*/
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	//const arqMensal = AndroidBridge.lerArqJson("mensal");
@@ -812,11 +788,6 @@ function MontaPesquisa(texto,deftabela,N) {
 		exibicao.hidden='';
 		pesquisado.hidden='true';
 	}
-	
-	/*}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // Se QUALQUER uma das requisições falhar, este bloco é executado
-	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});*/
 }
 	
 var elem = document.getElementById("mySwipe");
