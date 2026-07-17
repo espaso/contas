@@ -192,7 +192,7 @@ $.when(
 	//resultado.value = "TESTE 1\n"+AndroidBridge.listarArquivos();
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
-	TabCorrente = arqCorrente[0];
+	TabCorrente = arqCorrente;
 	resultado.value = "CORRENTE 14:\n"+TabCorrente;
 
 	/*if (arqCorrente.startsWith("ERROR")) {
