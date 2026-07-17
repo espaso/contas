@@ -154,7 +154,7 @@ window.addEventListener('load', function(){
 });
 
 var pagina = "", codigo = "";
-window.onload = function() {
+//window.onload = function() {
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	const arqMensal = AndroidBridge.lerArqJson("mensal");
 	//const arqPassado = AndroidBridge.lerArqJson("passado");
@@ -177,7 +177,7 @@ window.onload = function() {
 	} else {
 		PopulaCamposRegistro(pagina,codigo);
 	}
-}
+//}
 var salvo = false;
 function PopulaCamposRegistro(pagina,codigo) {
 	if (pagina=="registro") {
