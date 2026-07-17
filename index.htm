@@ -176,7 +176,7 @@ const existe = true;//Android.folderExists("minhaPasta");
 
 if (existe) {
 
-//let TabCorrente = [];
+let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
 $.when(
@@ -192,8 +192,10 @@ $.when(
 	//resultado.value = "TESTE 1\n"+AndroidBridge.listarArquivos();
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const TabCorrente = arqCorrente[0];
+	resultado.value = "CORRENTE 13:\n"+TabCorrente;
 
-	if (arqCorrente.startsWith("ERROR")) {
+	/*if (arqCorrente.startsWith("ERROR")) {
 		resultado.value = "Erro no Android:\n"+arqCorrente;
 	} else {
 		try {
@@ -208,7 +210,7 @@ $.when(
 		} catch (e) {
 			resultado.value = "Erro: "+e.message+"\n\nTexto:\n"+arqCorrente;
 		}
-	}
+	}*/
 	
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
