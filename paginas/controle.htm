@@ -616,14 +616,22 @@ nomemes2.innerHTML = nomepg.substr(1,nomepg.length).toUpperCase();
 nomemes3.innerHTML = nomepg.substr(0,1).toUpperCase();
 nomemes4.innerHTML = nomepg.substr(1,nomepg.length).toUpperCase();
 
-let TabCorrente = [];
+/*let TabCorrente = [];
 let TabMensal = [];
 $.when(
     $.getJSON("../base/corrente"),
     $.getJSON("../base/mensal")
 ).done(function(resCorrente, resMensal) {
     TabCorrente = resCorrente[0];
-    TabMensal = resMensal[0];
+    TabMensal = resMensal[0];*/
+
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqMensal = AndroidBridge.lerArqJson("mensal");
+	const arqPassado = AndroidBridge.lerArqJson("passado");
+	
+	const TabCorrente = JSON.parse(arqCorrente);
+	const TabMensal = JSON.parse(arqMensal);
+	const TabPassado = JSON.parse(arqPassado);
 
 	AtualizaControle();
 	AtualizaPagina();
