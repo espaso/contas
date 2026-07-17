@@ -188,12 +188,24 @@ $.when(
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
 
-	
-	const arqCorrente = AndroidBridge.lerArqJson("base/corrente");
-	const TabCorrente = JSON.parse(arqCorrente);
-	//TabCorrente = JSON.stringify(objCorrente, null, 2);
-	//console.log(dadosCorrente);
-	resultado.value = "CORRENTE 11\n"+JSON.stringify(TabCorrente, null, 2);
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+
+	if (arqCorrente.startsWith("ERROR")) {
+		resutado.value = "Erro no Android:\n"+arqCorrente;
+	} else {
+		try {
+			const TabCorrente = JSON.parse(arqCorrente);
+			//TabCorrente = JSON.stringify(objCorrente, null, 2);
+			//console.log(dadosCorrente);
+			if (Array.isArray(TabCorrente)) {
+				resultado.value = "CORRENTE 12:\n"+JSON.stringify(TabCorrente, null, 2);
+			} else {
+				resultado.value = "Deu erro na eitura do arquivo";
+			}
+		} catch (e) {
+			resultado.value = "Erro: "+e.message+"\n\nTexto:\n"+arqCorrente;
+		}
+	}
 	
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
