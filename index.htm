@@ -171,35 +171,9 @@ function PreencheCirculo(Circ,cor,PConta) {
 	return;
 }
 
-
 const testeDir = AndroidBridge.FolderExists("base");
 
-if (!testeDir) {
-	resultado.value = "1 - A base existe";
-} else {
-	resultado.value = "1 - A base não existe";
-}
-
-	
-const existe = true;//Android.folderExists("minhaPasta");
-
-if (existe) {
-
-/*let TabCorrente = [];
-let TabMensal = [];
-let TabPassado = [];
-$.when(
-    $.getJSON("base/corrente"),
-    $.getJSON("base/mensal"),
-    $.getJSON("base/passado")
-).done(function(resCorrente, resMensal, resPassado) {
-    TabCorrente = resCorrente[0];
-    TabMensal = resMensal[0];
-    TabPassado = resPassado[0];*/
-
-	// Substitua temporariamente o seu código de leitura por este para testar:
-	//resultado.value = "TESTE 1\n"+AndroidBridge.listarArquivos();
-
+if (testeDir) {
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	const arqMensal = AndroidBridge.lerArqJson("mensal");
 	const arqPassado = AndroidBridge.lerArqJson("passado");
@@ -207,27 +181,7 @@ $.when(
 	const TabCorrente = JSON.parse(arqCorrente);
 	const TabMensal = JSON.parse(arqMensal);
 	const TabPassado = JSON.parse(arqPassado);
-	/*resultado.value = "CORRENTE 16:\n\n"+
-						"List:\n"+ListCorrente+"\n\n"+
-						"Tab:\n"+TabCorrente;*/
-
-	/*if (arqCorrente.startsWith("ERROR")) {
-		resultado.value = "Erro no Android:\n"+arqCorrente;
-	} else {
-		try {
-			const TabCorrente = JSON.parse(arqCorrente);
-			//TabCorrente = JSON.stringify(objCorrente, null, 2);
-			//console.log(dadosCorrente);
-			if (Array.isArray(TabCorrente)) {
-				resultado.value = "CORRENTE 13:\n"+JSON.stringify(TabCorrente, null, 2);
-			} else {
-				resultado.value = "Deu erro na leitura do arquivo";
-			}
-		} catch (e) {
-			resultado.value = "Erro: "+e.message+"\n\nTexto:\n"+arqCorrente;
-		}
-	}*/
-	
+		
 	TabCorrente.sort(function(a, b) {
 		return a.Data < b.Data ? -1 : a.Data > b.Data ? 1 : 0;
 		return a.Descricao < b.Descricao ? -1 : a.Descricao > b.Descricao ? 1 : 0;
@@ -534,19 +488,19 @@ $.when(
 		var jsonMensal = "["+htmlMensal+"]";
 		var jsonPassado = "["+htmlPassado+"]";
 		if (dispositivo) {
-				//android.SalvaBKP("base", "corrente", jsonCorrente);
+				android.SalvaBKP("base", "corrente", jsonCorrente);
 				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
 				//resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
 			
-				//android.SalvaBKP("base", "mensal", jsonMensal);
+				android.SalvaBKP("base", "mensal", jsonMensal);
 				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
 				//resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
 			
-				//android.SalvaBKP("base", "passado", jsonPassado);
+				android.SalvaBKP("base", "passado", jsonPassado);
 				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
 				//resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
 			
-				//android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
+				android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
 				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
 				//resultado.innerHTML += "B202606\n"+htmlPagina;
 		} else {
@@ -557,10 +511,6 @@ $.when(
 		}
 		setTimeout(function() {window.location.reload();}, 20000)
 	}
-	/*}).fail(function(jqXHR, textStatus, errorThrown) {
-    	// Se QUALQUER uma das requisições falhar, este bloco é executado
-    	console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
-	});*/
 
 } else {
 
@@ -575,10 +525,6 @@ $.when(
 		TabCorrente = JSON.stringify(resCorrente[0], null, 2);
 		TabMensal = JSON.stringify(resMensal[0], null, 2);
 		TabPassado = JSON.stringify(resPassado[0], null, 2);
-
-		/*resultado.value = "CORRENTE:\n" + JSON.stringify(TabCorrente, null, 2) + "\n\n" +
-                              "MENSAL:\n" + JSON.stringify(TabMensal, null, 2) + "\n\n" +
-                              "PASSADO:\n" + JSON.stringify(TabPassado, null, 2);*/
 
 		android.SalvaBKP("base", "corrente", TabCorrente);
 		//console.log("CORRENTE", TabCorrente);
