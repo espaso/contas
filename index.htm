@@ -176,7 +176,7 @@ const existe = true;//Android.folderExists("minhaPasta");
 
 if (existe) {
 
-let TabCorrente = [];
+//let TabCorrente = [];
 let TabMensal = [];
 let TabPassado = [];
 $.when(
@@ -184,7 +184,7 @@ $.when(
     $.getJSON("base/mensal"),
     $.getJSON("base/passado")
 ).done(function(resCorrente, resMensal, resPassado) {
-    TabCorrente = resCorrente[0];
+    //TabCorrente = resCorrente[0];
     TabMensal = resMensal[0];
     TabPassado = resPassado[0];
 
@@ -192,9 +192,9 @@ $.when(
 	//resultado.value = "TESTE 1\n"+AndroidBridge.listarArquivos();
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
-	const ListCorrente = JSON.parse(arqCorrente);
-	resultado.value = "CORRENTE 15:\n\n"+
-						"List:\n"+ListCorrente+"\n\n"+
+	const TabCorrente = JSON.parse(arqCorrente);
+	resultado.value = "CORRENTE 16:\n\n"+
+						//"List:\n"+ListCorrente+"\n\n"+
 						"Tab:\n"+TabCorrente;
 
 	/*if (arqCorrente.startsWith("ERROR")) {
