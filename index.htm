@@ -193,7 +193,9 @@ $.when(
 
 	const arqCorrente = AndroidBridge.lerArqJson("corrente");
 	const ListCorrente = JSON.parse(arqCorrente);
-	resultado.value = "CORRENTE 15:\n"+ListCorrente;
+	resultado.value = "CORRENTE 15:\n\n"+
+						"List:\n"+ListCorrente+"\n\n"+
+						"Tab:\n"+ListCorrente;
 
 	/*if (arqCorrente.startsWith("ERROR")) {
 		resultado.value = "Erro no Android:\n"+arqCorrente;
