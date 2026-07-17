@@ -390,6 +390,14 @@ function GravaRegistro() {
 	    TabCorrente = resCorrente[0];
 	    TabMensal = resMensal[0];*/
 
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqMensal = AndroidBridge.lerArqJson("mensal");
+	//const arqPassado = AndroidBridge.lerArqJson("passado");
+	
+	const TabCorrente = JSON.parse(arqCorrente);
+	const TabMensal = JSON.parse(arqMensal);
+	//const TabPassado = JSON.parse(arqPassado);
+
 	var RegCodigo = document.getElementById('codigo').value;
 	var RegValor = parseFloat(document.getElementById('valor').value);//.replace(".","").replace(",",".");
 	var RegDescricao = document.getElementById('descricao').value;
@@ -556,17 +564,17 @@ function ExcluiRegistro() {
 	}
 	var RegForma = document.getElementById('forma').value;
 
+	/*if (pagina=="registro") {
+		var TabExtrato = TabCorrente;//resCorrente[0];
+	} else {
+		var TabExtrato = TabMensal;//resMensal[0];
+	}*/
+	
+	
 	if (pagina=="registro") {
 		var TabExtrato = TabCorrente;//resCorrente[0];
 	} else {
 		var TabExtrato = TabMensal;//resMensal[0];
-	}
-	
-	
-	if (pagina=="registro") {
-		var TabExtrato = resCorrente[0];
-	} else {
-		var TabExtrato = resMensal[0];
 	}
 		
 	TabExtrato.sort(function(a, b) {
