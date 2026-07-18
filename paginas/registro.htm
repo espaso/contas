@@ -462,7 +462,7 @@ function GravaRegistro() {
 				var jsonCorrente = JSON.stringify(htmlCorrente);
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente", jsonCorrente);
-					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 10000)
 					//resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			}
@@ -507,7 +507,7 @@ function GravaRegistro() {
 				var jsonCorrente = JSON.stringify(TabCorrente);
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente", jsonCorrente);
-					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 10000)
 					//resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			}
