@@ -462,11 +462,11 @@ function GravaRegistro() {
 				var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
 				if (dispositivo) {
 					//android.SalvaBKP("base", "corrente", jsonCorrente);
-					//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 10000)
+					//AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
 					resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			}
-			setTimeout(function() {window.history.back();}, 20000)
+			setTimeout(function() {window.history.back();}, 10000)
 		//}
 	} else {
 		if (pagina=="registro") {
@@ -507,12 +507,12 @@ function GravaRegistro() {
 				var jsonCorrente = "["+JSON.stringify(TabCorrente)+"]";
 				if (dispositivo) {
 					//android.SalvaBKP("base", "corrente", jsonCorrente);
-					//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 10000)
+					//AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
 					resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			}
 		}
-		setTimeout(function() {window.location.reload();}, 0)
+		setTimeout(function() {window.history.back();}, 10000)
 	}
 }
 function ExcluiRegistro() {
@@ -565,12 +565,12 @@ function ExcluiRegistro() {
 			var jsonMensal = "["+JSON.stringify(htmlMensal)+"]";
 			if (dispositivo) {
 				//android.SalvaBKP("base", "mensal", jsonMensal);
-				//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 10000)
+				//AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
 				resultado.value = "MENSAL:\n"+jsonMensal+"\n\n";
 			} else {console.log(jsonMensal);}
 		}
 	//}
-	setTimeout(function() {window.history.back();}, 0)
+	setTimeout(function() {window.history.back();}, 10000)
 }
 
 
