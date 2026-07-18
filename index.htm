@@ -493,15 +493,15 @@ if (testeDir) {
 				//resultado.innerHTML = "CORRENTE\n"+jsonCorrente+"\n\n";
 			
 				android.SalvaBKP("base", "mensal", jsonMensal);
-				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 20000)
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 10000)
 				//resultado.innerHTML += "MENSAL\n"+jsonMensal+"\n\n";
 			
 				android.SalvaBKP("base", "passado", jsonPassado);
-				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 20000)
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "passado", jsonPassado);}, 10000)
 				//resultado.innerHTML += "PASSADO\n"+jsonPassado+"\n\n";
 			
 				android.SalvaBKP("html", "B"+ultimomes+".html", htmlPagina);
-				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 20000)
+				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("html", "B"+ultimomes+".html", htmlPagina);}, 10000)
 				//resultado.innerHTML += "B202606\n"+htmlPagina;
 		} else {
 			console.log("CORRENTE\n"+jsonCorrente+"\n\n");
@@ -509,7 +509,7 @@ if (testeDir) {
 			console.log("PASSADO\n"+jsonPassado+"\n\n");
 			console.log("B"+ultimomes+".html\n"+htmlPagina+"\n\n");
 		}
-		setTimeout(function() {window.location.reload();}, 20000)
+		setTimeout(function() {window.location.reload();}, 10000)
 	}
 
 } else {
