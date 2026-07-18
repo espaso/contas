@@ -542,6 +542,7 @@ if (testeDir) {
 	    // Se QUALQUER uma das requisições falhar, este bloco é executado
 	    console.error("Erro ao carregar um dos arquivos JSON:", textStatus, errorThrown);
 	});
+	setTimeout(function() {window.location.reload();}, 10000)
 }
 </script>
 </body>
