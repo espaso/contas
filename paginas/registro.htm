@@ -144,6 +144,7 @@
 </TABLE>
 </div>
 </center>
+<textarea id="resultado" style="width: 100%; height: 100%;"></textarea>
 <script>
 window.onerror = MensagemErro;
 window.addEventListener('focus', function(){
@@ -407,10 +408,11 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
 				if (dispositivo) {
-					android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);
+					//android.SalvaBKP("base", "corrente", jsonCorrente);
+					//AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+					resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			} else {
 				const htmlMensal = TabExtrato.map(objeto => {
@@ -419,10 +421,11 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+				var jsonMensal = "["+JSON.stringify(htmlMensal)+"]";
 				if (dispositivo) {
-					android.SalvaBKP("base", "mensal.js", jsonMensal);
-					AndroidGithub.salvarArquivoNoGitHub("base", "mensal.js", jsonMensal);
+					//android.SalvaBKP("base", "mensal", jsonMensal);
+					//AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
+					resultado.value = "MENSAL:\n"+jsonMensal+"\n\n";
 				} else {console.log(jsonMensal);}
 				
 				//var TabCorrente = JSON.parse(pegaCorrente);
@@ -456,10 +459,11 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+				var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
 				if (dispositivo) {
-					android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);}, 10000)
+					//android.SalvaBKP("base", "corrente", jsonCorrente);
+					//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 10000)
+					resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			}
 			setTimeout(function() {window.history.back();}, 20000)
@@ -467,17 +471,19 @@ function GravaRegistro() {
 	} else {
 		if (pagina=="registro") {
 			TabExtrato.push({"Codigo": parseInt(agora), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)});
-			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabExtrato)+"';";
+			var jsonCorrente = "["+JSON.stringify(TabExtrato)+"]";
 			if (dispositivo) {
-				android.SalvaBKP("base", "corrente.js", jsonCorrente);
-				AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);
+				//android.SalvaBKP("base", "corrente", jsonCorrente);
+				//AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+				resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 			} else {console.log(jsonCorrente);}
 		} else {
 			TabExtrato.push({"Codigo": parseInt(agora), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": Zerado(RegVencimento,2,''), "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)});
-			var jsonMensal = "var pegaMensal = '"+JSON.stringify(TabExtrato)+"';";
+			var jsonMensal = "["+JSON.stringify(TabExtrato)+"]";
 			if (dispositivo) {
-				android.SalvaBKP("base", "mensal.js", jsonMensal);
-				AndroidGithub.salvarArquivoNoGitHub("base", "mensal.js", jsonMensal);
+				//android.SalvaBKP("base", "mensal", jsonMensal);
+				//AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
+				resultado.value = "MENSAL:\n"+jsonMensal+"\n\n";
 			} else {console.log(jsonMensal);}
 				
 			//var TabCorrente = JSON.parse(pegaCorrente);
@@ -498,10 +504,11 @@ function GravaRegistro() {
 			if (Zerado(RegVencimento,2,'')>Dia) {
 				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
 				TabCorrente.push({"Codigo": parseInt(agora), "Data": Ano+""+Mes+""+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(codValor)});
-				var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(TabCorrente)+"';";
+				var jsonCorrente = "["+JSON.stringify(TabCorrente)+"]";
 				if (dispositivo) {
-					android.SalvaBKP("base", "corrente.js", jsonCorrente);
-					setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);}, 10000)
+					//android.SalvaBKP("base", "corrente", jsonCorrente);
+					//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);}, 10000)
+					resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 				} else {console.log(jsonCorrente);}
 			}
 		}
@@ -547,17 +554,19 @@ function ExcluiRegistro() {
 	if (confirm("EXCLUIR "+RegDescricao.toUpperCase()+"\n"+MostraData+" :: R$ "+formatamoeda(MostraValor))) {*/
 		if (pagina=="registro") {
 			const htmlCorrente = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonCorrente = "var pegaCorrente = '"+JSON.stringify(htmlCorrente)+"';";
+			var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
 			if (dispositivo) {
-				android.SalvaBKP("base", "corrente.js", jsonCorrente);
-				AndroidGithub.salvarArquivoNoGitHub("base", "corrente.js", jsonCorrente);
+				//android.SalvaBKP("base", "corrente", jsonCorrente);
+				//AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
+				resultado.value = "CORRENTE:\n"+jsonCorrente+"\n\n";
 			} else {console.log(jsonCorrente);}
 		} else {
 			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonMensal = "var pegaMensal = '"+JSON.stringify(htmlMensal)+"';";
+			var jsonMensal = "["+JSON.stringify(htmlMensal)+"]";
 			if (dispositivo) {
-				android.SalvaBKP("base", "mensal.js", jsonMensal);
-				setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal.js", jsonMensal);}, 10000)
+				//android.SalvaBKP("base", "mensal", jsonMensal);
+				//setTimeout(function() {AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);}, 10000)
+				resultado.value = "MENSAL:\n"+jsonMensal+"\n\n";
 			} else {console.log(jsonMensal);}
 		}
 	//}
