@@ -8,8 +8,6 @@
 <script type="text/javascript" src="../codigos/codigo.js"></script>
 <script type="text/javascript" src="../codigos/dtjquery.js"></script>
 <script type="text/javascript" src="../codigos/dtpicker.js"></script>
-<!--script type="text/javascript" src="https://espaso.github.io/contas/base/corrente.js"></script>
-<script type="text/javascript" src="https://espaso.github.io/contas/base/mensal.js"></script-->
 <title>Contas</title>
 </head>
 <body onselectstart="return false" class="fadeOut">
@@ -172,6 +170,15 @@ window.onload = function() {
 }
 var salvo = false;
 function PopulaCamposRegistro(pagina,codigo) {
+	
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqMensal = AndroidBridge.lerArqJson("mensal");
+	//const arqPassado = AndroidBridge.lerArqJson("passado");
+	
+	const TabCorrente = JSON.parse(arqCorrente);
+	const TabMensal = JSON.parse(arqMensal);
+	//const TabPassado = JSON.parse(arqPassado);
+	
 	if (pagina=="registro") {
 		var TabExtrato = TabCorrente; //JSON.parse(pegaCorrente);
 		document.getElementById("regsimples").hidden = "";
@@ -369,6 +376,14 @@ function GravaRegistro() {
 	}
 	var RegForma = document.getElementById('forma').value;
 
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqMensal = AndroidBridge.lerArqJson("mensal");
+	//const arqPassado = AndroidBridge.lerArqJson("passado");
+	
+	const TabCorrente = JSON.parse(arqCorrente);
+	const TabMensal = JSON.parse(arqMensal);
+	//const TabPassado = JSON.parse(arqPassado);
+	
 	if (pagina=="registro") {
 		var TabExtrato = TabCorrente; //JSON.parse(pegaCorrente);
 	} else {
@@ -506,6 +521,14 @@ function ExcluiRegistro() {
 		var RegResto = document.getElementById('resto').value;
 	}
 	var RegForma = document.getElementById('forma').value;
+
+	const arqCorrente = AndroidBridge.lerArqJson("corrente");
+	const arqMensal = AndroidBridge.lerArqJson("mensal");
+	//const arqPassado = AndroidBridge.lerArqJson("passado");
+	
+	const TabCorrente = JSON.parse(arqCorrente);
+	const TabMensal = JSON.parse(arqMensal);
+	//const TabPassado = JSON.parse(arqPassado);
 	
 	if (pagina=="registro") {
 		var TabExtrato = TabCorrente; //JSON.parse(pegaCorrente);
