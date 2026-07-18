@@ -408,7 +408,7 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
+				var jsonCorrente = JSON.stringify(htmlCorrente);
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente", jsonCorrente);
 					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
@@ -421,7 +421,7 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonMensal = "["+JSON.stringify(htmlMensal)+"]";
+				var jsonMensal = JSON.stringify(htmlMensal);
 				if (dispositivo) {
 					android.SalvaBKP("base", "mensal", jsonMensal);
 					AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
@@ -459,7 +459,7 @@ function GravaRegistro() {
 					}
 					return objeto;
 				});
-				var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
+				var jsonCorrente = JSON.stringify(htmlCorrente);
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente", jsonCorrente);
 					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
@@ -471,7 +471,7 @@ function GravaRegistro() {
 	} else {
 		if (pagina=="registro") {
 			TabExtrato.push({"Codigo": parseInt(agora), "Data": RegData, "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor)});
-			var jsonCorrente = "["+JSON.stringify(TabExtrato)+"]";
+			var jsonCorrente = JSON.stringify(TabExtrato);
 			if (dispositivo) {
 				android.SalvaBKP("base", "corrente", jsonCorrente);
 				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
@@ -479,7 +479,7 @@ function GravaRegistro() {
 			} else {console.log(jsonCorrente);}
 		} else {
 			TabExtrato.push({"Codigo": parseInt(agora), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(RegValor), "Site": RegSite, "Data": Zerado(RegVencimento,2,''), "Parcela": parseInt(RegParcela), "Resto": parseInt(RegResto)});
-			var jsonMensal = "["+JSON.stringify(TabExtrato)+"]";
+			var jsonMensal = JSON.stringify(TabExtrato);
 			if (dispositivo) {
 				android.SalvaBKP("base", "mensal", jsonMensal);
 				AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
@@ -504,7 +504,7 @@ function GravaRegistro() {
 			if (Zerado(RegVencimento,2,'')>Dia) {
 				if (RegParcela>1) RegDescricao = RegDescricao+" "+RegResto+"/"+RegParcela;
 				TabCorrente.push({"Codigo": parseInt(agora), "Data": Ano+""+Mes+""+Zerado(RegVencimento,2,''), "Forma": RegForma, "Descricao": RegDescricao, "Valor": parseFloat(codValor)});
-				var jsonCorrente = "["+JSON.stringify(TabCorrente)+"]";
+				var jsonCorrente = JSON.stringify(TabCorrente);
 				if (dispositivo) {
 					android.SalvaBKP("base", "corrente", jsonCorrente);
 					AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
@@ -554,7 +554,7 @@ function ExcluiRegistro() {
 	if (confirm("EXCLUIR "+RegDescricao.toUpperCase()+"\n"+MostraData+" :: R$ "+formatamoeda(MostraValor))) {*/
 		if (pagina=="registro") {
 			const htmlCorrente = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonCorrente = "["+JSON.stringify(htmlCorrente)+"]";
+			var jsonCorrente = JSON.stringify(htmlCorrente);
 			if (dispositivo) {
 				android.SalvaBKP("base", "corrente", jsonCorrente);
 				AndroidGithub.salvarArquivoNoGitHub("base", "corrente", jsonCorrente);
@@ -562,7 +562,7 @@ function ExcluiRegistro() {
 			} else {console.log(jsonCorrente);}
 		} else {
 			const htmlMensal = TabExtrato.filter(item => item.Codigo != RegCodigo);
-			var jsonMensal = "["+JSON.stringify(htmlMensal)+"]";
+			var jsonMensal = JSON.stringify(htmlMensal);
 			if (dispositivo) {
 				android.SalvaBKP("base", "mensal", jsonMensal);
 				AndroidGithub.salvarArquivoNoGitHub("base", "mensal", jsonMensal);
