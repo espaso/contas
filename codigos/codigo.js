@@ -11,7 +11,7 @@ if (screen.width < 640 || screen.height < 480) {
 if (dispositivo) var caminho = "/storage/emulated/0/.contas/"; else var caminho = "file:///C:/Users/MARCOS/OneDrive/Documentos/.contas/";
 
 var MinhaData = new Date();
-var Dia = MinhaData.getDate();
+var Dia = 1;//MinhaData.getDate();
 var Mes = MinhaData.getMonth()+1;
 var Mez = Mes;
 var Ano = MinhaData.getFullYear();
